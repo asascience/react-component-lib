@@ -1,0 +1,20 @@
+.breadCrumbsLink {
+    float: left;
+}
+
+.breadCrumbsWrapper {
+    list-style: none;
+    height: 1vh;
+}
+
+.breadCrumbsLink a {
+    font-size: 14px;
+    margin-left: 12px;
+    margin-right: 12px;
+    background-color: #337AB7;
+    color: white;
+    padding: 3px 6px 3px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+    box-shadow: black 2px 2px 5px;
+}

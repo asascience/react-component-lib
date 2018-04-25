@@ -1,0 +1,12 @@
+.autocomplete-textbox {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 35%;
+  text-overflow: ellipsis;
+  font-size: 18px;
+  font-family: FontAwesome, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+}
