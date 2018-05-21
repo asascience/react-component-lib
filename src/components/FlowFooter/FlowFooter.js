@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {uploadAjaxPromise} from '../../helpers/securityUtilities.js';
+//import {uploadAjaxPromise} from '../../helpers/securityUtilities.js';
 import RaisedButton from 'material-ui/RaisedButton';
 import IconMenu from 'material-ui/IconMenu';
 import muiThemeable from 'material-ui/styles/muiThemeable';
@@ -38,7 +38,7 @@ class FlowFooter extends Component {
     // Set modal content
     let self = this;
     let url = process.env.REACT_APP_UPLOAD_SERVER_IP + '/' + this.props.uuid + '/ftp/?type=json';
-    let ajaxCall = uploadAjaxPromise(url);
+    /*let ajaxCall = uploadAjaxPromise(url);
 
     ajaxCall.done(function(data, textStatus, jqXHR) {
       if (data) {
@@ -50,7 +50,7 @@ class FlowFooter extends Component {
     ajaxCall.fail(function() {
       // TODO: send error to log
       console.error('Error getting FTP Credentials');
-    });
+    });*/
 
     this.handleOpen = this.handleOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
@@ -95,7 +95,7 @@ class FlowFooter extends Component {
     const fileType = $(e.target).data('type');
 
     let url = process.env.REACT_APP_UPLOAD_SERVER_IP + '/' + this.props.uuid + '/ftp/?type=' + fileType;
-    let ajaxCall = uploadAjaxPromise(url, 'GET', null);
+    /*let ajaxCall = uploadAjaxPromise(url, 'GET', null);
 
     ajaxCall.done(function(data, textStatus, jqXHR) {
       if (data) {
@@ -113,7 +113,7 @@ class FlowFooter extends Component {
 
     ajaxCall.fail(function(jqXHR, textStatus, errorThrown) {
       console.error('Error downloading FTP credentials');
-    });
+    });*/
   }
 
   render() {

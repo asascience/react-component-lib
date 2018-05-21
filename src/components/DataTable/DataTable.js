@@ -3,7 +3,7 @@ import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColu
 import Info from 'material-ui/svg-icons/action/info-outline';
 import IconButton from 'material-ui/IconButton';
 import DataTableFieldInput from './DataTableFieldInput';
-import standardNames from '../../helpers/autocomplete/StandardNameFiltered.js';
+import standardNames from './StandardNameFiltered.js';
 import './DataTable.css';
 
 /* Defines a row in the table.
