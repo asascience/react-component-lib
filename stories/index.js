@@ -5,11 +5,58 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import moment from 'moment';
 
 // Dataset Search Imports
-import DataSetSearchController from '../src/containers/DatasetSearchContainers/DataSetSearchController.js';
+//import DatasetSearchController from '../src/containers/DatasetSearchContainers/DatasetSearchController.js';
 import DatasetSearch from '../src/containers/DatasetSearchContainers/DatasetSearch.js';
 import SearchResults from '../src/components/DatasetSearch/SearchResults.js';
 import SearchPagination from '../src/components/DatasetSearch/SearchPagination.js';
 import SearchChipInput from '../src/components/DatasetSearch/SearchChipInput.js';
+
+addDecorator((story) => (
+  <MuiThemeProvider>
+    {story()}
+  </MuiThemeProvider>
+));
+
+storiesOf('Search Pagination', module)
+  .add('First Page', ()=>(
+    <SearchPagination
+      pageIndex={0}
+      resultCount={30}
+      resultsPerPage={8}
+      leftButtonsDisabled={true}
+      rightButtonsDisabled={false}
+      getPreviousPage={()=>{}}
+      getNextPage={()=>{}}
+      getFirstPage={()=>{}}
+      getLastPage={()=>{}}
+    />
+  ))
+  .add('Last Page', ()=>(
+    <SearchPagination
+      pageIndex={3}
+      resultCount={30}
+      resultsPerPage={8}
+      leftButtonsDisabled={false}
+      rightButtonsDisabled={true}
+      getPreviousPage={()=>{}}
+      getNextPage={()=>{}}
+      getFirstPage={()=>{}}
+      getLastPage={()=>{}}
+    />
+  ))
+  .add('Single Page', ()=>(
+    <SearchPagination
+      pageIndex={0}
+      resultCount={0}
+      resultsPerPage={8}
+      leftButtonsDisabled={true}
+      rightButtonsDisabled={true}
+      getPreviousPage={()=>{}}
+      getNextPage={()=>{}}
+      getFirstPage={()=>{}}
+      getLastPage={()=>{}}
+    />
+  ));
 
 /* TODO: Fix Dependencies in  existing components */
 // import DataTableFieldInput from '../src/components/DataTable/DataTableFieldInput';
