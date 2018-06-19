@@ -4,7 +4,12 @@ import { action } from '@storybook/addon-actions';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import moment from 'moment';
 
-
+// Dataset Search Imports
+import DataSetSearchController from '../src/containers/DatasetSearchContainers/DataSetSearchController.js';
+import DatasetSearch from '../src/containers/DatasetSearchContainers/DatasetSearch.js';
+import SearchResults from '../src/components/DatasetSearch/SearchResults.js';
+import SearchPagination from '../src/components/DatasetSearch/SearchPagination.js';
+import SearchChipInput from '../src/components/DatasetSearch/SearchChipInput.js';
 
 /* TODO: Fix Dependencies in  existing components */
 // import DataTableFieldInput from '../src/components/DataTable/DataTableFieldInput';

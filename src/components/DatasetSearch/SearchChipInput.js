@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Clear from 'material-ui/svg-icons/content/clear';
-import SearchManager from 'utils/general/SearchManager.js';
 import SearchResults from './SearchResults';
 import './DatasetSearch.css';
 

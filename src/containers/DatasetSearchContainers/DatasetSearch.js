@@ -2,11 +2,10 @@ import React, {Component} from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Clear from 'material-ui/svg-icons/content/clear';
-import SearchManager from 'utils/general/SearchManager.js';
-import SearchResults from './SearchResults';
-import SearchChipInput from './SearchChipInput';
+import SearchResults from '../../components/DatasetSearch/SearchResults';
+import SearchChipInput from '../../components/DatasetSearch/SearchChipInput';
 import PropTypes from 'prop-types';
-import './DatasetSearch.css';
+import '../../components/DatasetSearch/DatasetSearch.css';
 
 // TODO: remove the mui theme wrappers, they shoud not be required.
 const muiTheme = getMuiTheme({
