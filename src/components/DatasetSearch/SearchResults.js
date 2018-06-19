@@ -3,6 +3,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PropTypes from 'prop-types';
 import SearchPagination  from './SearchPagination';
+import '../../components/DatasetSearch/DatasetSearch.css';
 
 class SearchResults extends Component {
 	constructor(props) {
