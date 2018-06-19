@@ -93,3 +93,6 @@ launch.json
 
 # Webstorm
 .idea
+
+# Package Lock
+package-lock.json
