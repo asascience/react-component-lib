@@ -17,6 +17,10 @@ addDecorator((story) => (
   </MuiThemeProvider>
 ));
 
+/*
+  SearchPagination Class
+*/
+
 storiesOf('Search Pagination', module)
   .add('First Page', ()=>(
     <SearchPagination
@@ -56,7 +60,43 @@ storiesOf('Search Pagination', module)
       getFirstPage={()=>{}}
       getLastPage={()=>{}}
     />
-  ));
+  )
+);
+
+/*
+  SearchChipInput Class
+*/
+
+let filterList={
+  'author': ['Bob', 'Brian', 'Dalton', 'Ryan'],
+  'type': ['csv', 'gridded model', 'timeseries'],
+  'tag': ['ocean', 'land', 'sediment', 'something'],
+}
+
+storiesOf('Search Chip Input', module)
+  .add('Partial Chip', ()=>(
+    <SearchChipInput
+      value={['author:']}
+      chipMode={'partial'}
+      dataSource={Object.keys(filterList)}
+      onUpdateInput={()=>{}}
+      onRequestAdd={()=>{}}
+      onRequestDelete={()=>{}}
+      onSearch={()=>{}}
+    />
+  ))
+  .add('Full Chip', ()=>(
+    <SearchChipInput
+      value={['author:Bob']}
+      chipMode={'none'}
+      dataSource={Object.keys(filterList)}
+      onUpdateInput={()=>{}}
+      onRequestAdd={()=>{}}
+      onRequestDelete={()=>{}}
+      onSearch={()=>{}}
+    />
+  )
+);
 
 /* TODO: Fix Dependencies in  existing components */
 // import DataTableFieldInput from '../src/components/DataTable/DataTableFieldInput';
