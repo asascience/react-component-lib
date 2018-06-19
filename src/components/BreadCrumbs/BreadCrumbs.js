@@ -1,27 +1,60 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
-import './BreadCrumbs.css';
 
+/**
+ * Breadcrumb component used for showing location in app
+ */
 class BreadCrumbs extends Component {
-  render() {
-    let breadCrumbsLinks = this.props.pagesVisited.map((pageVisited, i) => {
-      // Adds > after every breadcrumb but the last one
-      let breadCrumbSeparator = '>';
-      if (i === this.props.pagesVisited.length - 1) {
-        breadCrumbSeparator = '';
-      }
-      return <li key={i} className='breadCrumbsLink'><Link to={pageVisited.pageUrl}>{pageVisited.pageTitle}</Link>{breadCrumbSeparator}</li>;
-    });
+  /**
+   * @param {object} props - the props passed to the component
+   * @param {string} props.path - url fragment used for routing
+   * @param {object} props.breadCrumbsWrapperStyle - style for breadcrumbs outer container
+   * @param {object} props.breadCrumbsLinkStyle - style for breadcrumbs links
+   * @return {object} - component
+   */
 
-    return <ul className='breadCrumbsWrapper'>{breadCrumbsLinks}</ul>;
+  render() {
+    let projectName = (this.props.path !== '/') ? this.props.projectName : 'None';
+
+    return (
+      <div style={this.props.breadCrumbsWrapperStyle}>
+        <Link to={'/'} style={this.props.breadCrumbsLinkStyle}>{'Home'}</Link>
+        {projectName !== 'None' &&
+          <div style={{display: 'inline'}}>
+            <span>></span>
+            <Link to={this.props.path} style={this.props.breadCrumbsLinkStyle}>{projectName}</Link>
+          </div>
+        }
+      </div>
+    );
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    return {
-        pagesVisited: state.navigationHistory.pagesVisited,
-    };
+
+BreadCrumbs.defaultProps = {
+  breadCrumbsWrapperStyle: {
+    textAlign: 'left',
+    margin: '20px 0px',
+  },
+  breadCrumbsLinkStyle: {
+    marginLeft: 12,
+    marginRight: 12,
+    backgroundColor: '#337AB7',
+    textDecoration: 'none',
+    color: 'white',
+    padding: '3px 6px 3px 6px',
+    borderRadius: 4,
+    fontWeight: 'bold',
+    boxShadow: 'black 2px 2px 5px',
+  },
 };
 
-export default connect(mapStateToProps, null)(BreadCrumbs);
+BreadCrumbs.propTypes = {
+  path: PropTypes.string,
+  breadCrumbsWrapperStyle: PropTypes.object,
+  breadCrumbsLinkStyle: PropTypes.object,
+};
+
+export default BreadCrumbs;
+
