@@ -10,8 +10,8 @@ import LastPage from 'material-ui/svg-icons/navigation/last-page';
 import './SearchPagination.css';
 
 class SearchPagination extends Component {
-  render() {
-  	let pageNum = this.props.pageIndex+1;
+	render() {
+		let pageNum = this.props.pageIndex+1;
 
 		return(
 			<div className = "searchPagination">
@@ -52,19 +52,19 @@ class SearchPagination extends Component {
 				</div>
 			</div>
 		);
-  }
+	}
 }
 
 SearchPagination.propTypes = {
 	pageIndex: PropTypes.number,
-  getPreviousPage: PropTypes.func,
-  getNextPage: PropTypes.func,
-  getFirstPage: PropTypes.func,
-  getLastPage: PropTypes.func,
-  resultCount: PropTypes.number,
-  resultsPerPage: PropTypes.number,
-  leftButtonsDisabled: PropTypes.bool,
-  rightButtonsDisabled: PropTypes.bool,
+	getPreviousPage: PropTypes.func,
+	getNextPage: PropTypes.func,
+	getFirstPage: PropTypes.func,
+	getLastPage: PropTypes.func,
+	resultCount: PropTypes.number,
+	resultsPerPage: PropTypes.number,
+	leftButtonsDisabled: PropTypes.bool,
+	rightButtonsDisabled: PropTypes.bool,
 };
 
 export default SearchPagination;
