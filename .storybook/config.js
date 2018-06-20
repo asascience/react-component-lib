@@ -9,7 +9,7 @@ function loadStories() {
 configure(loadStories, module);
 
 configureActions({
-	depth: 100,
-	//  limit the number of logged actions
-	limit: 20,
+  depth: 100,
+  //  limit the number of logged actions
+  limit: 20,
 });

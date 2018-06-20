@@ -11,52 +11,52 @@ import './SearchPagination.css';
 
 class SearchPagination extends Component {
   render() {
-  	let pageNum = this.props.pageIndex+1;
+    let pageNum = this.props.pageIndex+1;
 
-		return(
-			<div className = "searchPagination">
-				<div className="leftSearchButtons">
-					<RaisedButton
-						label="First"
-						labelPosition="after"
-						onClick={this.props.getFirstPage}
-						icon={<FirstPage/>}
-						disabled={this.props.leftButtonsDisabled}
-					/>
-					<RaisedButton
-						label="Previous"
-						labelPosition="after"
-						onClick={this.props.getPreviousPage}
-						icon={<ChevronLeft/>}
-						disabled={this.props.leftButtonsDisabled}
-						className="previousButton"
-					/>
-				</div>
-				<h3>{"Page "  +  pageNum}</h3>
-				<div className="rightSearchButtons">
-					<RaisedButton
-						label="Next"
-						labelPosition="before"
-						onClick={this.props.getNextPage}
-						icon={<ChevronRight/>}
-						disabled={this.props.rightButtonsDisabled}
-						className="nextButton"
-					/>
-					<RaisedButton
-						label="Last"
-						labelPosition="before"
-						onClick={this.props.getLastPage}
-						icon={<LastPage/>}
-						disabled={this.props.rightButtonsDisabled}
-					/>
-				</div>
-			</div>
-		);
+    return(
+      <div className = "searchPagination">
+        <div className="leftSearchButtons">
+          <RaisedButton
+            label="First"
+            labelPosition="after"
+            onClick={this.props.getFirstPage}
+            icon={<FirstPage/>}
+            disabled={this.props.leftButtonsDisabled}
+          />
+          <RaisedButton
+            label="Previous"
+            labelPosition="after"
+            onClick={this.props.getPreviousPage}
+            icon={<ChevronLeft/>}
+            disabled={this.props.leftButtonsDisabled}
+            className="previousButton"
+          />
+        </div>
+        <h3>{"Page "  +  pageNum}</h3>
+        <div className="rightSearchButtons">
+          <RaisedButton
+            label="Next"
+            labelPosition="before"
+            onClick={this.props.getNextPage}
+            icon={<ChevronRight/>}
+            disabled={this.props.rightButtonsDisabled}
+            className="nextButton"
+          />
+          <RaisedButton
+            label="Last"
+            labelPosition="before"
+            onClick={this.props.getLastPage}
+            icon={<LastPage/>}
+            disabled={this.props.rightButtonsDisabled}
+          />
+        </div>
+      </div>
+    );
   }
 }
 
 SearchPagination.propTypes = {
-	pageIndex: PropTypes.number,
+  pageIndex: PropTypes.number,
   getPreviousPage: PropTypes.func,
   getNextPage: PropTypes.func,
   getFirstPage: PropTypes.func,

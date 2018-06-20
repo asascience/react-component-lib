@@ -6,13 +6,13 @@ import SearchPagination  from './SearchPagination';
 import './SearchResults.css';
 
 class SearchResults extends Component {
-	constructor(props) {
+  constructor(props) {
     super(props);
 
     this.formatHighlightString =  this.formatHighlightString.bind(this);
   }
 
-	// Given a string, generate a JSX string that highlights occurences of the search string.
+  // Given a string, generate a JSX string that highlights occurences of the search string.
   // This is accomplished by wrapping the search string in <span className="highlight"></span>
   formatHighlightString(text, searchString) {
     let searchIndex = text.indexOf(searchString);
@@ -32,23 +32,23 @@ class SearchResults extends Component {
     return stringDOM;
   }
 
-	render() {
-		let searchResults = [];
-		let startingIndex = this.props.pageIndex * this.props.resultsPerPage;
-		let endingIndex = startingIndex + this.props.resultsPerPage - 1;
+  render() {
+    let searchResults = [];
+    let startingIndex = this.props.pageIndex * this.props.resultsPerPage;
+    let endingIndex = startingIndex + this.props.resultsPerPage - 1;
 
     let resultCount = 0;
 
     if(this.props.searchResults && this.props.searchResults.length > startingIndex){
       resultCount =  this.props.searchResults.length;
 
-    	if (this.props.searchResults.length < endingIndex) {
-				endingIndex =  this.props.searchResults.length - 1;
-			}
+      if (this.props.searchResults.length < endingIndex) {
+        endingIndex =  this.props.searchResults.length - 1;
+      }
 
-    	for (let i = startingIndex; i <= endingIndex; i++) {
-    		let result = this.props.searchResults[i];
-    		let titleDOM = this.formatHighlightString(result.title, this.props.searchText);
+      for (let i = startingIndex; i <= endingIndex; i++) {
+        let result = this.props.searchResults[i];
+        let titleDOM = this.formatHighlightString(result.title, this.props.searchText);
         let abstractDOM = this.formatHighlightString(result.description, this.props.searchText);
 
         let emailLink = "";
@@ -57,7 +57,7 @@ class SearchResults extends Component {
         }
 
         searchResults.push(
-        	<div className={'searchResult' + ((i % 2 === 1) ? ' oddResult' : '')}>
+          <div className={'searchResult' + ((i % 2 === 1) ? ' oddResult' : '')}>
             <div>
               <div
                 className="searchTitle"
@@ -74,11 +74,11 @@ class SearchResults extends Component {
             <p>{abstractDOM}</p>
           </div>
         );
-    	}
-		}
+      }
+    }
 
-		let pageController = (
-			<SearchPagination
+    let pageController = (
+      <SearchPagination
         pageIndex={this.props.pageIndex}
         getNextPage={this.props.getNextPage}
         getPreviousPage={this.props.getPreviousPage}
@@ -89,19 +89,19 @@ class SearchResults extends Component {
         leftButtonsDisabled={this.props.leftButtonsDisabled}
         rightButtonsDisabled={this.props.rightButtonsDisabled}
       />
-		);
+    );
 
-		return(
-			<div>
-				{searchResults}
-				{pageController}
-			</div>
-		);
-	}
+    return(
+      <div>
+        {searchResults}
+        {pageController}
+      </div>
+    );
+  }
 }
 
 SearchResults.propTypes = {
-	searchText: PropTypes.string,
+  searchText: PropTypes.string,
   searchResults: PropTypes.array,
   onDatasetSelected: PropTypes.func,
   resultsPerPage: PropTypes.number,
