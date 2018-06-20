@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf, addDecorator } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import { action, configureActions } from '@storybook/addon-actions';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import moment from 'moment';
 
@@ -29,10 +29,10 @@ storiesOf('Search Pagination', module)
       resultsPerPage={8}
       leftButtonsDisabled={true}
       rightButtonsDisabled={false}
-      getPreviousPage={()=>{}}
-      getNextPage={()=>{}}
-      getFirstPage={()=>{}}
-      getLastPage={()=>{}}
+      getPreviousPage={action('go-to-previous')}
+      getNextPage={action('go-to-next')}
+      getFirstPage={action('go-to-first')}
+      getLastPage={action('go-to-last')}
     />
   ))
   .add('last page', ()=>(
@@ -42,10 +42,10 @@ storiesOf('Search Pagination', module)
       resultsPerPage={8}
       leftButtonsDisabled={false}
       rightButtonsDisabled={true}
-      getPreviousPage={()=>{}}
-      getNextPage={()=>{}}
-      getFirstPage={()=>{}}
-      getLastPage={()=>{}}
+      getPreviousPage={action('go-to-previous')}
+      getNextPage={action('go-to-next')}
+      getFirstPage={action('go-to-first')}
+      getLastPage={action('go-to-last')}
     />
   ))
   .add('single page', ()=>(
@@ -55,10 +55,10 @@ storiesOf('Search Pagination', module)
       resultsPerPage={8}
       leftButtonsDisabled={true}
       rightButtonsDisabled={true}
-      getPreviousPage={()=>{}}
-      getNextPage={()=>{}}
-      getFirstPage={()=>{}}
-      getLastPage={()=>{}}
+      getPreviousPage={action('go-to-previous')}
+      getNextPage={action('go-to-next')}
+      getFirstPage={action('go-to-first')}
+      getLastPage={action('go-to-last')}
     />
   )
 );
@@ -79,10 +79,10 @@ storiesOf('Search Chip Input', module)
       value={['author']}
       chipMode={'partial'}
       dataSource={Object.keys(filterList)}
-      onUpdateInput={()=>{}}
-      onRequestAdd={()=>{}}
-      onRequestDelete={()=>{}}
-      onSearch={()=>{}}
+      onUpdateInput={action('input-updated')}
+      onRequestAdd={action('request-add-chip')}
+      onRequestDelete={action('request-delete-chip')}
+      onSearch={action('search')}
     />
   ))
   .add('full  chip', ()=>(
@@ -90,10 +90,10 @@ storiesOf('Search Chip Input', module)
       value={['author:Bob']}
       chipMode={'none'}
       dataSource={Object.keys(filterList)}
-      onUpdateInput={()=>{}}
-      onRequestAdd={()=>{}}
-      onRequestDelete={()=>{}}
-      onSearch={()=>{}}
+      onUpdateInput={action('input-updated')}
+      onRequestAdd={action('request-add-chip')}
+      onRequestDelete={action('request-delete-chip')}
+      onSearch={action('search')}
     />
   )
 );
@@ -240,30 +240,30 @@ storiesOf('Search  Results',  module)
     <SearchResults
       searchText={'USACE'}
       searchResults={singleResult}
-      onDatasetSelected={()=>{}}
+      onDatasetSelected={action('dataset-selected')}
       resultsPerPage={8}
       pageIndex={0}
       leftButtonsDisabled={true}
       rightButtonsDisabled={true}
-      getPreviousPage={()=>{}}
-      getNextPage={()=>{}}
-      getFirstPage={()=>{}}
-      getLastPage={()=>{}}
+      getPreviousPage={action('go-to-previous')}
+      getNextPage={action('go-to-next')}
+      getFirstPage={action('go-to-first')}
+      getLastPage={action('go-to-last')}
     />
   ))
   .add('results table', ()=>(
     <SearchResults
       searchText={'a'}
       searchResults={resultsTable}
-      onDatasetSelected={()=>{}}
+      onDatasetSelected={action('dataset-selected')}
       resultsPerPage={8}
       pageIndex={0}
       leftButtonsDisabled={true}
-      rightButtonsDisabled={true}
-      getPreviousPage={()=>{}}
-      getNextPage={()=>{}}
-      getFirstPage={()=>{}}
-      getLastPage={()=>{}}
+      rightButtonsDisabled={false}
+      getPreviousPage={action('go-to-previous')}
+      getNextPage={action('go-to-next')}
+      getFirstPage={action('go-to-first')}
+      getLastPage={action('go-to-last')}
     />
   )
 );
@@ -277,36 +277,36 @@ storiesOf('Dataset Search', module)
     <DatasetSearch
       filterList={filterList}
       searchResults={singleResult}
-      onFiltersChanged={()=>{}}
-      onSearchValueChanged={()=>{}}
-      onDatasetSelected={()=>{}}
+      onFiltersChanged={action('filters-changed')}
+      onSearchValueChanged={action('search-value-changed')}
+      onDatasetSelected={action('dataset-selected')}
       resultsPerPage={8}
       pageIndex={0}
       leftButtonsDisabled={true}
       rightButtonsDisabled={true}
-      getPreviousPage={()=>{}}
-      getNextPage={()=>{}}
-      getFirstPage={()=>{}}
-      getLastPage={()=>{}}
-      updateEnabledButtons={()=>{}}
+      getPreviousPage={action('go-to-previous')}
+      getNextPage={action('go-to-next')}
+      getFirstPage={action('go-to-first')}
+      getLastPage={action('go-to-last')}
+      updateEnabledButtons={action('update-enabled-buttons')}
     />
   ))
   .add('results table', ()=>(
     <DatasetSearch
       filterList={filterList}
       searchResults={resultsTable}
-      onFiltersChanged={()=>{}}
-      onSearchValueChanged={()=>{}}
-      onDatasetSelected={()=>{}}
+      onFiltersChanged={action('filters-changed')}
+      onSearchValueChanged={action('search-value-changed')}
+      onDatasetSelected={action('dataset-selected')}
       resultsPerPage={8}
       pageIndex={0}
       leftButtonsDisabled={false}
       rightButtonsDisabled={false}
-      getPreviousPage={()=>{}}
-      getNextPage={()=>{}}
-      getFirstPage={()=>{}}
-      getLastPage={()=>{}}
-      updateEnabledButtons={()=>{}}
+      getPreviousPage={action('go-to-previous')}
+      getNextPage={action('go-to-next')}
+      getFirstPage={action('go-to-first')}
+      getLastPage={action('go-to-last')}
+      updateEnabledButtons={action('update-enabled-buttons')}
     />
   )
 );
