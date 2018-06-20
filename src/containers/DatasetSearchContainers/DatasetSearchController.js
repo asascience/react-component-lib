@@ -4,7 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Clear from 'material-ui/svg-icons/content/clear';
 import SearchManager from 'utils/general/SearchManager.js';
 import DatasetSearch from './DatasetSearch';
-import '../../components/DatasetSearch/DatasetSearch.css';
+import './DatasetSearch.css';
 
 /*
 [

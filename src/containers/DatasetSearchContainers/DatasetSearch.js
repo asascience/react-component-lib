@@ -5,7 +5,7 @@ import Clear from 'material-ui/svg-icons/content/clear';
 import SearchResults from '../../components/DatasetSearch/SearchResults';
 import SearchChipInput from '../../components/DatasetSearch/SearchChipInput';
 import PropTypes from 'prop-types';
-import '../../components/DatasetSearch/DatasetSearch.css';
+import './DatasetSearch.css';
 
 // TODO: remove the mui theme wrappers, they shoud not be required.
 const muiTheme = getMuiTheme({
