@@ -3,7 +3,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PropTypes from 'prop-types';
 import SearchPagination  from './SearchPagination';
-import '../../components/DatasetSearch/DatasetSearch.css';
+import './SearchResults.css';
 
 class SearchResults extends Component {
 	constructor(props) {
@@ -22,7 +22,7 @@ class SearchResults extends Component {
       stringDOM = splitTitle.reduce((a, object, index)=>{
         a.push(object);
         if(index !== splitTitle.length-1) {
-          a.push((<span className="highlight">{searchString}</span>));
+          a.push((<span className="searchHighlight">{searchString}</span>));
         }
         return a;
       }, []);

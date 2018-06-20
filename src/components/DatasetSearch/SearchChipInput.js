@@ -3,7 +3,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Clear from 'material-ui/svg-icons/content/clear';
 import SearchResults from './SearchResults';
-import './DatasetSearch.css';
+import './SearchChipInput.css';
 
 /*
 * Search Chip Input

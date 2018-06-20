@@ -7,6 +7,7 @@ import ChevronRight from 'material-ui/svg-icons/navigation/chevron-right';
 import ChevronLeft from 'material-ui/svg-icons/navigation/chevron-left';
 import FirstPage from 'material-ui/svg-icons/navigation/first-page';
 import LastPage from 'material-ui/svg-icons/navigation/last-page';
+import './SearchPagination.css';
 
 class SearchPagination extends Component {
   render() {

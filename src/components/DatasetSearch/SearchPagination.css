@@ -1,0 +1,23 @@
+.searchPagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.leftSearchButtons {
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+.previousButton {
+  margin-left: 10px;
+}
+
+.rightSearchButtons {
+  padding-right: 10px;
+  padding-top: 10px;
+}
+
+.nextButton {
+  margin-right: 10px;
+}
