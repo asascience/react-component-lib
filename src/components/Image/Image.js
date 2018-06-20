@@ -30,3 +30,5 @@ export class ImageThumbnailStrip extends Component {
     )
   }
 }
+
+export default ImageThumbnailStrip;

@@ -50,6 +50,12 @@ import UndoModal from '../src/components/UndoModal/UndoModal';
 
 // Mapping Component Imports
 import Chart from '../src/components/Chart/Chart';
+import ImageThumbnailStrip from '../src/components/Image/Image';
+import LayerControls from '../src/components/LayerControls/LayerControls';
+import Legend from '../src/components/Legend/Legend';
+//import {Map} from '../src/components/Map/Map';
+import MarkerLayers from '../src/components/MarkerLayers/MarkerLayers';
+import RasterLayers from '../src/components/RasterLayers/RasterLayers';
 
 addDecorator((story) => (
   <MuiThemeProvider>
@@ -693,6 +699,34 @@ storiesOf('OceansMap/Charts/Chart',  module)
       endTime={chartEndTime}
       station={chartStation}
       status={chartStatus}
+    />
+  )
+);
+
+// Sample Data for Image Thumbnail Strip
+let imageThumbnails = [
+  {
+    href: "https://www.weather.gov/phi/marine",
+    thumbnailSrc: "https://www.weather.gov/wwamap/png/phi.png",
+    title: "NWS marine forecasts and conditions",
+  },
+  {
+    href: "https://radar.weather.gov/radar.php?rid=DIX",
+    thumbnailSrc: "https://radar.weather.gov/ridge/lite/N0R/DIX_0.png",
+    title: "Mt. Holly, NJ radar",
+  },
+  {
+    href: "https://radar.weather.gov/radar.php?rid=DOX",
+    thumbnailSrc: "https://radar.weather.gov/ridge/lite/N0R/DOX_0.png",
+    title: "Dover Air Force Base radar",
+  }
+];
+
+// Image
+storiesOf('OceansMap/Charts/Image Thumbail Strip', module)
+  .add('sample images', ()=>(
+    <ImageThumbnailStrip
+      images={imageThumbnails}
     />
   )
 );
