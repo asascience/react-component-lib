@@ -14,9 +14,9 @@ class LoginButton extends Component {
 
   render() {
     return (
-    <Link to={'/login'}>
+    //<Link to={'/login'}>
       <FlatButton style={this.props.style}><span>Login</span></FlatButton>
-    </Link>
+    //</Link>
     );
   }
 }

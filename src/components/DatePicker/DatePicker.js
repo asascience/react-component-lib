@@ -31,7 +31,7 @@ class DataDatePicker extends Component {
                    />;
     } else {
       datePicker =
-        <p style={{display: 'inline-block', fontSize: '16px', textAlign: 'center'}}>{this.props.parsedDate}</p>;
+        <p style={{display: 'inline-block', fontSize: '16px', textAlign: 'center'}}>{this.props.parsedDate.toString()}</p>;
     }
     return (
       datePicker

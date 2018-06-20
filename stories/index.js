@@ -5,12 +5,48 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import moment from 'moment';
 import '../src/index.css';
 
+/**********************
+USACE Component Imports
+**********************/
+
 // Dataset Search Imports
 //import DatasetSearchController from '../src/containers/DatasetSearchContainers/DatasetSearchController.js';
 import DatasetSearch from '../src/containers/DatasetSearchContainers/DatasetSearch.js';
 import SearchResults from '../src/components/DatasetSearch/SearchResults.js';
 import SearchPagination from '../src/components/DatasetSearch/SearchPagination.js';
 import SearchChipInput from '../src/components/DatasetSearch/SearchChipInput.js';
+
+// Data Table Imports
+import DataTableFieldInput from '../src/containers/DataTable/DataTableFieldInput';
+
+// App Bar  Imports
+import AppbarLogo from '../src/components/AppbarLogo/AppbarLogo'
+import TopLogo from '../src/components/TopLogo/TopLogo'
+import LoginButton from  '../src/components/LoginButton/LoginButton';
+import ForgotPasswordLink from '../src/components/ForgotPasswordLink/ForgotPasswordLink';
+import ReferencesDropdown from '../src/components/ReferencesDropdown/ReferencesDropdown';
+import UserOptionsMenu from '../src/components/UserOptionsMenu/UserOptionsMenu';
+
+// Badge Imports
+import AvatarNumericBadge from '../src/components/AvatarNumericBadge/AvatarNumericBadge';
+
+// Bread Crumbs Imports
+import BreadCrumbs from '../src/components/BreadCrumbs/BreadCrumbs';
+
+// Data Input Imports
+import DatePicker from '../src/components/DatePicker/DatePicker';
+import Dropdown from '../src/components/Dropdown/Dropdown';
+import SubmitButton  from '../src/components/SubmitButton/SubmitButton';
+import TagInput from '../src/components/TagInput/TagInput';
+
+// Menu Page Imports
+import OrganizationMenu from  '../src/components/OrganizationMenu/OrganizationMenu';
+import ServiceWrapper from '../src/components/ServiceWrapper/ServiceWrapper';
+
+// Modal Imports
+import LoadingSpinner from '../src/components/LoadingSpinner/LoadingSpinner';
+import SessionExpiredModal from '../src/components/SessionExpiredModal/SessionExpiredModal';
+import UndoModal from '../src/components/UndoModal/UndoModal';
 
 addDecorator((story) => (
   <MuiThemeProvider>
@@ -19,10 +55,11 @@ addDecorator((story) => (
 ));
 
 /****************
-SearchPagination
+Dataset Search
 ****************/
 
-storiesOf('Search Pagination', module)
+// SearchPagination
+storiesOf('USACE/Dataset Search/Search Pagination', module)
   .add('first page', ()=>(
     <SearchPagination
       pageIndex={0}
@@ -64,17 +101,14 @@ storiesOf('Search Pagination', module)
   )
 );
 
-/***************
-SearchChipInput
-***************/
-
+// SearchChipInput
 let filterList={
   'author': ['Bob', 'Brian', 'Dalton', 'Ryan'],
   'type': ['csv', 'gridded model', 'timeseries'],
   'tag': ['ocean', 'land', 'sediment', 'something'],
 }
 
-storiesOf('Search Chip Input', module)
+storiesOf('USACE/Dataset Search/Search Chip Input', module)
   .add('partial chip', ()=>(
     <SearchChipInput
       value={['author']}
@@ -99,10 +133,7 @@ storiesOf('Search Chip Input', module)
   )
 );
 
-/**************
-SearchResults
-**************/
-
+// SearchResults
 let singleResult =  [{
   description: "USACE/FRF Observed Dataset",
   id: "502d1a79-440c-4aaf-9ed4-75a45981d0b0",
@@ -114,7 +145,8 @@ let singleResult =  [{
   }
 }]
 
-let resultsTable = [{
+let resultsTable = [
+  {
     description: 'temp',
     id: "ad7b5502-3a2e-4ff7-b919-e4f9e1baae64",
     title: "Mid-Atlantic Regional Association Coastal Ocean Observing System Self-Locating Datum Marker Buoy",
@@ -236,7 +268,7 @@ let resultsTable = [{
   }
 ]
 
-storiesOf('Search  Results',  module)
+storiesOf('USACE/Dataset Search/Search  Results',  module)
   .add('single result',  ()=>(
     <SearchResults
       searchText={'USACE'}
@@ -269,11 +301,8 @@ storiesOf('Search  Results',  module)
   )
 );
 
-/*************
-DatasetSearch
-*************/
-
-storiesOf('Dataset Search', module)
+//DatasetSearch
+storiesOf('USACE/Dataset Search/Dataset Search Container', module)
   .add('single result',  ()=>(
     <DatasetSearch
       filterList={filterList}
@@ -312,67 +341,294 @@ storiesOf('Dataset Search', module)
   )
 );
 
-/* TODO: Fix Dependencies in  existing components */
-// import DataTableFieldInput from '../src/components/DataTable/DataTableFieldInput';
-// import DataTable from '../src/components/DataTable/DataTable';
-// import TabbedView from '../src/components/TabbedView/TabbedView';
-// import FlowFooter from '../src/components/FlowFooter/FlowFooter';
+/*********
+Data Table
+**********/
 
-// addDecorator((story) => (
-//   <MuiThemeProvider>
-//     {story()}
-//   </MuiThemeProvider>
-// ));
+storiesOf('USACE/Data Table/Data Table Field Input', module)
+  .add('staticText', ()=>(
+    <DataTableFieldInput
+      objectData={{
+        fieldType: 'text',
+        severity: 'suggested',
+        text: 'sampleText',
+      }}
+    />
+  ))
+  .add('autocomplete', ()=>(
+    <DataTableFieldInput
+      objectData={{
+        fieldType: 'text',
+        severity: 'suggested',
+        text: 'sampleText',
+        options: ['sample a', 'sample b', 'a', 'b'],
+      }}
+    />
+  ))
+  .add('dropdown', ()=>(
+    <DataTableFieldInput
+      objectData={{
+        fieldType: 'dropdown',
+        severity: 'suggested',
+        text: 'sampleText',
+        options: ['sample a', 'sample b', 'a', 'b'],
+      }}
+    />
+  ))
+  .add('tag input', ()=>(
+    <DataTableFieldInput
+      objectData={{
+        fieldType: 'tagInput',
+        severity: 'suggested',
+        text: 'sampleText',
+        options: ['sample a', 'sample b', 'a', 'b'],
+        onUpdate: ()=>{},
+      }}
+    />
+  ))
+  .add('date picker', ()=>(
+    <DataTableFieldInput
+      objectData={{
+        fieldType: 'datePicker',
+        severity: 'suggested',
+      }}
+    />
+  ));
 
-// storiesOf('Data Table Field Input', module)
-//   .add('staticText', ()=>(
-//     <DataTableFieldInput
-//       objectData={{
-//         fieldType: 'text',
-//         severity: 'suggested',
-//         text: 'sampleText',
-//       }}
-//     />
-//   ))
-//   .add('autocomplete', ()=>(
-//     <DataTableFieldInput
-//       objectData={{
-//         fieldType: 'text',
-//         severity: 'suggested',
-//         text: 'sampleText',
-//         options: ['sample a', 'sample b', 'a', 'b'],
-//       }}
-//     />
-//   ))
-//   .add('dropdown', ()=>(
-//     <DataTableFieldInput
-//       objectData={{
-//         fieldType: 'dropdown',
-//         severity: 'suggested',
-//         text: 'sampleText',
-//         options: ['sample a', 'sample b', 'a', 'b'],
-//       }}
-//     />
-//   ))
-//   .add('tag input', ()=>(
-//     <DataTableFieldInput
-//       objectData={{
-//         fieldType: 'tagInput',
-//         severity: 'suggested',
-//         text: 'sampleText',
-//         options: ['sample a', 'sample b', 'a', 'b'],
-//         onUpdate: ()=>{},
-//       }}
-//     />
-//   ))
-//   .add('date picker', ()=>(
-//     <DataTableFieldInput
-//       objectData={{
-//         fieldType: 'datePicker',
-//         severity: 'suggested',
-//       }}
-//     />
-//   ));
+/******
+App Bar
+*******/
+
+// App Bar Logos
+storiesOf('COMT/App Bar/App Bar Logos', module)
+  .add('corner logo', ()=>(
+    <AppbarLogo/>
+  ))
+  .add('center logo', ()=>(
+    <TopLogo/>
+  )
+);
+
+// Login Button
+storiesOf('COMT/App Bar/Login Button', module)
+  .add('default button', ()=>(
+    <LoginButton/>
+  )
+);
+
+// Forgot Password Link
+storiesOf('COMT/App Bar/Forgot Password Link', module)
+  .add('link', () =>(
+    <ForgotPasswordLink
+      handleForgotPW={action('password-redirect')}
+    />
+  )
+);
+
+// References Dropdown
+storiesOf('COMT/App Bar/References Dropdown', module)
+  .add('default', ()=>(
+    <ReferencesDropdown/>
+  )
+);
+
+// User Options Menu
+storiesOf('COMT/App Bar/User Options Menu', module)
+  .add('default', ()=>(
+    <UserOptionsMenu
+      name={'Brian'}
+    />
+  )
+);
+
+/*****
+Badges
+******/
+
+// Avatar Numeric Badge
+storiesOf('USACE/Badges/Avatar Numeric Badge', module)
+  .add('default size', ()=>(
+    <AvatarNumericBadge
+      dimArray={['a']}
+      text={'1D'}
+    />
+  ))
+  .add('large badge', ()=>(
+    <AvatarNumericBadge
+      dimArray={['a', 'b']}
+      text={'2D'}
+      iconSize={128}
+    />
+  ))
+  .add('text coloring', ()=>(
+    <AvatarNumericBadge
+      dimArray={['a', 'b', 'c']}
+      text={'3D'}
+      textColor={'blue'}
+    />
+  ))
+  .add('tooltip position', ()=>(
+    <div style={{margin: 35}}>
+      <AvatarNumericBadge
+        dimArray={['a', 'b', 'c', 'd']}
+        text={'4D'}
+        tooltipPosition={'top-left'}
+      />
+    </div>
+  ))
+  .add('tooltip styles', ()=>(
+    <AvatarNumericBadge
+      dimArray={['a', 'b', 'c', 'd', 'e']}
+      text={'5D'}
+      tooltipStyle={{fontSize: 18, fontFamily: 'fantasy'}}
+    />
+  )
+);
+
+/***********
+Bread Crumbs
+************/
+
+// Router Setup for Wrapping Test Classes
+import {Router} from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
+const history = createHistory();
+
+// Bread Crumbs
+storiesOf('USACE/Bread Crumbs/Standard Bread Crumbs', module)
+  .add('path', ()=>(
+    <Router  history={history}>
+    <BreadCrumbs
+      path={'/data'}
+      projectName={'Data'}
+    />
+    </Router>
+  )
+);
+
+/**********
+Data Inputs
+***********/
+
+// Date Picker
+storiesOf('USACE/Data Inputs/Date Picker', module)
+  .add('default', ()=>(
+    <DatePicker
+      onDateUpdate={action('date-update')}
+    />
+  ))
+  .add('disabled', ()=>(
+    <DatePicker
+      disabled={true}
+      parsedDate={new Date()}
+    />
+  )
+);
+
+// Dropdown
+storiesOf('USACE/Data Inputs/Dropdown', module)
+  .add('default', ()=>(
+    <Dropdown
+      options={['cookies', 'cake', 'ice cream']}
+    />
+  ))
+  .add('disabled', ()=>(
+    <Dropdown
+      options={['cookies', 'cake', 'ice cream']}
+      disabled={true}
+    />
+  )
+);
+
+// Submit Button
+storiesOf('USACE/Data Inputs/Submit Button', module)
+  .add('default', ()=>(
+    <SubmitButton/>
+  ))
+  .add('submitted', ()=>(
+    <SubmitButton
+      submitted={true}
+    />
+  )
+);
+
+// Tag Input
+storiesOf('USACE/Data Inputs/Tag Input', module)
+  .add('default', ()=>(
+    <TagInput
+      dataSource={['a', 'b', 'c']}
+    />
+  ))
+  .add('disabled', ()=>(
+    <TagInput
+      dataSource={['a', 'b', 'c']}
+      disabled={true}
+    />
+  ))
+  .add('error', ()=>(
+    <TagInput
+      dataSource={['a', 'b', 'c']}
+      severity={'required'}
+    />
+  )
+);
+
+/*******************
+Menu Page Components
+********************/
+
+// Organization Menu
+storiesOf('COMT/Menu Components/Organization Menu', module)
+  .add('menu', ()=>(
+    <OrganizationMenu/>
+  )
+);
+
+// Service Wrapper
+storiesOf('COMT/Menu Components/Service Wrapper', module)
+  .add('default', ()=>(
+    <Router history={history}>
+      <ServiceWrapper
+        onChoose={action('service-chosen')}
+      />
+    </Router>
+  ))
+  .add('custom image', ()=>(
+    <Router history={history}>
+      <ServiceWrapper
+        imgSrc='https://cdn.ioos.noaa.gov/media/2017/12/IOOS_Emblem_Primary_B_RGB.jpg'
+        onChoose={action('service-chosen')}
+      />
+    </Router>
+  )
+);
+
+/***************
+Modal Components
+****************/
+
+// Loading Spinner
+storiesOf('USACE/Modals/LoadingSpinner', module)
+  .add('indeterminate',  ()=>(
+    <LoadingSpinner/>
+  )
+);
+
+// Session Expired Modal
+storiesOf('USACE/Modals/Session Expired Modal',  module)
+  .add('default', ()=>(
+    <SessionExpiredModal/>
+  )
+);
+
+// Undo Modal
+storiesOf('USACE/Modals/Undo Modal', module)
+  .add('default', ()=>(
+    <UndoModal
+      open={true}
+    />
+  )
+);
 
 // storiesOf('Data Table', module)
 //   .add('Key Value', ()=>(

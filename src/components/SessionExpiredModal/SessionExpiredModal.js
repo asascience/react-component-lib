@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {updateCSRFToken} from 'utils/security/securityUtilities.js';
+//import {updateCSRFToken} from 'utils/security/securityUtilities.js';
 import Dialog from 'material-ui/Dialog';
 import RaisedButton from 'material-ui/RaisedButton';
-import history from '../../history';
+//import history from '../../history';
 
 /**
  * Session expired modal
@@ -23,8 +23,8 @@ class SessionExpiredModal extends Component {
 
   handleClose() {
     this.setState({open: false});
-    updateCSRFToken('logged-out');
-    history.push('/');
+    //updateCSRFToken('logged-out');
+    //history.push('/');
   };
 
   render() {

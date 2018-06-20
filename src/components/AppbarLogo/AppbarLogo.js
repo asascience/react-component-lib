@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import logo from 'images/logo-navbar.png';
+import logo from '../../images/logo-navbar.png';
 
 /**
 * Wrapper component for the logo image in the navbar
