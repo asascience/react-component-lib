@@ -12,7 +12,7 @@ function CheckedSubmit(props) {
   if (props.submitted) {
     return (
       <div>
-        <i className='fa fa-check' aria-hidden='true' style={this.props.style}></i>&nbsp;Submit
+        <i className='fa fa-check' aria-hidden='true' style={props.style}></i>&nbsp;Submit
       </div>
     );
   }

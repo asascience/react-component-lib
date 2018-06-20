@@ -31,6 +31,12 @@ import AvatarNumericBadge from '../src/components/AvatarNumericBadge/AvatarNumer
 // Bread Crumbs Imports
 import BreadCrumbs from '../src/components/BreadCrumbs/BreadCrumbs';
 
+// Data Input Imports
+import DatePicker from '../src/components/DatePicker/DatePicker';
+import Dropdown from '../src/components/Dropdown/Dropdown';
+import SubmitButton  from '../src/components/SubmitButton/SubmitButton';
+import TagInput from '../src/components/TagInput/TagInput';
+
 addDecorator((story) => (
   <MuiThemeProvider>
     {story()}
@@ -472,6 +478,75 @@ storiesOf('USACE/Bread Crumbs/Standard Bread Crumbs', module)
     </Router>
   )
 );
+
+/**********
+Data Inputs
+***********/
+
+// Date Picker
+storiesOf('USACE/Data Inputs/Date Picker', module)
+  .add('default', ()=>(
+    <DatePicker
+      onDateUpdate={action('date-update')}
+    />
+  ))
+  .add('disabled', ()=>(
+    <DatePicker
+      disabled={true}
+      parsedDate={new Date()}
+    />
+  )
+);
+
+// Dropdown
+storiesOf('USACE/Data Inputs/Dropdown', module)
+  .add('default', ()=>(
+    <Dropdown
+      options={['cookies', 'cake', 'ice cream']}
+    />
+  ))
+  .add('disabled', ()=>(
+    <Dropdown
+      options={['cookies', 'cake', 'ice cream']}
+      disabled={true}
+    />
+  )
+);
+
+// Submit Button
+storiesOf('USACE/Data Inputs/Submit Button', module)
+  .add('default', ()=>(
+    <SubmitButton/>
+  ))
+  .add('submitted', ()=>(
+    <SubmitButton
+      submitted={true}
+    />
+  )
+);
+
+// Tag Input
+storiesOf('USACE/Data Inputs/Tag Input', module)
+  .add('default', ()=>(
+    <TagInput
+      dataSource={['a', 'b', 'c']}
+    />
+  ))
+  .add('disabled', ()=>(
+    <TagInput
+      dataSource={['a', 'b', 'c']}
+      disabled={true}
+    />
+  ))
+  .add('error', ()=>(
+    <TagInput
+      dataSource={['a', 'b', 'c']}
+      severity={'required'}
+    />
+  )
+);
+
+
 
 // storiesOf('Data Table', module)
 //   .add('Key Value', ()=>(
