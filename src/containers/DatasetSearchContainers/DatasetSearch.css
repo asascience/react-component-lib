@@ -1,0 +1,15 @@
+#datasetSearchContainer{
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+#datasetSearchContainer p{
+  margin: 7px 0px;
+  font-size: 18px;
+}
+
+#datasetSearchContainer #resultContainer{
+  margin-top: 2px;
+  width: 100%;
+}

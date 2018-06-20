@@ -1,13 +1,16 @@
 import React from 'react';
 import { storiesOf, addDecorator } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import { action, configureActions } from '@storybook/addon-actions';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import moment from 'moment';
+import '../src/index.css';
 
-import DataTableFieldInput from '../src/components/DataTable/DataTableFieldInput';
-import DataTable from '../src/components/DataTable/DataTable';
-import TabbedView from '../src/components/TabbedView/TabbedView';
-import FlowFooter from '../src/components/FlowFooter/FlowFooter';
+// Dataset Search Imports
+//import DatasetSearchController from '../src/containers/DatasetSearchContainers/DatasetSearchController.js';
+import DatasetSearch from '../src/containers/DatasetSearchContainers/DatasetSearch.js';
+import SearchResults from '../src/components/DatasetSearch/SearchResults.js';
+import SearchPagination from '../src/components/DatasetSearch/SearchPagination.js';
+import SearchChipInput from '../src/components/DatasetSearch/SearchChipInput.js';
 
 addDecorator((story) => (
   <MuiThemeProvider>
@@ -15,337 +18,643 @@ addDecorator((story) => (
   </MuiThemeProvider>
 ));
 
-storiesOf('Data Table Field Input', module)
-  .add('staticText', ()=>(
-    <DataTableFieldInput
-      objectData={{
-        fieldType: 'text',
-        severity: 'suggested',
-        text: 'sampleText',
-      }}
-    />
-  ))
-  .add('autocomplete', ()=>(
-    <DataTableFieldInput
-      objectData={{
-        fieldType: 'text',
-        severity: 'suggested',
-        text: 'sampleText',
-        options: ['sample a', 'sample b', 'a', 'b'],
-      }}
-    />
-  ))
-  .add('dropdown', ()=>(
-    <DataTableFieldInput
-      objectData={{
-        fieldType: 'dropdown',
-        severity: 'suggested',
-        text: 'sampleText',
-        options: ['sample a', 'sample b', 'a', 'b'],
-      }}
-    />
-  ))
-  .add('tag input', ()=>(
-    <DataTableFieldInput
-      objectData={{
-        fieldType: 'tagInput',
-        severity: 'suggested',
-        text: 'sampleText',
-        options: ['sample a', 'sample b', 'a', 'b'],
-        onUpdate: ()=>{},
-      }}
-    />
-  ))
-  .add('date picker', ()=>(
-    <DataTableFieldInput
-      objectData={{
-        fieldType: 'datePicker',
-        severity: 'suggested',
-      }}
-    />
-  ));
+/****************
+SearchPagination
+****************/
 
-storiesOf('Data Table', module)
-  .add('Key Value', ()=>(
-    <DataTable
-      jsonData={{
-        header: [
-          {text: 'Field Name'},
-          {text: 'Value'}
-        ],
-        content: [
-          [
-            {
-              fieldType: 'textBox',
-              description: 'This is a key',
-              disabled: true,
-              text: 'key',
-            },
-            {
-              fieldType: 'textBox',
-              severity: 'required',
-              text: '',
-            }
-          ],
-          [
-            {
-              fieldType: 'textBox',
-              description: 'This is a key too!',
-              disabled: true,
-              text: 'key',
-            },
-            {
-              fieldType: 'textBox',
-              severity: 'suggested',
-              text: '',
-            }
-          ]
-        ],
-      }}
-      headerEnabled={true}
-      verbose={true}
+storiesOf('Search Pagination', module)
+  .add('first page', ()=>(
+    <SearchPagination
+      pageIndex={0}
+      resultCount={30}
+      resultsPerPage={8}
+      leftButtonsDisabled={true}
+      rightButtonsDisabled={false}
+      getPreviousPage={action('go-to-previous')}
+      getNextPage={action('go-to-next')}
+      getFirstPage={action('go-to-first')}
+      getLastPage={action('go-to-last')}
     />
   ))
-  .add('Variables', ()=>(
-    <DataTable
-      jsonData={{
-        header: [
-          {
-            colIndex: 0,
-            sortType: 'alphabetical',
-            text: 'Variable Name',
-          },
-          {
-            colIndex: 1,
-            sortType: 'numeric',
-            text: 'Dimensions',
-          },
-          {
-            colIndex: 2,
-            link: 'http://cfconventions.org/Data/cf-conventions/cf-conventions-1.6/build/cf-conventions.html#units',
-            sortType: 'alphabetical',
-            text: 'Units',
-          },
-          {
-            colIndex: 3,
-            link: 'http://cfconventions.org/Data/cf-standard-names/27/build/cf-standard-name-table.html',
-            sortType: 'alphabetical',
-            text: 'Standard Name',
-          },
-          {
-            colIndex: 4,
-            link: 'http://cfconventions.org/Data/cf-conventions/cf-conventions-1.6/build/cf-conventions.html#long-name',
-            sortType: 'alphabetical',
-            text: 'Long Name',
-          }
-        ],
-        content: [
-          [
-            {
-              fieldType: 'textBox',
-              text: 'u',
-            },
-            {
-              fieldType: 'numericBadge',
-              data: ['ocean_time', 'eta_rho', 'xi_rho'],
-              disabled: true,
-              text: '3D',
-            },
-            {
-              fieldType: 'textBox',
-              text: 'meter second-1',
-              validated: true,
-              validationTooltip: 'Invalid units. Units string must be recognized by UNIDATA\'s Udunits package',
-              text: 'key',
-            },
-            {
-              fieldType: 'textBox',
-              options: ['a', 'b', 'c'],
-              text: '',
-              validated: true,
-              validationTooltip: 'Invalid standard_name. The set of permissible standard names is contained in the CF standard name table.'
-            },
-            {
-              fieldType: 'textBox',
-              text: 'u-momentum component',
-            }
-          ]
-        ],
-      }}
-      headerEnabled={true}
-      verbose={true}
+  .add('last page', ()=>(
+    <SearchPagination
+      pageIndex={3}
+      resultCount={30}
+      resultsPerPage={8}
+      leftButtonsDisabled={false}
+      rightButtonsDisabled={true}
+      getPreviousPage={action('go-to-previous')}
+      getNextPage={action('go-to-next')}
+      getFirstPage={action('go-to-first')}
+      getLastPage={action('go-to-last')}
     />
-  ));
+  ))
+  .add('single page', ()=>(
+    <SearchPagination
+      pageIndex={0}
+      resultCount={0}
+      resultsPerPage={8}
+      leftButtonsDisabled={true}
+      rightButtonsDisabled={true}
+      getPreviousPage={action('go-to-previous')}
+      getNextPage={action('go-to-next')}
+      getFirstPage={action('go-to-first')}
+      getLastPage={action('go-to-last')}
+    />
+  )
+);
 
-storiesOf('TabbedView', module)
-  .add('Single Tab With Header', ()=>(
-    <TabbedView
-      headerEnabled={true}
-      jsonData={{
-        'Only One Tab': {
-          header: [
-            {text: 'Field Name'},
-            {text: 'Value'}
-          ],
-          content: [
-            [
-              {
-                fieldType: 'textBox',
-                description: 'This is a key',
-                disabled: true,
-                text: 'key',
-              },
-              {
-                fieldType: 'textBox',
-                severity: 'required',
-                text: '',
-              }
-            ],
-            [
-              {
-                fieldType: 'textBox',
-                description: 'This is a key too!',
-                disabled: true,
-                text: 'key',
-              },
-              {
-                fieldType: 'textBox',
-                severity: 'suggested',
-                text: '',
-              }
-            ]
-          ],
-        }
-      }}
-    />
-  ))
-  .add('Single Tab Without Header', ()=>(
-    <TabbedView
-      headerEnabled={false}
-      jsonData={{
-        'Only One Tab': {
-          header: [
-            {text: 'Field Name'},
-            {text: 'Value'}
-          ],
-          content: [
-            [
-              {
-                fieldType: 'textBox',
-                description: 'This is a key',
-                disabled: true,
-                text: 'key',
-              },
-              {
-                fieldType: 'textBox',
-                severity: 'required',
-                text: '',
-              }
-            ],
-            [
-              {
-                fieldType: 'textBox',
-                description: 'This is a key too!',
-                disabled: true,
-                text: 'key',
-              },
-              {
-                fieldType: 'textBox',
-                severity: 'suggested',
-                text: '',
-              }
-            ]
-          ],
-        }
-      }}
-    />
-  ))
-  .add('Multiple Tabs', ()=>(
-    <TabbedView
-      jsonData={{
-        First: {
-          header: [
-            {text: 'Field Name'},
-            {text: 'Value'}
-          ],
-          content: [
-            [
-              {
-                fieldType: 'textBox',
-                description: 'This is a key',
-                disabled: true,
-                text: 'key',
-              },
-              {
-                fieldType: 'textBox',
-                severity: 'required',
-                text: '',
-              }
-            ],
-          ]
-        },
-        Second: {
-          header: [
-            {text: 'Field Name'},
-            {text: 'Value'}
-          ],
-          content: [
-            [
-              {
-                fieldType: 'textBox',
-                description: 'This is a key',
-                disabled: true,
-                text: 'key',
-              },
-              {
-                fieldType: 'textBox',
-                severity: 'required',
-                text: '',
-              }
-            ],
-          ]
-        },
-        Third: {
-          header: [
-            {text: 'Field Name'},
-            {text: 'Value'}
-          ],
-          content: [
-            [
-              {
-                fieldType: 'textBox',
-                description: 'This is a key',
-                disabled: true,
-                text: 'key',
-              },
-              {
-                fieldType: 'textBox',
-                severity: 'required',
-                text: '',
-              }
-            ],
-          ]
-        }
-      }}
-    />
-  ));
+/***************
+SearchChipInput
+***************/
 
-storiesOf('FlowFooter', module)
-  .add('All Buttons', ()=>(
-    <FlowFooter footerStyle={'allButtons'}/>
+let filterList={
+  'author': ['Bob', 'Brian', 'Dalton', 'Ryan'],
+  'type': ['csv', 'gridded model', 'timeseries'],
+  'tag': ['ocean', 'land', 'sediment', 'something'],
+}
+
+storiesOf('Search Chip Input', module)
+  .add('partial chip', ()=>(
+    <SearchChipInput
+      value={['author']}
+      chipMode={'partial'}
+      dataSource={Object.keys(filterList)}
+      onUpdateInput={action('input-updated')}
+      onRequestAdd={action('request-add-chip')}
+      onRequestDelete={action('request-delete-chip')}
+      onSearch={action('search')}
+    />
   ))
-  .add('Admin', ()=>(
-    <FlowFooter footerStyle={'admin'}/>
+  .add('full  chip', ()=>(
+    <SearchChipInput
+      value={['author:Bob']}
+      chipMode={'none'}
+      dataSource={Object.keys(filterList)}
+      onUpdateInput={action('input-updated')}
+      onRequestAdd={action('request-add-chip')}
+      onRequestDelete={action('request-delete-chip')}
+      onSearch={action('search')}
+    />
+  )
+);
+
+/**************
+SearchResults
+**************/
+
+let singleResult =  [{
+  description: "USACE/FRF Observed Dataset",
+  id: "502d1a79-440c-4aaf-9ed4-75a45981d0b0",
+  title: "FRF 632",
+  identifier: "noaa.ioos.comt.unknown.b5a2.frf_632",
+  contactPoint: {
+    hasEmail: "mailto:John.L.Doe@usace.army.mil",
+    fn: "JOHN DOE"
+  }
+}]
+
+let resultsTable = [{
+    description: 'temp',
+    id: "ad7b5502-3a2e-4ff7-b919-e4f9e1baae64",
+    title: "Mid-Atlantic Regional Association Coastal Ocean Observing System Self-Locating Datum Marker Buoy",
+    identifier: "noaa.ioos.comt.unknown.d89f.mid-atlantic_regional_association_coastal_ocean_observing_system_self-locating_datum_marker_buoy",
+    contactPoint: {
+      hasEmail: "mailto:John.L.Doe@usace.army.mil",
+      fn: "JOHN DOE"
+    }
+  },
+  {
+    description: 'temp',
+    id: "8944b472-04a1-4c47-89a2-7c17129119e5",
+    title: "Chesapeake Bay with 1-term oxygen model",
+    identifier: "noaa.ioos.comt.unknown.07bc.chesapeake_bay_with_1-term_oxygen_model",
+    contactPoint: {
+      hasEmail: "mailto:John.L.Doe@usace.army.mil",
+      fn: "JOHN DOE"
+    }
+  },
+  {
+    description: "USACE/COAB data collected by a bottom mounted (looking up) Nortek AWAC, approximately 450m offshore of Duck (FRF), NC at a nominal depth of 5m NAVD 88. Directional spectra are computed using a custom COAB analysis of merging low frequency AST-UV (or PUV) spectra with high-end beam-array spectra (see http://frf.usace.army.mil/realtime/awac/COAB_awacSpectralAnalysis.pdf). Data collection is hard-wired and analyzed hourly with 34 minute timeseries records. Two dimensional frequency-direction spectra are computed using a Maximum Likelihood Estimator (MLE) method.",
+    id: "b7867486-26fc-4b55-bfba-c5efb50ed37b",
+    title: "FRF 5m AWAC Waves and Currents",
+    identifier: "noaa.ioos.comt.unknown.931c.frf_5m_awac_waves_and_currents",
+    contactPoint: {
+      hasEmail: "mailto:John.L.Doe@usace.army.mil",
+      fn: "JOHN DOE"
+    }
+  },
+  {
+    description: "USACE/FRF Observed Dataset",
+    id: "502d1a79-440c-4aaf-9ed4-75a45981d0b0",
+    title: "FRF 632",
+    identifier: "noaa.ioos.comt.unknown.b5a2.frf_632",
+    contactPoint: {
+      hasEmail: "mailto:John.L.Doe@usace.army.mil",
+      fn: "JOHN DOE"
+    }
+  },
+  {
+    description: "USACE/FRF Observed Dataset",
+    id: "e79dd9cd-818e-481e-bcf3-b7afcbfeefc6",
+    title: "Weather Station",
+    identifier: "noaa.ioos.comt.unknown.5bf1.weather_station",
+    contactPoint: {
+      hasEmail: "mailto:John.L.Doe@usace.army.mil",
+      fn: "JOHN DOE"
+    }
+  },
+  {
+    description: 'temp',
+    id: "2a753016-8da3-4edb-b721-45fd796bc6e0",
+    title: "Chesapeake Bay with 1-term oxygen model",
+    identifier: "noaa.ioos.comt.unknown.57c1.chesapeake_bay_with_1-term_oxygen_model",
+    contactPoint: {
+      hasEmail: "mailto:John.L.Doe@usace.army.mil",
+      fn: "JOHN DOE"
+    }
+  },
+  {
+    description: "USACE/FRF Observed Dataset",
+    id: "8aaa1660-0db6-4782-b497-614b43866e13",
+    title: "Pier CTD",
+    identifier: "noaa.ioos.comt.unknown.6edf.pier_ctd",
+    contactPoint: {
+      hasEmail: "mailto:John.L.Doe@usace.army.mil",
+      fn: "JOHN DOE"
+    }
+  },
+  {
+    description: "This sample dataset is used to test the data management server. This field can be as long as it needs to be. Did you know Eratosthenes was a Greek mathematician, geographer, poet, astronomer, and music theorist. He held the title of chief librarian at the Library of Alexandria. Eratosthenes was able to compute the circumference of the Earth to within 10% aroudn 200 BC",
+    id: "abcdef12-abcd-abcd-abcd-abcdef123456",
+    title: "Benchmark Dataset",
+    identifier: "noaa.ioos.comt.unknown.c586.benchmark_dataset",
+    contactPoint: {
+      hasEmail: "mailto:Brian.McKenna@rpsgroup.com",
+      fn: "Brian McKenna"
+    }
+  },
+  {
+    description: "'The time mean backgound grid interpolated onto all of the CMSF .tel grid positions to be used as the background for the CMTB CMSF runs' ",
+    id: "c0890acf-2127-4147-846b-f09ea5cc93f2",
+    title: "CMTB CMSF Background Grid",
+    identifier: "noaa.ioos.comt.unknown.8a40.cmtb_cmsf_background_grid",
+    contactPoint: {
+      hasEmail: "mailto:John.L.Doe@usace.army.mil",
+      fn: "JOHN DOE"
+    }
+  },
+  {
+    description: 'temp',
+    id: "868e64b3-7bfc-4365-8f6a-98774633e1a2",
+    title: "Mid-Atlantic Regional Association Coastal Ocean Observing System Self-Locating Datum Marker Buoy",
+    identifier: "noaa.ioos.comt.unknown.1cda.mid-atlantic_regional_association_coastal_ocean_observing_system_self-locating_datum_marker_buoy",
+    contactPoint: {
+      hasEmail: "mailto:John.L.Doe@usace.army.mil",
+      fn: "JOHN DOE"
+    }
+  },
+  {
+    description: "USACE/FRF Observed Dataset",
+    id: "9888d261-9016-49e1-9fc9-00bb8451decd",
+    title: "Currituck Sound",
+    identifier: "noaa.ioos.comt.unknown.e0f1.currituck_sound",
+    contactPoint: {
+      hasEmail: "mailto:John.L.Doe@usace.army.mil",
+      fn: "JOHN DOE"
+    }
+  },
+  {
+    description: "U.S. IOOS Mid-Atlantic Regional Consortium of Ocean Observing Systems (MARACOOS) glider deployment. This is the first of a series of yearly seasonal deployments to survey the physical and biological properties of Mid-Atlantic Bight coastal waters. This dataset contains phyisical data only. Optical and oxygen data to be added at a later date.",
+    id: "453cecc8-34aa-4747-8ff3-1dd1d423f1d7",
+    title: "blue-20150627T1254",
+    identifier: "noaa.ioos.comt.unknown.6489.blue-20150627t1254",
+    contactPoint: {
+      hasEmail: "mailto:John.L.Doe@usace.army.mil",
+      fn: "JOHN DOE"
+    }
+  }
+]
+
+storiesOf('Search  Results',  module)
+  .add('single result',  ()=>(
+    <SearchResults
+      searchText={'USACE'}
+      searchResults={singleResult}
+      onDatasetSelected={action('dataset-selected')}
+      resultsPerPage={8}
+      pageIndex={0}
+      leftButtonsDisabled={true}
+      rightButtonsDisabled={true}
+      getPreviousPage={action('go-to-previous')}
+      getNextPage={action('go-to-next')}
+      getFirstPage={action('go-to-first')}
+      getLastPage={action('go-to-last')}
+    />
   ))
-  .add('Survey', ()=>(
-    <FlowFooter footerStyle={'survey'}/>
+  .add('results table', ()=>(
+    <SearchResults
+      searchText={'a'}
+      searchResults={resultsTable}
+      onDatasetSelected={action('dataset-selected')}
+      resultsPerPage={8}
+      pageIndex={0}
+      leftButtonsDisabled={true}
+      rightButtonsDisabled={false}
+      getPreviousPage={action('go-to-previous')}
+      getNextPage={action('go-to-next')}
+      getFirstPage={action('go-to-first')}
+      getLastPage={action('go-to-last')}
+    />
+  )
+);
+
+/*************
+DatasetSearch
+*************/
+
+storiesOf('Dataset Search', module)
+  .add('single result',  ()=>(
+    <DatasetSearch
+      filterList={filterList}
+      searchResults={singleResult}
+      onFiltersChanged={action('filters-changed')}
+      onSearchValueChanged={action('search-value-changed')}
+      onDatasetSelected={action('dataset-selected')}
+      resultsPerPage={8}
+      pageIndex={0}
+      leftButtonsDisabled={true}
+      rightButtonsDisabled={true}
+      getPreviousPage={action('go-to-previous')}
+      getNextPage={action('go-to-next')}
+      getFirstPage={action('go-to-first')}
+      getLastPage={action('go-to-last')}
+      updateEnabledButtons={action('update-enabled-buttons')}
+    />
   ))
-  .add('Paging Only', ()=>(
-    <FlowFooter footerStyle={'pagingOnly'}/>
-  ))
-  .add('Submit', ()=>(
-    <FlowFooter footerStyle={'submit'}/>
-  ))
-  .add('Survey Submit', ()=>(
-    <FlowFooter footerStyle={'surveySubmit'}/>
-  ));
+  .add('results table', ()=>(
+    <DatasetSearch
+      filterList={filterList}
+      searchResults={resultsTable}
+      onFiltersChanged={action('filters-changed')}
+      onSearchValueChanged={action('search-value-changed')}
+      onDatasetSelected={action('dataset-selected')}
+      resultsPerPage={8}
+      pageIndex={0}
+      leftButtonsDisabled={false}
+      rightButtonsDisabled={false}
+      getPreviousPage={action('go-to-previous')}
+      getNextPage={action('go-to-next')}
+      getFirstPage={action('go-to-first')}
+      getLastPage={action('go-to-last')}
+      updateEnabledButtons={action('update-enabled-buttons')}
+    />
+  )
+);
+
+/* TODO: Fix Dependencies in  existing components */
+// import DataTableFieldInput from '../src/components/DataTable/DataTableFieldInput';
+// import DataTable from '../src/components/DataTable/DataTable';
+// import TabbedView from '../src/components/TabbedView/TabbedView';
+// import FlowFooter from '../src/components/FlowFooter/FlowFooter';
+
+// addDecorator((story) => (
+//   <MuiThemeProvider>
+//     {story()}
+//   </MuiThemeProvider>
+// ));
+
+// storiesOf('Data Table Field Input', module)
+//   .add('staticText', ()=>(
+//     <DataTableFieldInput
+//       objectData={{
+//         fieldType: 'text',
+//         severity: 'suggested',
+//         text: 'sampleText',
+//       }}
+//     />
+//   ))
+//   .add('autocomplete', ()=>(
+//     <DataTableFieldInput
+//       objectData={{
+//         fieldType: 'text',
+//         severity: 'suggested',
+//         text: 'sampleText',
+//         options: ['sample a', 'sample b', 'a', 'b'],
+//       }}
+//     />
+//   ))
+//   .add('dropdown', ()=>(
+//     <DataTableFieldInput
+//       objectData={{
+//         fieldType: 'dropdown',
+//         severity: 'suggested',
+//         text: 'sampleText',
+//         options: ['sample a', 'sample b', 'a', 'b'],
+//       }}
+//     />
+//   ))
+//   .add('tag input', ()=>(
+//     <DataTableFieldInput
+//       objectData={{
+//         fieldType: 'tagInput',
+//         severity: 'suggested',
+//         text: 'sampleText',
+//         options: ['sample a', 'sample b', 'a', 'b'],
+//         onUpdate: ()=>{},
+//       }}
+//     />
+//   ))
+//   .add('date picker', ()=>(
+//     <DataTableFieldInput
+//       objectData={{
+//         fieldType: 'datePicker',
+//         severity: 'suggested',
+//       }}
+//     />
+//   ));
+
+// storiesOf('Data Table', module)
+//   .add('Key Value', ()=>(
+//     <DataTable
+//       jsonData={{
+//         header: [
+//           {text: 'Field Name'},
+//           {text: 'Value'}
+//         ],
+//         content: [
+//           [
+//             {
+//               fieldType: 'textBox',
+//               description: 'This is a key',
+//               disabled: true,
+//               text: 'key',
+//             },
+//             {
+//               fieldType: 'textBox',
+//               severity: 'required',
+//               text: '',
+//             }
+//           ],
+//           [
+//             {
+//               fieldType: 'textBox',
+//               description: 'This is a key too!',
+//               disabled: true,
+//               text: 'key',
+//             },
+//             {
+//               fieldType: 'textBox',
+//               severity: 'suggested',
+//               text: '',
+//             }
+//           ]
+//         ],
+//       }}
+//       headerEnabled={true}
+//       verbose={true}
+//     />
+//   ))
+//   .add('Variables', ()=>(
+//     <DataTable
+//       jsonData={{
+//         header: [
+//           {
+//             colIndex: 0,
+//             sortType: 'alphabetical',
+//             text: 'Variable Name',
+//           },
+//           {
+//             colIndex: 1,
+//             sortType: 'numeric',
+//             text: 'Dimensions',
+//           },
+//           {
+//             colIndex: 2,
+//             link: 'http://cfconventions.org/Data/cf-conventions/cf-conventions-1.6/build/cf-conventions.html#units',
+//             sortType: 'alphabetical',
+//             text: 'Units',
+//           },
+//           {
+//             colIndex: 3,
+//             link: 'http://cfconventions.org/Data/cf-standard-names/27/build/cf-standard-name-table.html',
+//             sortType: 'alphabetical',
+//             text: 'Standard Name',
+//           },
+//           {
+//             colIndex: 4,
+//             link: 'http://cfconventions.org/Data/cf-conventions/cf-conventions-1.6/build/cf-conventions.html#long-name',
+//             sortType: 'alphabetical',
+//             text: 'Long Name',
+//           }
+//         ],
+//         content: [
+//           [
+//             {
+//               fieldType: 'textBox',
+//               text: 'u',
+//             },
+//             {
+//               fieldType: 'numericBadge',
+//               data: ['ocean_time', 'eta_rho', 'xi_rho'],
+//               disabled: true,
+//               text: '3D',
+//             },
+//             {
+//               fieldType: 'textBox',
+//               text: 'meter second-1',
+//               validated: true,
+//               validationTooltip: 'Invalid units. Units string must be recognized by UNIDATA\'s Udunits package',
+//               text: 'key',
+//             },
+//             {
+//               fieldType: 'textBox',
+//               options: ['a', 'b', 'c'],
+//               text: '',
+//               validated: true,
+//               validationTooltip: 'Invalid standard_name. The set of permissible standard names is contained in the CF standard name table.'
+//             },
+//             {
+//               fieldType: 'textBox',
+//               text: 'u-momentum component',
+//             }
+//           ]
+//         ],
+//       }}
+//       headerEnabled={true}
+//       verbose={true}
+//     />
+//   ));
+
+// storiesOf('TabbedView', module)
+//   .add('Single Tab With Header', ()=>(
+//     <TabbedView
+//       headerEnabled={true}
+//       jsonData={{
+//         'Only One Tab': {
+//           header: [
+//             {text: 'Field Name'},
+//             {text: 'Value'}
+//           ],
+//           content: [
+//             [
+//               {
+//                 fieldType: 'textBox',
+//                 description: 'This is a key',
+//                 disabled: true,
+//                 text: 'key',
+//               },
+//               {
+//                 fieldType: 'textBox',
+//                 severity: 'required',
+//                 text: '',
+//               }
+//             ],
+//             [
+//               {
+//                 fieldType: 'textBox',
+//                 description: 'This is a key too!',
+//                 disabled: true,
+//                 text: 'key',
+//               },
+//               {
+//                 fieldType: 'textBox',
+//                 severity: 'suggested',
+//                 text: '',
+//               }
+//             ]
+//           ],
+//         }
+//       }}
+//     />
+//   ))
+//   .add('Single Tab Without Header', ()=>(
+//     <TabbedView
+//       headerEnabled={false}
+//       jsonData={{
+//         'Only One Tab': {
+//           header: [
+//             {text: 'Field Name'},
+//             {text: 'Value'}
+//           ],
+//           content: [
+//             [
+//               {
+//                 fieldType: 'textBox',
+//                 description: 'This is a key',
+//                 disabled: true,
+//                 text: 'key',
+//               },
+//               {
+//                 fieldType: 'textBox',
+//                 severity: 'required',
+//                 text: '',
+//               }
+//             ],
+//             [
+//               {
+//                 fieldType: 'textBox',
+//                 description: 'This is a key too!',
+//                 disabled: true,
+//                 text: 'key',
+//               },
+//               {
+//                 fieldType: 'textBox',
+//                 severity: 'suggested',
+//                 text: '',
+//               }
+//             ]
+//           ],
+//         }
+//       }}
+//     />
+//   ))
+//   .add('Multiple Tabs', ()=>(
+//     <TabbedView
+//       jsonData={{
+//         First: {
+//           header: [
+//             {text: 'Field Name'},
+//             {text: 'Value'}
+//           ],
+//           content: [
+//             [
+//               {
+//                 fieldType: 'textBox',
+//                 description: 'This is a key',
+//                 disabled: true,
+//                 text: 'key',
+//               },
+//               {
+//                 fieldType: 'textBox',
+//                 severity: 'required',
+//                 text: '',
+//               }
+//             ],
+//           ]
+//         },
+//         Second: {
+//           header: [
+//             {text: 'Field Name'},
+//             {text: 'Value'}
+//           ],
+//           content: [
+//             [
+//               {
+//                 fieldType: 'textBox',
+//                 description: 'This is a key',
+//                 disabled: true,
+//                 text: 'key',
+//               },
+//               {
+//                 fieldType: 'textBox',
+//                 severity: 'required',
+//                 text: '',
+//               }
+//             ],
+//           ]
+//         },
+//         Third: {
+//           header: [
+//             {text: 'Field Name'},
+//             {text: 'Value'}
+//           ],
+//           content: [
+//             [
+//               {
+//                 fieldType: 'textBox',
+//                 description: 'This is a key',
+//                 disabled: true,
+//                 text: 'key',
+//               },
+//               {
+//                 fieldType: 'textBox',
+//                 severity: 'required',
+//                 text: '',
+//               }
+//             ],
+//           ]
+//         }
+//       }}
+//     />
+//   ));
+
+// storiesOf('FlowFooter', module)
+//   .add('All Buttons', ()=>(
+//     <FlowFooter footerStyle={'allButtons'}/>
+//   ))
+//   .add('Admin', ()=>(
+//     <FlowFooter footerStyle={'admin'}/>
+//   ))
+//   .add('Survey', ()=>(
+//     <FlowFooter footerStyle={'survey'}/>
+//   ))
+//   .add('Paging Only', ()=>(
+//     <FlowFooter footerStyle={'pagingOnly'}/>
+//   ))
+//   .add('Submit', ()=>(
+//     <FlowFooter footerStyle={'submit'}/>
+//   ))
+//   .add('Survey Submit', ()=>(
+//     <FlowFooter footerStyle={'surveySubmit'}/>
+//   ));

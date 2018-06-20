@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/asascience/react-component-lib#readme",
   "devDependencies": {
+    "@storybook/addon-actions": "^3.4.7",
     "@storybook/react": "^3.4.5",
     "babel-core": "^6.26.3"
   },

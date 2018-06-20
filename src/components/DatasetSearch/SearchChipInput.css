@@ -1,0 +1,116 @@
+#searchChipInputContainer{
+  width: 100%;
+  height: 55px;
+}
+
+#searchChipInputContainer #arrowContainer{
+  width: 10px;
+  height: 10px;
+  margin-left: 5px;
+  padding-top: 5px;
+}
+#searchChipInputContainer #filterButton .arrowDown{
+  width: 0; 
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #444;
+
+}
+#searchChipInputContainer #filterButton{
+  height: 100%;
+  padding: 0px 10px;
+  margin-left: -1px;
+  border: solid 1px lightgrey;
+  background-color: #f3f3f3;
+  line-height: 55px;
+  font-size: 17px;
+  vertical-align: center;
+  color: #444;
+  display: flex;
+  align-items: center;
+}
+
+#searchChipInputContainer #filterButton:hover{
+  background-color: #e3e3e3;
+  -webkit-box-shadow: inset 0px 0px 1px 0px rgba(100,100,100,1);
+  -moz-box-shadow: inset 0px 0px 1px 0px rgba(100,100,100,1);
+  box-shadow: inset 0px 0px 1px 0px rgba(100,100,100,1);
+}
+#searchChipInputContainer #filterButton.selected{
+  background-color: #e3e3e3;
+  -webkit-box-shadow: inset 0px 0px 3px 0px rgba(100,100,100,1);
+  -moz-box-shadow: inset 0px 0px 3px 0px rgba(100,100,100,1);
+  box-shadow: inset 0px 0px 3px 0px rgba(100,100,100,1);
+}
+
+#searchChipInputContainer #filterSuggestionHeader{
+  color: grey;
+  font-size: 13px;
+}
+
+#searchChipInputContainer .filterOption{
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+#searchChipInputContainer #filterSuggestions{
+  margin-left: 10px
+}
+
+#searchChipInputContainer #autoComplete{
+  position: relative;
+  z-index: 10;
+  background-color: white;
+  padding: 10px;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+}
+#searchChipInputContainer #searchChipInput{
+  background-color: white;
+  border: solid 1px lightgrey;
+  height: 55px;
+  display: flex;
+  align-items: center;
+}
+  
+#searchChipInputContainer #textArea{
+  background-color: transparent;
+  border: none;
+  resize: none;
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  white-space: nowrap;
+  font-size: 18px;
+  flex-grow: 1;
+}
+
+#searchChipInputContainer .deleteDiv{
+  width: 20px;
+  height: 20px;
+  display: inline;
+  cursor: pointer;
+  margin: 2.5px;
+  border-radius: 10px;
+  background-color: grey;
+  color: white;
+}
+
+#searchChipInputContainer .chip{
+  height: 25px;
+  border-radius: 5px;
+  margin: 7px;
+  padding: 4px;
+  background-color: lightgrey;
+  display: flex;
+  flex-shrink: 0;
+}
+#searchChipInputContainer .chipText{
+  font-size: 16px;
+  line-height: 20px;
+  margin-top: 4px;
+  vertical-align: center;
+}
