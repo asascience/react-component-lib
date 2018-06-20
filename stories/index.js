@@ -638,10 +638,62 @@ storiesOf('USACE/Modals/Undo Modal', module)
 Mapping Components
 ******************/
 
+// Sample Data for Chart
+let chartTime = 1529520593002;
+let chartStartTime = 1529477393004;
+let chartEndTime = 1529606993005;
+let chartStation = null;
+let chartStatus = 'on';
+let chartData =  [
+  {
+    chartType: 'spline',
+    parameter: 'Wind Velocity',
+    series: {
+      directionSeriesTitle: 'Direction',
+    },
+    title: 'Wind Speed',
+    url: '/dbpilots-api/dynamic/timeseries_forecasts/GFS_WINDS.null.json',
+    yAxis: {
+      min: 0,
+      useAxis: 0,
+      title: {
+        text: "Knots",
+      },
+    },
+  },
+  {
+    chartType: 'spline',
+    parameter: 'Direction',
+    series: {
+      showInLegend: false,
+      visible: false,
+    },
+    title: 'Direction',
+    url: '/dbpilots-api/dynamic/timeseries_forecasts/GFS_WINDS.null.json',
+    yAxis: {
+      alignTicks: false,
+      opposite: true,
+      showAsCompassDegrees: true,
+      visible: false,
+      useAxis: 1,
+      title: {
+        text: "Degrees",
+      },
+    },
+  },
+];
+
 // Chart
 storiesOf('OceansMap/Charts/Chart',  module)
-  .add('default', ()=>(
-    <Chart/>
+  .add('sample chart', ()=>(
+    <Chart
+      data={chartData}
+      time={chartTime}
+      startTime={chartStartTime}
+      endTime={chartEndTime}
+      station={chartStation}
+      status={chartStatus}
+    />
   )
 );
 
