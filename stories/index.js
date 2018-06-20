@@ -5,12 +5,22 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import moment from 'moment';
 import '../src/index.css';
 
+/**********************
+USACE Component Imports
+**********************/
+
 // Dataset Search Imports
 //import DatasetSearchController from '../src/containers/DatasetSearchContainers/DatasetSearchController.js';
 import DatasetSearch from '../src/containers/DatasetSearchContainers/DatasetSearch.js';
 import SearchResults from '../src/components/DatasetSearch/SearchResults.js';
 import SearchPagination from '../src/components/DatasetSearch/SearchPagination.js';
 import SearchChipInput from '../src/components/DatasetSearch/SearchChipInput.js';
+
+
+// Data Table Imports
+import DataTableFieldInput from '../src/containers/DataTable/DataTableFieldInput';
+
+
 
 addDecorator((story) => (
   <MuiThemeProvider>
@@ -19,9 +29,10 @@ addDecorator((story) => (
 ));
 
 /****************
-SearchPagination
+Dataset Search
 ****************/
 
+// SearchPagination
 storiesOf('Search Pagination', module)
   .add('first page', ()=>(
     <SearchPagination
@@ -64,10 +75,7 @@ storiesOf('Search Pagination', module)
   )
 );
 
-/***************
-SearchChipInput
-***************/
-
+// SearchChipInput
 let filterList={
   'author': ['Bob', 'Brian', 'Dalton', 'Ryan'],
   'type': ['csv', 'gridded model', 'timeseries'],
@@ -99,10 +107,7 @@ storiesOf('Search Chip Input', module)
   )
 );
 
-/**************
-SearchResults
-**************/
-
+// SearchResults
 let singleResult =  [{
   description: "USACE/FRF Observed Dataset",
   id: "502d1a79-440c-4aaf-9ed4-75a45981d0b0",
@@ -114,7 +119,8 @@ let singleResult =  [{
   }
 }]
 
-let resultsTable = [{
+let resultsTable = [
+  {
     description: 'temp',
     id: "ad7b5502-3a2e-4ff7-b919-e4f9e1baae64",
     title: "Mid-Atlantic Regional Association Coastal Ocean Observing System Self-Locating Datum Marker Buoy",
@@ -269,10 +275,7 @@ storiesOf('Search  Results',  module)
   )
 );
 
-/*************
-DatasetSearch
-*************/
-
+//DatasetSearch
 storiesOf('Dataset Search', module)
   .add('single result',  ()=>(
     <DatasetSearch
@@ -312,67 +315,59 @@ storiesOf('Dataset Search', module)
   )
 );
 
-/* TODO: Fix Dependencies in  existing components */
-// import DataTableFieldInput from '../src/components/DataTable/DataTableFieldInput';
-// import DataTable from '../src/components/DataTable/DataTable';
-// import TabbedView from '../src/components/TabbedView/TabbedView';
-// import FlowFooter from '../src/components/FlowFooter/FlowFooter';
+/****************
+Data Table  Input
+*****************/
 
-// addDecorator((story) => (
-//   <MuiThemeProvider>
-//     {story()}
-//   </MuiThemeProvider>
-// ));
-
-// storiesOf('Data Table Field Input', module)
-//   .add('staticText', ()=>(
-//     <DataTableFieldInput
-//       objectData={{
-//         fieldType: 'text',
-//         severity: 'suggested',
-//         text: 'sampleText',
-//       }}
-//     />
-//   ))
-//   .add('autocomplete', ()=>(
-//     <DataTableFieldInput
-//       objectData={{
-//         fieldType: 'text',
-//         severity: 'suggested',
-//         text: 'sampleText',
-//         options: ['sample a', 'sample b', 'a', 'b'],
-//       }}
-//     />
-//   ))
-//   .add('dropdown', ()=>(
-//     <DataTableFieldInput
-//       objectData={{
-//         fieldType: 'dropdown',
-//         severity: 'suggested',
-//         text: 'sampleText',
-//         options: ['sample a', 'sample b', 'a', 'b'],
-//       }}
-//     />
-//   ))
-//   .add('tag input', ()=>(
-//     <DataTableFieldInput
-//       objectData={{
-//         fieldType: 'tagInput',
-//         severity: 'suggested',
-//         text: 'sampleText',
-//         options: ['sample a', 'sample b', 'a', 'b'],
-//         onUpdate: ()=>{},
-//       }}
-//     />
-//   ))
-//   .add('date picker', ()=>(
-//     <DataTableFieldInput
-//       objectData={{
-//         fieldType: 'datePicker',
-//         severity: 'suggested',
-//       }}
-//     />
-//   ));
+storiesOf('Data Table Field Input', module)
+  .add('staticText', ()=>(
+    <DataTableFieldInput
+      objectData={{
+        fieldType: 'text',
+        severity: 'suggested',
+        text: 'sampleText',
+      }}
+    />
+  ))
+  .add('autocomplete', ()=>(
+    <DataTableFieldInput
+      objectData={{
+        fieldType: 'text',
+        severity: 'suggested',
+        text: 'sampleText',
+        options: ['sample a', 'sample b', 'a', 'b'],
+      }}
+    />
+  ))
+  .add('dropdown', ()=>(
+    <DataTableFieldInput
+      objectData={{
+        fieldType: 'dropdown',
+        severity: 'suggested',
+        text: 'sampleText',
+        options: ['sample a', 'sample b', 'a', 'b'],
+      }}
+    />
+  ))
+  .add('tag input', ()=>(
+    <DataTableFieldInput
+      objectData={{
+        fieldType: 'tagInput',
+        severity: 'suggested',
+        text: 'sampleText',
+        options: ['sample a', 'sample b', 'a', 'b'],
+        onUpdate: ()=>{},
+      }}
+    />
+  ))
+  .add('date picker', ()=>(
+    <DataTableFieldInput
+      objectData={{
+        fieldType: 'datePicker',
+        severity: 'suggested',
+      }}
+    />
+  ));
 
 // storiesOf('Data Table', module)
 //   .add('Key Value', ()=>(

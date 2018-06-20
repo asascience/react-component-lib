@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import AvatarNumericBadge from 'components/AvatarNumericBadge/AvatarNumericBadge';
-import DataTagInput from 'components/TagInput/TagInput';
-import DataDatePicker from 'components/DatePicker/DatePicker';
-import Dropdown from 'components/Dropdown/Dropdown';
-import TableTextBox from 'components/TableTextBox/TableTextBox';
+import AvatarNumericBadge from '../../components/AvatarNumericBadge/AvatarNumericBadge';
+import DataTagInput from '../../components/TagInput/TagInput';
+import DataDatePicker from '../../components/DatePicker/DatePicker';
+import Dropdown from '../../components/Dropdown/Dropdown';
+import TableTextBox from '../../components/TableTextBox/TableTextBox';
 import moment from 'moment';
 
 /*
