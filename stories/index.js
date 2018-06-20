@@ -3,6 +3,7 @@ import { storiesOf, addDecorator } from '@storybook/react';
 import { action, configureActions } from '@storybook/addon-actions';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import moment from 'moment';
+import '../src/index.css';
 
 // Dataset Search Imports
 //import DatasetSearchController from '../src/containers/DatasetSearchContainers/DatasetSearchController.js';
