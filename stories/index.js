@@ -33,7 +33,7 @@ Dataset Search
 ****************/
 
 // SearchPagination
-storiesOf('Search Pagination', module)
+storiesOf('USACE/Dataset Search/Search Pagination', module)
   .add('first page', ()=>(
     <SearchPagination
       pageIndex={0}
@@ -82,7 +82,7 @@ let filterList={
   'tag': ['ocean', 'land', 'sediment', 'something'],
 }
 
-storiesOf('Search Chip Input', module)
+storiesOf('USACE/Dataset Search/Search Chip Input', module)
   .add('partial chip', ()=>(
     <SearchChipInput
       value={['author']}
@@ -242,7 +242,7 @@ let resultsTable = [
   }
 ]
 
-storiesOf('Search  Results',  module)
+storiesOf('USACE/Dataset Search/Search  Results',  module)
   .add('single result',  ()=>(
     <SearchResults
       searchText={'USACE'}
@@ -276,7 +276,7 @@ storiesOf('Search  Results',  module)
 );
 
 //DatasetSearch
-storiesOf('Dataset Search', module)
+storiesOf('USACE/Dataset Search/Dataset Search Container', module)
   .add('single result',  ()=>(
     <DatasetSearch
       filterList={filterList}
@@ -319,7 +319,7 @@ storiesOf('Dataset Search', module)
 Data Table  Input
 *****************/
 
-storiesOf('Data Table Field Input', module)
+storiesOf('USACE/Data Table/Data Table Field Input', module)
   .add('staticText', ()=>(
     <DataTableFieldInput
       objectData={{
