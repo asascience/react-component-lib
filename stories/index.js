@@ -25,6 +25,9 @@ import TopLogo from '../src/components/TopLogo/TopLogo'
 import LoginButton from  '../src/components/LoginButton/LoginButton';
 import ForgotPasswordLink from '../src/components/ForgotPasswordLink/ForgotPasswordLink';
 
+// Badge Imports
+import AvatarNumericBadge from '../src/components/AvatarNumericBadge/AvatarNumericBadge';
+
 
 addDecorator((story) => (
   <MuiThemeProvider>
@@ -406,7 +409,44 @@ storiesOf('COMT/App Bar/Forgot Password Link', module)
 /*****
 Badges
 ******/
-
+storiesOf('USACE/Badges/Avatar Numeric Badge', module)
+  .add('default size', ()=>(
+    <AvatarNumericBadge
+      dimArray={['a']}
+      text={'1D'}
+    />
+  ))
+  .add('large badge', ()=>(
+    <AvatarNumericBadge
+      dimArray={['a', 'b']}
+      text={'2D'}
+      iconSize={128}
+    />
+  ))
+  .add('text coloring', ()=>(
+    <AvatarNumericBadge
+      dimArray={['a', 'b', 'c']}
+      text={'3D'}
+      textColor={'blue'}
+    />
+  ))
+  .add('tooltip position', ()=>(
+    <div style={{margin: 35}}>
+      <AvatarNumericBadge
+        dimArray={['a', 'b', 'c', 'd']}
+        text={'4D'}
+        tooltipPosition={'top-left'}
+      />
+    </div>
+  ))
+  .add('tooltip styles', ()=>(
+    <AvatarNumericBadge
+      dimArray={['a', 'b', 'c', 'd', 'e']}
+      text={'5D'}
+      tooltipStyle={{fontSize: 18, fontFamily: 'fantasy'}}
+    />
+  )
+);
 
 
 
