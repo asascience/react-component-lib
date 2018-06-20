@@ -48,6 +48,9 @@ import LoadingSpinner from '../src/components/LoadingSpinner/LoadingSpinner';
 import SessionExpiredModal from '../src/components/SessionExpiredModal/SessionExpiredModal';
 import UndoModal from '../src/components/UndoModal/UndoModal';
 
+// Mapping Component Imports
+import Chart from '../src/components/Chart/Chart';
+
 addDecorator((story) => (
   <MuiThemeProvider>
     {story()}
@@ -627,6 +630,18 @@ storiesOf('USACE/Modals/Undo Modal', module)
     <UndoModal
       open={true}
     />
+  )
+);
+
+
+/*****************
+Mapping Components
+******************/
+
+// Chart
+storiesOf('OceansMap/Charts/Chart',  module)
+  .add('default', ()=>(
+    <Chart/>
   )
 );
 
