@@ -3,7 +3,7 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
 import ArrowDropDown from 'material-ui/svg-icons/navigation/arrow-drop-down';
-import history from '../../history';
+//import history from '../../history';
 import PropTypes from 'prop-types';
 
 /**

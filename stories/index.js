@@ -25,6 +25,7 @@ import TopLogo from '../src/components/TopLogo/TopLogo'
 import LoginButton from  '../src/components/LoginButton/LoginButton';
 import ForgotPasswordLink from '../src/components/ForgotPasswordLink/ForgotPasswordLink';
 import ReferencesDropdown from '../src/components/ReferencesDropdown/ReferencesDropdown';
+import UserOptionsMenu from '../src/components/UserOptionsMenu/UserOptionsMenu';
 
 // Badge Imports
 import AvatarNumericBadge from '../src/components/AvatarNumericBadge/AvatarNumericBadge';
@@ -46,7 +47,6 @@ import ServiceWrapper from '../src/components/ServiceWrapper/ServiceWrapper';
 import LoadingSpinner from '../src/components/LoadingSpinner/LoadingSpinner';
 import SessionExpiredModal from '../src/components/SessionExpiredModal/SessionExpiredModal';
 import UndoModal from '../src/components/UndoModal/UndoModal';
-import UserOptionsMenu from '../src/components/UserOptionsMenu/UserOptionsMenu';
 
 addDecorator((story) => (
   <MuiThemeProvider>
@@ -432,6 +432,15 @@ storiesOf('COMT/App Bar/References Dropdown', module)
   )
 );
 
+// User Options Menu
+storiesOf('COMT/App Bar/User Options Menu', module)
+  .add('default', ()=>(
+    <UserOptionsMenu
+      name={'Brian'}
+    />
+  )
+);
+
 /*****
 Badges
 ******/
@@ -569,14 +578,14 @@ Menu Page Components
 ********************/
 
 // Organization Menu
-storiesOf('COMT/Menu Components/Organization Menu')
+storiesOf('COMT/Menu Components/Organization Menu', module)
   .add('menu', ()=>(
     <OrganizationMenu/>
   )
 );
 
 // Service Wrapper
-storiesOf('COMT/Menu Components/Service Wrapper')
+storiesOf('COMT/Menu Components/Service Wrapper', module)
   .add('default', ()=>(
     <Router history={history}>
       <ServiceWrapper
@@ -594,6 +603,32 @@ storiesOf('COMT/Menu Components/Service Wrapper')
   )
 );
 
+/***************
+Modal Components
+****************/
+
+// Loading Spinner
+storiesOf('USACE/Modals/LoadingSpinner', module)
+  .add('indeterminate',  ()=>(
+    <LoadingSpinner/>
+  )
+);
+
+// Session Expired Modal
+storiesOf('USACE/Modals/Session Expired Modal',  module)
+  .add('default', ()=>(
+    <SessionExpiredModal/>
+  )
+);
+
+// Undo Modal
+storiesOf('USACE/Modals/Undo Modal', module)
+  .add('default', ()=>(
+    <UndoModal
+      open={true}
+    />
+  )
+);
 
 // storiesOf('Data Table', module)
 //   .add('Key Value', ()=>(
