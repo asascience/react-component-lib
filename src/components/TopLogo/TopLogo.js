@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import toplogo from 'images/IOOS_Emblem_Tertiary_B_RGB.png';
+import toplogo from '../../images/IOOS_Emblem_Tertiary_B_RGB.jpg';
 
 /**
 * The logo ontop of the navbar
