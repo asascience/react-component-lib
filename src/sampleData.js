@@ -373,11 +373,44 @@ let layerVisibilityData = [
       }
     ]
   }
-]
+];
+
+let markerParameters = [
+  {
+    "name": "wind_speed",
+    "units": "&nbsp;kt",
+    "type": "scalar",
+    "formatting": {
+      "type": "float",
+      "operation": {
+        "func": "roundTo",
+        "param": 0
+      }
+    }
+  },
+  {
+    "name": "wind_from_direction",
+    "units": "&nbsp;deg",
+    "type": "vector"
+  },
+  {
+    "name": "wind_speed_of_gust",
+    "units": "&nbsp;kt",
+    "type": "scalar",
+    "formatting": {
+      "type": "float",
+      "operation": {
+        "func": "roundTo",
+        "param": 0
+      }
+    }
+  }
+];
 
 export {
   legendData,
   thumbnailStripImages,
   chartData,
-  layerVisibilityData
+  layerVisibilityData,
+  markerParameters
 }
