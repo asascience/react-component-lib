@@ -4,6 +4,7 @@ import { action, configureActions } from '@storybook/addon-actions';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import moment from 'moment';
 import '../src/index.css';
+import {legendData, thumbnailStripImages, chartData}  from '../src/sampleData.js';
 
 /**********************
 USACE Component Imports
@@ -52,10 +53,11 @@ import UndoModal from '../src/components/UndoModal/UndoModal';
 import Chart from '../src/components/Chart/Chart';
 import ImageThumbnailStrip from '../src/components/Image/Image';
 import LayerControls from '../src/components/LayerControls/LayerControls';
-import Legend from '../src/components/Legend/Legend';
+import HazardLegend from '../src/components/Legend/Legend';
 //import {Map} from '../src/components/Map/Map';
 import MarkerLayers from '../src/components/MarkerLayers/MarkerLayers';
 import RasterLayers from '../src/components/RasterLayers/RasterLayers';
+import {LayerVisibilityControls, LayerOpacityControls, LayerShortcutControls, LayerButton} from '../src/components/LayerControls/LayerControls';
 
 addDecorator((story) => (
   <MuiThemeProvider>
@@ -644,90 +646,44 @@ storiesOf('USACE/Modals/Undo Modal', module)
 Mapping Components
 ******************/
 
-// Sample Data for Chart
-let chartTime = 1529520593002;
-let chartStartTime = 1529477393004;
-let chartEndTime = 1529606993005;
-let chartStation = null;
-let chartStatus = 'on';
-let chartData =  [
-  {
-    chartType: 'spline',
-    parameter: 'Wind Velocity',
-    series: {
-      directionSeriesTitle: 'Direction',
-    },
-    title: 'Wind Speed',
-    url: '/dbpilots-api/dynamic/timeseries_forecasts/GFS_WINDS.null.json',
-    yAxis: {
-      min: 0,
-      useAxis: 0,
-      title: {
-        text: "Knots",
-      },
-    },
-  },
-  {
-    chartType: 'spline',
-    parameter: 'Direction',
-    series: {
-      showInLegend: false,
-      visible: false,
-    },
-    title: 'Direction',
-    url: '/dbpilots-api/dynamic/timeseries_forecasts/GFS_WINDS.null.json',
-    yAxis: {
-      alignTicks: false,
-      opposite: true,
-      showAsCompassDegrees: true,
-      visible: false,
-      useAxis: 1,
-      title: {
-        text: "Degrees",
-      },
-    },
-  },
-];
-
 // Chart
 storiesOf('OceansMap/Charts/Chart',  module)
   .add('sample chart', ()=>(
     <Chart
       data={chartData}
-      time={chartTime}
-      startTime={chartStartTime}
-      endTime={chartEndTime}
-      station={chartStation}
-      status={chartStatus}
+      time={1529520593002}
+      startTime={1529477393004}
+      endTime={1529606993005}
+      station={null}
+      status={'on'}
     />
   )
 );
 
-// Sample Data for Image Thumbnail Strip
-let imageThumbnails = [
-  {
-    href: "https://www.weather.gov/phi/marine",
-    thumbnailSrc: "https://www.weather.gov/wwamap/png/phi.png",
-    title: "NWS marine forecasts and conditions",
-  },
-  {
-    href: "https://radar.weather.gov/radar.php?rid=DIX",
-    thumbnailSrc: "https://radar.weather.gov/ridge/lite/N0R/DIX_0.png",
-    title: "Mt. Holly, NJ radar",
-  },
-  {
-    href: "https://radar.weather.gov/radar.php?rid=DOX",
-    thumbnailSrc: "https://radar.weather.gov/ridge/lite/N0R/DOX_0.png",
-    title: "Dover Air Force Base radar",
-  }
-];
-
 // Image
-storiesOf('OceansMap/Charts/Image Thumbail Strip', module)
+storiesOf('OceansMap/Images/Image Thumbail Strip', module)
   .add('sample images', ()=>(
     <ImageThumbnailStrip
-      images={imageThumbnails}
+      images={thumbnailStripImages}
     />
+  )
+);
+
+// Legend
+storiesOf('OceansMap/Legends/Hazard Legend', module)
+  .add('default legend', ()=>(
+    <HazardLegend
+      status={'on'}
+      time={'1529931828308'}
+      data={legendData}
+    />
+  )
+);
+
+// Layer Controls
+storiesOf('OceansMap/Layer Controls/Layer Visibility Controls')
+  .add('default', ()=>(
+
   )
 );
 

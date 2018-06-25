@@ -102,3 +102,5 @@ export class HazardLegend extends Component {
     )
   }
 }
+
+export default HazardLegend;

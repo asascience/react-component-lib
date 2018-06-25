@@ -31,6 +31,7 @@
     "material-ui": "^0.17.3",
     "material-ui-chip-input": "^0.18.3",
     "moment": "^2.18.1",
+    "npm": "^6.1.0",
     "radial-progress-chart": "0.0.4",
     "react": "^15.4.0",
     "react-bootstrap": "^0.32.1",
