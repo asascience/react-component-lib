@@ -691,6 +691,34 @@ storiesOf('OceansMap/Layer Controls/Layer Visibility Controls')
   )
 );
 
+storiesOf('OceansMap/Layer Controls/Layer Shortcut Controls')
+  .add('default', ()=>(
+    <LayerShortcutControls
+      color={'blue'}
+      group={'pois'}
+      layers={'Station Markers'}
+      onGotoLayer={()=>{}}
+      onLoadDone={()=>{}}
+      onLoadStart={()=>{}}
+      selected_identifiers={[null]}
+      sort={true}
+      status={'on'}
+      time={1529934832942}
+      url={"/dbpilots-api/static/station_marker_data.json"}
+    />
+  )
+);
+
+storiesOf('OceansMap/Layer Controls/Layer Button')
+  .add('button', ()=>(
+    <LayerButton
+      name={'Sample Button'}
+      value={42}
+      onClick={action('layer-button-pressed')}
+    />
+  )
+);
+
 // storiesOf('Data Table', module)
 //   .add('Key Value', ()=>(
 //     <DataTable

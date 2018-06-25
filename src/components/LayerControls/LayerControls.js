@@ -171,7 +171,7 @@ export class LayerShortcutControls extends Component {
 /*
   Really lame button!
  */
-class LayerButton extends Component {
+export class LayerButton extends Component {
   render() {
     return (
       <Button
