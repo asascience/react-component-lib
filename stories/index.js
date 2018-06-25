@@ -4,7 +4,7 @@ import { action, configureActions } from '@storybook/addon-actions';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import moment from 'moment';
 import '../src/index.css';
-import {legendData, thumbnailStripImages, chartData}  from '../src/sampleData.js';
+import {legendData, thumbnailStripImages, chartData, layerVisibilityData}  from '../src/sampleData.js';
 
 /**********************
 USACE Component Imports
@@ -683,7 +683,11 @@ storiesOf('OceansMap/Legends/Hazard Legend', module)
 // Layer Controls
 storiesOf('OceansMap/Layer Controls/Layer Visibility Controls')
   .add('default', ()=>(
-
+    <LayerVisibilityControls
+      group={'maps'}
+      onToggleLayer={()=>{}}
+      layers={layerVisibilityData}
+    />
   )
 );
 

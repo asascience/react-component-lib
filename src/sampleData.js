@@ -171,8 +171,213 @@ let chartData =  [
   },
 ];
 
+let layerVisibilityData = [
+  {
+    "type": "EsriDynamicMapLayer",
+    "url": "https://nowcoast.noaa.gov/arcgis/rest/services/nowcoast/wwa_meteoceanhydro_shortduration_hazards_watches_time/MapServer/export?dpi=96&format=png32&transparent=true&f=image&",
+    "layers": "0,1,2",
+    "legendUrl": null,
+    "niceName": "Short Duration Watches",
+    "styles": null,
+    "status": "on",
+    "opacity": 0.7,
+    "tocGroup": "hazards",
+    "showInToc": false,
+    "mapPane": "wwa"
+  },
+  {
+    "type": "EsriDynamicMapLayer",
+    "url": "https://nowcoast.noaa.gov/arcgis/rest/services/nowcoast/wwa_meteoceanhydro_longduration_hazards_time/MapServer/export?dpi=96&format=png32&transparent=true&f=image&",
+    "layers": "1,4,8,11,15,18,22,25,28,34,31,37,40",
+    "legendUrl": null,
+    "niceName": "Long Duration Watches",
+    "styles": null,
+    "status": "on",
+    "opacity": 0.7,
+    "tocGroup": "hazards",
+    "showInToc": false,
+    "mapPane": "wwa"
+  },
+  {
+    "type": "EsriDynamicMapLayer",
+    "url": "https://nowcoast.noaa.gov/arcgis/rest/services/nowcoast/wwa_meteoceanhydro_shortduration_hazards_warnings_time/MapServer/export?dpi=96&format=png32&transparent=true&f=image&",
+    "layers": "0,1,2,3,4",
+    "legendUrl": null,
+    "niceName": "Short Duration Warnings",
+    "styles": null,
+    "status": "on",
+    "opacity": 0.7,
+    "tocGroup": "hazards",
+    "showInToc": false,
+    "mapPane": "wwa"
+  },
+  {
+    "type": "EsriDynamicMapLayer",
+    "url": "https://nowcoast.noaa.gov/arcgis/rest/services/nowcoast/radar_meteo_imagery_nexrad_time/MapServer/export?dpi=96&format=png32&transparent=true&f=image&",
+    "layers": "3",
+    "legendUrl": null,
+    "niceName": "Radar Imagery",
+    "styles": null,
+    "status": "off",
+    "opacity": 0.5,
+    "tocGroup": "maps-radar",
+    "mapPane": "radar"
+  },
+  {
+    "type": "WMSSingleTileLayer",
+    "url": "http://coastmap.com/ecop/wms.aspx?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&FORMAT=image/png&TRANSPARENT=true&",
+    "layers": "GFS_WINDS",
+    "legendUrl": "./images/legends/GFS_WINDS.png",
+    "niceName": "Surface Winds",
+    "styles": "WINDS_VERY_SPARSE_GRADIENT-false-2-0-45",
+    "status": "off",
+    "opacity": 1,
+    "tocGroup": "maps-forecast",
+    "mapPane": "forecasts"
+  },
+  {
+    "type": "WMSSingleTileLayer",
+    "url": "http://coastmap.com/ecop/wms.aspx?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&FORMAT=image/png&TRANSPARENT=true&",
+    "layers": "GFS_AIR_TEMPERATURE",
+    "legendUrl": "./images/legends/GFS_AIR_TEMPERATURE.png",
+    "niceName": "Air Temperature",
+    "styles": "",
+    "status": "off",
+    "opacity": 0.5,
+    "tocGroup": "maps-forecast",
+    "mapPane": "forecasts"
+  },
+  {
+    "type": "WMSSingleTileLayer",
+    "url": "http://coastmap.com/ecop/wms.aspx?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&FORMAT=image/png&TRANSPARENT=true&",
+    "layers": "NWPSAKQ_WAVE_HEIGHT",
+    "legendUrl": "./images/legends/NWPSAKQ_WAVE_HEIGHT.png",
+    "niceName": "Sea Height",
+    "styles": "WAVE_HEIGHT_STYLE-0-7",
+    "status": "off",
+    "opacity": 1,
+    "tocGroup": "maps-forecast",
+    "mapPane": "forecasts"
+  },
+  {
+    "type": "CircleMarkers",
+    "url": "/dbpilots-api/static/station_marker_data.json",
+    "layers": "Station Markers",
+    "niceName": "Station Markers",
+    "status": "on",
+    "showInToc": false,
+    "tocGroup": "pois",
+    "mapPane": "pois",
+    "tooltipText": "Click to view forecast charts.",
+    "fillColor": "blue",
+    "color": "yellow",
+    "parameters": [
+      {
+        "name": "n/a"
+      }
+    ]
+  },
+  {
+    "type": "ConditionsMarkers",
+    "url": "/dbpilots-api/dynamic/current_conditions/weather_marker_data.json",
+    "layers": "Wind Conditions Markers",
+    "niceName": "Surface Winds & Gusts",
+    "status": "on",
+    "showInToc": true,
+    "tocGroup": "stations",
+    "mapPane": "stations",
+    "tooltipText": "Click to visit the data provider's station page.",
+    "conditionsClassName": "surface-winds-markers",
+    "parameters": [
+      {
+        "name": "wind_speed",
+        "units": "&nbsp;kt",
+        "type": "scalar",
+        "formatting": {
+          "type": "float",
+          "operation": {
+            "func": "roundTo",
+            "param": 0
+          }
+        }
+      },
+      {
+        "name": "wind_from_direction",
+        "units": "&nbsp;deg",
+        "type": "vector"
+      },
+      {
+        "name": "wind_speed_of_gust",
+        "units": "&nbsp;kt",
+        "type": "scalar",
+        "formatting": {
+          "type": "float",
+          "operation": {
+            "func": "roundTo",
+            "param": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "type": "ConditionsMarkers",
+    "url": "/dbpilots-api/dynamic/current_conditions/weather_marker_data.json",
+    "layers": "Surface Water Temp Conditions Markers",
+    "niceName": "Surface Water Temp",
+    "status": "off",
+    "showInToc": true,
+    "tocGroup": "stations",
+    "mapPane": "stations",
+    "tooltipText": "Click to visit the data provider's station page.",
+    "conditionsClassName": "surface-water-temp-markers",
+    "parameters": [
+      {
+        "name": "sea_water_temperature",
+        "sigFigs": 0,
+        "units": "&deg;C",
+        "type": "scalar",
+        "formatting": {
+          "type": "float",
+          "operation": {
+            "func": "roundTo",
+            "param": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "type": "ConditionsMarkers",
+    "url": "/dbpilots-api/services/get_next_sunrise_sunset.php",
+    "layers": "Next Sunrise or Sunset Conditions Markers",
+    "niceName": "Next Sunrise or Sunset",
+    "status": "off",
+    "showInToc": true,
+    "tocGroup": "stations",
+    "mapPane": "stations",
+    "tooltipText": "Click to visit the data provider's station page.",
+    "conditionsClassName": "sunrise-sunset-markers",
+    "parameters": [
+      {
+        "name": "sunrise_sunset",
+        "units": "",
+        "type": "scalar",
+        "formatting": {
+          "type": "date",
+          "operation": {
+            "func": "formatDate",
+            "param": "h:mm<br />A"
+          }
+        }
+      }
+    ]
+  }
+]
+
 export {
   legendData,
   thumbnailStripImages,
-  chartData
+  chartData,
+  layerVisibilityData
 }

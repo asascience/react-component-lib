@@ -182,10 +182,3 @@ class LayerButton extends Component {
     )
   }
 }
-
-export {
-  LayerVisibilityControls,
-  LayerOpacityControls,
-  LayerShortcutControls,
-  LayerButton,
-}
