@@ -760,20 +760,19 @@ storiesOf('OceansMap/Marker Layers/Markers', module)
 //   )
 // );
 
-storiesOf('OceansMap/Raster Layers/Map Layers')
-  .add('map layer', ()=>(
-    <EsriDynamicMapLayer
-      url={"https://nowcoast.noaa.gov/arcgis/rest/services/nowcoast/wwa_meteoceanhydro_shortduration_hazards_watches_time/MapServer/export?dpi=96&format=png32&transparent=true&f=image&"}
-      layers={'0,1,2'}
-      niceName={'Short Duration Watches'}
-      onLoadDone={()=>{}}
-      onLoadStart={()=>{}}
-      opacity={0.7}
-      time={1529934832942}
-    />
-  )
-);
-
+// storiesOf('OceansMap/Raster Layers/Map Layers')
+//   .add('map layer', ()=>(
+//     <EsriDynamicMapLayer
+//       url={"https://nowcoast.noaa.gov/arcgis/rest/services/nowcoast/wwa_meteoceanhydro_shortduration_hazards_watches_time/MapServer/export?dpi=96&format=png32&transparent=true&f=image&"}
+//       layers={'0,1,2'}
+//       niceName={'Short Duration Watches'}
+//       onLoadDone={()=>{}}
+//       onLoadStart={()=>{}}
+//       opacity={0.7}
+//       time={1529934832942}
+//     />
+//   )
+// );
 
 
 // storiesOf('Data Table', module)
