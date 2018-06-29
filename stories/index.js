@@ -4,6 +4,11 @@ import { action, configureActions } from '@storybook/addon-actions';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import moment from 'moment';
 import '../src/index.css';
+import {legendData, 
+        thumbnailStripImages,
+        chartData,
+        layerVisibilityData,
+        markerParameters}  from '../src/sampleData.js';
 
 /**********************
 USACE Component Imports
@@ -47,6 +52,16 @@ import ServiceWrapper from '../src/components/ServiceWrapper/ServiceWrapper';
 import LoadingSpinner from '../src/components/LoadingSpinner/LoadingSpinner';
 import SessionExpiredModal from '../src/components/SessionExpiredModal/SessionExpiredModal';
 import UndoModal from '../src/components/UndoModal/UndoModal';
+
+// Mapping Component Imports
+import Chart from '../src/components/Chart/Chart';
+import ImageThumbnailStrip from '../src/components/Image/Image';
+import LayerControls from '../src/components/LayerControls/LayerControls';
+import HazardLegend from '../src/components/Legend/Legend';
+//import {Map} from '../src/components/Map/Map';
+import {Markers} from '../src/components/MarkerLayers/MarkerLayers';
+import {WMSSingleTileLayer, EsriDynamicMapLayer} from '../src/components/RasterLayers/RasterLayers';
+import {LayerVisibilityControls, LayerOpacityControls, LayerShortcutControls, LayerButton} from '../src/components/LayerControls/LayerControls';
 
 addDecorator((story) => (
   <MuiThemeProvider>
@@ -629,6 +644,136 @@ storiesOf('USACE/Modals/Undo Modal', module)
     />
   )
 );
+
+
+/*****************
+Mapping Components
+******************/
+
+// Chart
+storiesOf('OceansMap/Charts/Chart',  module)
+  .add('sample chart', ()=>(
+    <Chart
+      data={chartData}
+      time={1529520593002}
+      startTime={1529477393004}
+      endTime={1529606993005}
+      station={null}
+      status={'on'}
+    />
+  )
+);
+
+// Image
+storiesOf('OceansMap/Images/Image Thumbail Strip', module)
+  .add('sample images', ()=>(
+    <ImageThumbnailStrip
+      images={thumbnailStripImages}
+    />
+  )
+);
+
+// Legend
+storiesOf('OceansMap/Legends/Hazard Legend', module)
+  .add('default legend', ()=>(
+    <HazardLegend
+      status={'on'}
+      time={'1529931828308'}
+      data={legendData}
+    />
+  )
+);
+
+// Layer Controls
+storiesOf('OceansMap/Layer Controls/Layer Visibility Controls', module)
+  .add('default', ()=>(
+    <LayerVisibilityControls
+      group={'maps'}
+      onToggleLayer={()=>{}}
+      layers={layerVisibilityData}
+    />
+  )
+);
+
+storiesOf('OceansMap/Layer Controls/Layer Shortcut Controls', module)
+  .add('default', ()=>(
+    <LayerShortcutControls
+      color={'blue'}
+      group={'pois'}
+      layers={'Station Markers'}
+      onGotoLayer={()=>{}}
+      onLoadDone={()=>{}}
+      onLoadStart={()=>{}}
+      selected_identifiers={[null]}
+      sort={true}
+      status={'on'}
+      time={1529934832942}
+      url={"/dbpilots-api/static/station_marker_data.json"}
+    />
+  )
+);
+
+storiesOf('OceansMap/Layer Controls/Layer Button', module)
+  .add('button', ()=>(
+    <LayerButton
+      name={'Sample Button'}
+      value={42}
+      onClick={action('layer-button-pressed')}
+    />
+  )
+);
+
+// Marker Layers
+storiesOf('OceansMap/Marker Layers/Markers', module)
+  .add('markers', ()=>(
+    <Markers
+      key={'Surface Winds and Gusts'}
+      conditionsClassName={'surface-winds-markers'}
+      layers={'Wind Conditions Markers'}
+      niceName={'Surface Winds & Gusts'}
+      onClick={()=>{}}
+      onLoadDone={()=>{}}
+      onLoadStart={()=>{}}
+      parameters={markerParameters}
+      status={'on'}
+      time={1529934832942}
+      tooltipText={"Click to visit the data provider's station page."}
+      type={'ConditionsMarkers'}
+      url={"/dbpilots-api/dynamic/current_conditions/weather_marker_data.json"}
+    />
+  )
+);
+
+// Raster Layers - Broken without layer data stored in refs
+
+// storiesOf('OceansMap/Raster Layers/Tile Layers')
+//   .add('tile', ()=>(
+//     <WMSSingleTileLayer
+//     url={"http://coastmap.com/ecop/wms.aspx?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&FORMAT=image/png&TRANSPARENT=true&"}
+//     layers={'GFS_WINDS'}
+//     styles={"WINDS_VERY_SPARSE_GRADIENT-false-2-0-45"}
+//     opacity={1}
+//     time={1529934832942}
+//     onLoadStart={()=>{}}
+//     onLoadDone={()=>{}}
+//     />
+//   )
+// );
+
+// storiesOf('OceansMap/Raster Layers/Map Layers')
+//   .add('map layer', ()=>(
+//     <EsriDynamicMapLayer
+//       url={"https://nowcoast.noaa.gov/arcgis/rest/services/nowcoast/wwa_meteoceanhydro_shortduration_hazards_watches_time/MapServer/export?dpi=96&format=png32&transparent=true&f=image&"}
+//       layers={'0,1,2'}
+//       niceName={'Short Duration Watches'}
+//       onLoadDone={()=>{}}
+//       onLoadStart={()=>{}}
+//       opacity={0.7}
+//       time={1529934832942}
+//     />
+//   )
+// );
+
 
 // storiesOf('Data Table', module)
 //   .add('Key Value', ()=>(

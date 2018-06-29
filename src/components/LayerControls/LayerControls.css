@@ -1,0 +1,16 @@
+.btn-text-left {
+  text-align: left
+}
+
+.btn {
+  font-size: 12px
+}
+
+.fa-toc {
+  margin-right: 6px
+}
+
+.fa.active {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #d9edf7;
+}
