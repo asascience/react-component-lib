@@ -2,10 +2,12 @@
   "name": "react-component-lib",
   "version": "0.0.0",
   "description": "A library of reusable React components",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -d build --copy-files",
+    "preinstall": "babel src -d build --copy-files"
   },
   "repository": {
     "type": "git",
@@ -18,10 +20,12 @@
     "url": "https://github.com/asascience/react-component-lib/issues"
   },
   "homepage": "https://github.com/asascience/react-component-lib#readme",
+  "peerDependencies": {
+    "react": "^15.4.0"
+  },
   "devDependencies": {
     "@storybook/addon-actions": "^3.4.7",
-    "@storybook/react": "^3.4.5",
-    "babel-core": "^6.26.3"
+    "@storybook/react": "^3.4.5"
   },
   "dependencies": {
     "font-awesome": "^4.7.0",
@@ -42,9 +46,17 @@
     "react-highcharts": "^16.0.2",
     "react-icons": "^2.2.5",
     "react-leaflet": "^1.9.1",
+    "react-map-gl": "^3.2.10",
     "react-router": "^4.1.0",
     "react-router-dom": "^4.1.1",
     "react-tap-event-plugin": "^2.0.1",
-    "react-timezone": "^0.2.0"
+    "react-timezone": "^0.2.0",
+    "url-loader": "^1.0.1",
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.5.1"
   }
 }
