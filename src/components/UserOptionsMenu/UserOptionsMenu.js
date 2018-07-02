@@ -21,13 +21,13 @@ class UserOptionsMenu extends Component {
   render() {
     return (
     <IconMenu iconButtonElement={<FlatButton style={this.props.style}>
-                                  <span>{this.props.name}</span>
-                                  &nbsp;
-                                  <ArrowDropDown style={this.props.arrowStyle}/>
-                                </FlatButton>}
-                                onChange={(evt, val) => {
-    history.push(`/${val}`);
-  }}
+      <span>{this.props.name}</span>
+      &nbsp;
+      <ArrowDropDown style={this.props.arrowStyle}/>
+    </FlatButton>}
+    onChange={(evt, val) => {
+      history.push(`/${val}`);
+    }}
     >
       <MenuItem primaryText="Home" value={''} />
       <MenuItem primaryText="Account" value={'account'} disabled={true} />
