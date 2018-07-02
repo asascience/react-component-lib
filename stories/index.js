@@ -53,7 +53,9 @@ import LoadingSpinner from '../src/components/LoadingSpinner/LoadingSpinner';
 import SessionExpiredModal from '../src/components/SessionExpiredModal/SessionExpiredModal';
 import UndoModal from '../src/components/UndoModal/UndoModal';
 
-// Mapping Component Imports
+/**************************
+OceansMap Component Imports
+***************************/
 import Chart from '../src/components/Chart/Chart';
 import ImageThumbnailStrip from '../src/components/Image/Image';
 import LayerControls from '../src/components/LayerControls/LayerControls';
@@ -62,6 +64,13 @@ import HazardLegend from '../src/components/Legend/Legend';
 import {Markers} from '../src/components/MarkerLayers/MarkerLayers';
 import {WMSSingleTileLayer, EsriDynamicMapLayer} from '../src/components/RasterLayers/RasterLayers';
 import {LayerVisibilityControls, LayerOpacityControls, LayerShortcutControls, LayerButton} from '../src/components/LayerControls/LayerControls';
+
+/***************************
+WMS Viewer Component Imports
+****************************/
+import LeafletMap from '../src/components/LeafletMap/LeafletMap';
+import MapboxMap from '../src/components/MapboxMap/MapboxMap';
+
 
 addDecorator((story) => (
   <MuiThemeProvider>
@@ -740,6 +749,28 @@ storiesOf('OceansMap/Marker Layers/Markers', module)
       tooltipText={"Click to visit the data provider's station page."}
       type={'ConditionsMarkers'}
       url={"/dbpilots-api/dynamic/current_conditions/weather_marker_data.json"}
+    />
+  )
+);
+
+/********************
+WMS Viewer Components
+*********************/
+
+// Leaflet Map
+storiesOf('WMS Viewer/Maps/Leaflet Map', module)
+  .add('map', ()=>(
+    <LeafletMap
+
+    />
+  )
+);
+
+// Mapbox Map
+storiesOf('WMS Viewer/Maps/Mapbox Map', module)
+  .add('map', ()=>(
+    <MapboxMap
+
     />
   )
 );
