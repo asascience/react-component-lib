@@ -407,10 +407,38 @@ let markerParameters = [
   }
 ];
 
+let leafletMarkers = [
+  {
+    value: 'test marker',
+    geometry: {
+      coordinates: [0, 0],
+    },
+    identifier: 1,
+    tooltipText: 'sample tooltip',
+  },
+  {
+    value: 'test',
+    geometry: {
+      coordinates: [10, 2],
+    },
+    identifier: 2,
+    tooltipText: 'tooltip goes here',
+  },
+  {
+    value: 'the office',
+    geometry: {
+      coordinates: [-71.47035598504885, 41.45448679364805],
+    },
+    identifier: 'the office',
+    tooltipText: 'this component was created here!'
+  }
+];
+
 export {
   legendData,
   thumbnailStripImages,
   chartData,
   layerVisibilityData,
-  markerParameters
+  markerParameters,
+  leafletMarkers,
 }

@@ -8,7 +8,8 @@ import {legendData,
         thumbnailStripImages,
         chartData,
         layerVisibilityData,
-        markerParameters}  from '../src/sampleData.js';
+        markerParameters,
+        leafletMarkers}  from '../src/sampleData.js';
 
 /**********************
 USACE Component Imports
@@ -759,9 +760,30 @@ WMS Viewer Components
 
 // Leaflet Map
 storiesOf('WMS Viewer/Maps/Leaflet Map', module)
-  .add('map', ()=>(
+  .add('default', ()=>(
+    <LeafletMap/>
+  ))
+  .add('standard markers', ()=>(
     <LeafletMap
-
+      markerData={leafletMarkers}
+      markerProperties={{
+        onClick: ()=>{},
+        type: 'StandardMarkers',
+      }}
+    />
+  ))
+  .add('circle markers', ()=>(
+    <LeafletMap
+      markerData={leafletMarkers}
+      markerProperties={{
+        circleRadius: 8,
+        fillOpacity: 1,
+        color: '#E00B0B',
+        fillColor: '#FF0000',
+        weight: 1,
+        onClick: ()=>{},
+        type: 'CircleMarkers',
+      }}
     />
   )
 );

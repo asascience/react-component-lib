@@ -15,7 +15,7 @@ class LeafletMarkers extends Component {
   }
 
   render() {
-    let markers = this.props.markerData.map(v, k) => {
+    let markers = this.props.markerData.map((v, k) => {
       if (this.props.type === 'CircleMarkers') {
         return (
           <LeafletCircleMarker
@@ -49,7 +49,13 @@ class LeafletMarkers extends Component {
           </LeafletMarker>
         );
       }
-    }
+    });
+
+    return (
+      <div>
+        {markers}
+      </div>
+    );
   }
 }
 
