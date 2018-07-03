@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import { divIcon } from 'leaflet'
-import { Marker as LeafletMarker, CircleMarker as LeafletCircleMarker, Tooltip } from 'react-leaflet'
+import { divIcon } from 'leaflet';
+import { Marker as LeafletMarker, CircleMarker as LeafletCircleMarker, Tooltip } from 'react-leaflet';
 
-import './LeafletMarkers.css'
+import './LeafletMarkers.css';
 
 class LeafletMarkers extends Component {
   makeDivIcon(className, text) {
