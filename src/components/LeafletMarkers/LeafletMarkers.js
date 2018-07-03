@@ -20,7 +20,7 @@ class LeafletMarkers extends Component {
         return (
           <LeafletCircleMarker
             key={k}
-            center={[v.geometry.coordinates[1], v.geometry.coordinates[0]]}
+            center={v.geometry.coordinates}
             radius={this.props.circleRadius}
             fillOpacity={this.props.fillOpacity}
             color={this.props.color}
@@ -40,7 +40,7 @@ class LeafletMarkers extends Component {
           <LeafletMarker
             key={k}
             icon={icon}
-            position={[v.geometry.coordinates[1], v.geometry.coordinates[0]]}
+            position={v.geometry.coordinates}
             onClick={e => this.props.onClick(e)}
             >
             <Tooltip offset={[15, 0]} direction="right">

@@ -419,7 +419,7 @@ let leafletMarkers = [
   {
     value: 'test',
     geometry: {
-      coordinates: [10, 2],
+      coordinates: [2, 10],
     },
     identifier: 2,
     tooltipText: 'tooltip goes here',
@@ -427,7 +427,7 @@ let leafletMarkers = [
   {
     value: 'the office',
     geometry: {
-      coordinates: [-71.47035598504885, 41.45448679364805],
+      coordinates: [41.45448679364805, -71.47035598504885],
     },
     identifier: 'the office',
     tooltipText: 'this component was created here!'

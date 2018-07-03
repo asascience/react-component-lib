@@ -761,7 +761,10 @@ WMS Viewer Components
 // Leaflet Map
 storiesOf('WMS Viewer/Maps/Leaflet Map', module)
   .add('default', ()=>(
-    <LeafletMap/>
+    <LeafletMap
+      center={[40, -70]}
+      zoomLevel={3}
+    />
   ))
   .add('standard markers', ()=>(
     <LeafletMap
@@ -770,6 +773,8 @@ storiesOf('WMS Viewer/Maps/Leaflet Map', module)
         onClick: ()=>{},
         type: 'StandardMarkers',
       }}
+      center={[0,-20]}
+      zoomLevel={2}
     />
   ))
   .add('circle markers', ()=>(
@@ -784,6 +789,8 @@ storiesOf('WMS Viewer/Maps/Leaflet Map', module)
         onClick: ()=>{},
         type: 'CircleMarkers',
       }}
+      center={[0, 0]}
+      zoomLevel={1}
     />
   )
 );

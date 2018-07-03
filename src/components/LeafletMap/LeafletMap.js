@@ -30,7 +30,7 @@ class LeafletMap extends Component {
 
     return (
       <div id="map-container">
-        <Map id="leaflet-map" center={[0, 0]} zoom={2}>
+        <Map id="leaflet-map" center={this.props.center} zoom={this.props.zoomLevel}>
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
