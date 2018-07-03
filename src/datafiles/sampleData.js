@@ -454,13 +454,15 @@ let circleVectorData = [
     radius: 15000,
     color: '#348289',
     opacity: 0.6,
+    weight: 0,
   },
   {
     type: 'circle',
     center: [34, -4.5],
     radius: 80000,
     color: '#F4F359',
-    opacity: 0.1
+    opacity: 0.8,
+    weight: 8,
   },
   {
     type: 'circle',
@@ -468,7 +470,32 @@ let circleVectorData = [
     radius: 8000,
     color: '#C24380',
     opacity: 0.5,
+    weight: 2,
   }
+];
+
+let rectangleVectorData = [
+  {
+    type: 'rectangle',
+    bounds: [[-1, -1], [1, 1]],
+    color: '#348289',
+    weight: 0,
+    opacity: 0.9,
+  },
+  {
+    type: 'rectangle',
+    bounds: [[-10, -15], [-8, 2]],
+    color: '#F4F359',
+    weight: 2,
+    opacity: 0.8,
+  },
+  {
+    type: 'rectangle',
+    bounds: [[-12, 20], [14, 24]],
+    color: '#C24380',
+    weight: 3,
+    opacity: 0.7,
+  },
 ];
 
 export {
@@ -480,4 +507,5 @@ export {
   leafletMarkers,
   rasterLayerData,
   circleVectorData,
+  rectangleVectorData,
 }

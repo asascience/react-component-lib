@@ -7,15 +7,13 @@ class LeafletRectangleLayer extends Component {
   }
 
   render() {
+    console.log(this.props)
     return ( 
       <Rectangle
         bounds={this.props.bounds}
         color={this.props.color}
-        fillColor={this.props.color}
-        fillOpacity={this.props.opacity}
         opacity={this.props.opacity}
         weight={this.props.weight}
-        stroke={this.props.stroke}
       />
     );
   }
