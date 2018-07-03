@@ -12,7 +12,8 @@ import {legendData,
         leafletMarkers,
         rasterLayerData,
         circleVectorData,
-        rectangleVectorData}  from '../src/datafiles/sampleData.js';
+        rectangleVectorData,
+        polygonVectorData}  from '../src/datafiles/sampleData.js';
 import {sampleGeoJSON} from '../src/datafiles/sampleGeoJSON.js';
 
 /**********************
@@ -821,8 +822,15 @@ storiesOf('Maps/Leaflet Map', module)
   .add('rectangle vector  layer', ()=>(
     <LeafletMap
       vectorLayerData={rectangleVectorData}
-      center={[0, 0]}
-      zoomLevel={2}
+      center={[0, 5]}
+      zoomLevel={3}
+    />
+  ))
+  .add('polygon vector layer', ()=>(
+    <LeafletMap
+      vectorLayerData={polygonVectorData}
+      center={[26, -66]}
+      zoomLevel={4}
     />
   )
 );

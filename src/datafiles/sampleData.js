@@ -498,6 +498,26 @@ let rectangleVectorData = [
   },
 ];
 
+let polygonVectorData = [
+  {
+    type: 'polygon',
+    vertices: [[25.774, -80.190], [18.466, -66.118], [32.321, -64.757]],
+    color: '#C24380',
+    opacity: 0.5,
+    weight: 0,
+  },
+  {
+    type: 'polygon',
+    vertices: [
+      [[20, -64.05],[25, -58.03],[24, -56.05],[19, -52.04]], // outer ring
+      [[20.29, -62.58],[22.71, -59.58],[20.71, -56.50],[20.29, -53.50]] // hole
+    ],
+    color: '#348289',
+    weight: 2,
+    opacity: 0.8,
+  },
+];
+
 export {
   legendData,
   thumbnailStripImages,
@@ -508,4 +528,5 @@ export {
   rasterLayerData,
   circleVectorData,
   rectangleVectorData,
+  polygonVectorData,
 }
