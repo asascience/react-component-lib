@@ -760,7 +760,7 @@ WMS Viewer Components
 *********************/
 
 // Leaflet Map
-storiesOf('WMS Viewer/Maps/Leaflet Map', module)
+storiesOf('Maps/Leaflet Map', module)
   .add('default', ()=>(
     <LeafletMap
       center={[40, -70]}
@@ -804,10 +804,10 @@ storiesOf('WMS Viewer/Maps/Leaflet Map', module)
 );
 
 // Mapbox Map
-storiesOf('WMS Viewer/Maps/Mapbox Map', module)
+storiesOf('Maps/Mapbox Map', module)
   .add('map', ()=>(
     <MapboxMap
-
+      mapboxApiToken={'pk.eyJ1IjoiYnJpYW5tY2tlbm5hIiwiYSI6ImNpZnFxczU5eWF6ZnZpdWx4MXE3dHBsZnYifQ.tesY73nqdoL7dzp6m0nX3w'}
     />
   )
 );

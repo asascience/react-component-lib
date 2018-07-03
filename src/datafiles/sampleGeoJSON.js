@@ -1,4 +1,4 @@
-{
+[{
   "type": "FeatureCollection",
   "features": [
     {
@@ -1378,4 +1378,4 @@
       }
     }
   ]
-}
+}]
