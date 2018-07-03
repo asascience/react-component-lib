@@ -10,7 +10,7 @@ import {legendData,
         layerVisibilityData,
         markerParameters,
         leafletMarkers,
-        rasterLayerData}  from '../src/sampleData.js';
+        rasterLayerData}  from '../src/datafiles/sampleData.js';
 
 /**********************
 USACE Component Imports
