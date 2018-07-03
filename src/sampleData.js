@@ -434,8 +434,9 @@ let leafletMarkers = [
   }
 ];
 
-let WMSData = [
+let rasterLayerData = [
   {
+    type: 'WMS',
     url: 'http://174.67.104.8/wms/',
     layers: 'AUSWAVE-G/sig_wav_ht',
     styles: 'default-scalar/default',
@@ -453,4 +454,5 @@ export {
   layerVisibilityData,
   markerParameters,
   leafletMarkers,
+  rasterLayerData,
 }

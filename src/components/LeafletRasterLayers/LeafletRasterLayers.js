@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import LeafletWMSLayer from '../LeafletWMSLayer/LeafletWMSLayer';
 
-class RasterLayers extends Component {
+class LeafletRasterLayers extends Component {
   render() {
     const layers = this.props.layerData.map((v, k) => {
       if (v.type === 'WMS') {
@@ -43,3 +43,5 @@ class RasterLayers extends Component {
     )
   }
 }
+
+export default  LeafletRasterLayers;

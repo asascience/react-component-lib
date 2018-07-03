@@ -9,7 +9,8 @@ import {legendData,
         chartData,
         layerVisibilityData,
         markerParameters,
-        leafletMarkers}  from '../src/sampleData.js';
+        leafletMarkers,
+        rasterLayerData}  from '../src/sampleData.js';
 
 /**********************
 USACE Component Imports
@@ -791,6 +792,13 @@ storiesOf('WMS Viewer/Maps/Leaflet Map', module)
       }}
       center={[0, 0]}
       zoomLevel={1}
+    />
+  ))
+  .add('WMS layer', ()=>(
+    <LeafletMap
+      rasterLayerData={rasterLayerData}
+      center={[0, 0]}
+      zoomLevel={2}
     />
   )
 );
