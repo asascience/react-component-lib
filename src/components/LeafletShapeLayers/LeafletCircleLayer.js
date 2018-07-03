@@ -12,11 +12,7 @@ class LeafletCircleLayer extends Component {
         center={this.props.center}
         radius={this.props.radius}
         color={this.props.color}
-        fillColor={this.props.color}
-        fillOpacity={this.props.opacity}
         opacity={this.props.opacity}
-        weight={this.props.weight}
-        stroke={this.props.stroke}
       />
     );
   }

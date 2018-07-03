@@ -10,7 +10,8 @@ import {legendData,
         layerVisibilityData,
         markerParameters,
         leafletMarkers,
-        rasterLayerData}  from '../src/datafiles/sampleData.js';
+        rasterLayerData,
+        circleVectorData}  from '../src/datafiles/sampleData.js';
 import {sampleGeoJSON} from '../src/datafiles/sampleGeoJSON.js';
 
 /**********************
@@ -807,6 +808,13 @@ storiesOf('Maps/Leaflet Map', module)
       geoJSONData={sampleGeoJSON}
       center={[38.965, -77.05]}
       zoomLevel={10}
+    />
+  ))
+  .add('circle vector layer', ()=>(
+    <LeafletMap
+      vectorLayerData={circleVectorData}
+      center={[34.5, -4.5]}
+      zoomLevel={7}
     />
   )
 );

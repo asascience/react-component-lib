@@ -15,11 +15,7 @@ class LeafletVectorLayers extends Component {
             center={v.center}
             radius={v.radius}
             color={v.color}
-            fillColor={v.fillColor}
-            opacity={v.opacity}
-            fillOpacity={v.fillOpacity}
-            weight={v.weight}
-            stroke={v.stroke}
+            opacity={v.fillColor}
           />
         );
       } else if (v.type === 'rectangle') {

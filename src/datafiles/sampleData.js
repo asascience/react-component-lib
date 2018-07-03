@@ -447,6 +447,30 @@ let rasterLayerData = [
   }
 ];
 
+let circleVectorData = [
+  {
+    type: 'circle',
+    center: [34.5, -5.5],
+    radius: 15000,
+    color: '#348289',
+    opacity: 0.6,
+  },
+  {
+    type: 'circle',
+    center: [34, -4.5],
+    radius: 80000,
+    color: '#F4F359',
+    opacity: 0.1
+  },
+  {
+    type: 'circle',
+    center: [35, -5],
+    radius: 8000,
+    color: '#C24380',
+    opacity: 0.5,
+  }
+];
+
 export {
   legendData,
   thumbnailStripImages,
@@ -455,4 +479,5 @@ export {
   markerParameters,
   leafletMarkers,
   rasterLayerData,
+  circleVectorData,
 }

@@ -3,6 +3,7 @@ import { Map, Pane as LeafletPane, TileLayer} from 'react-leaflet'
 import LeafletMarkers from '../LeafletMarkers/LeafletMarkers';
 import LeafletRasterLayers  from '../LeafletRasterLayers/LeafletRasterLayers';
 import LeafletGeoJSONLayers from '../LeafletGeoJSONLayers/LeafletGeoJSONLayers';
+import LeafletVectorLayers from '../LeafletVectorLayers/LeafletVectorLayers';
 import './LeafletMap.css';
 
 class LeafletMap extends Component {
@@ -52,6 +53,17 @@ class LeafletMap extends Component {
       );
     }
 
+    let vectorLayers = <div/>;
+    if (this.props.vectorLayerData) {
+      vectorLayers = (
+        <LeafletPane>
+          <LeafletVectorLayers
+            layerData={this.props.vectorLayerData}
+          />
+        </LeafletPane>
+      );
+    }
+
     return (
       <div id="map-container">
         <Map id="leaflet-map" center={this.props.center} zoom={this.props.zoomLevel}>
@@ -62,6 +74,7 @@ class LeafletMap extends Component {
         {markers}
         {rasterLayers}
         {geoJSONLayers}
+        {vectorLayers}
         </Map>
       </div>
     );
