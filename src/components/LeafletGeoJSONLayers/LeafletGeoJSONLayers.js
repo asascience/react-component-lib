@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { GeoJSON } from 'react-leaflet';
+import { GeoJSON, Marker } from 'react-leaflet';
 
 class LeafletGeoJSONLayers extends Component {
   constructor(props) {
@@ -10,7 +10,13 @@ class LeafletGeoJSONLayers extends Component {
     let layers = this.props.geoJSONArray.map((v, k) => {
       return ( 
         <GeoJSON
-          geoJSON={v}
+          key={k}
+          data={v}
+          onEachFeature={(feature, layer) => {
+            if (feature.properties && feature.properties.name) {
+              layer.bindPopup(feature.properties.name);
+            }
+          }}
         />
       );
     });

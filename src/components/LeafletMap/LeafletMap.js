@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Map, Pane as LeafletPane, TileLayer} from 'react-leaflet'
 import LeafletMarkers from '../LeafletMarkers/LeafletMarkers';
 import LeafletRasterLayers  from '../LeafletRasterLayers/LeafletRasterLayers';
+import LeafletGeoJSONLayers from '../LeafletGeoJSONLayers/LeafletGeoJSONLayers';
 import './LeafletMap.css';
 
 class LeafletMap extends Component {
@@ -40,6 +41,17 @@ class LeafletMap extends Component {
       );
     }
 
+    let geoJSONLayers = <div/>;
+    if (this.props.geoJSONData) {
+      geoJSONLayers = (
+        <LeafletPane>
+          <LeafletGeoJSONLayers
+            geoJSONArray={this.props.geoJSONData}
+          />
+        </LeafletPane>
+      );
+    }
+
     return (
       <div id="map-container">
         <Map id="leaflet-map" center={this.props.center} zoom={this.props.zoomLevel}>
@@ -49,6 +61,7 @@ class LeafletMap extends Component {
         />
         {markers}
         {rasterLayers}
+        {geoJSONLayers}
         </Map>
       </div>
     );

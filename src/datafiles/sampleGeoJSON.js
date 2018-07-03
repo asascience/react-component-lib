@@ -1,4 +1,4 @@
-[{
+let sampleGeoJSON = [{
   "type": "FeatureCollection",
   "features": [
     {
@@ -1378,4 +1378,6 @@
       }
     }
   ]
-}]
+}];
+
+export {sampleGeoJSON};

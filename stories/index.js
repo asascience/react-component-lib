@@ -11,6 +11,7 @@ import {legendData,
         markerParameters,
         leafletMarkers,
         rasterLayerData}  from '../src/datafiles/sampleData.js';
+import {sampleGeoJSON} from '../src/datafiles/sampleGeoJSON.js';
 
 /**********************
 USACE Component Imports
@@ -797,6 +798,13 @@ storiesOf('Maps/Leaflet Map', module)
   .add('WMS layer', ()=>(
     <LeafletMap
       rasterLayerData={rasterLayerData}
+      center={[0, 0]}
+      zoomLevel={2}
+    />
+  ))
+  .add('GeoJSON layer', ()=>(
+    <LeafletMap
+      geoJSONData={sampleGeoJSON}
       center={[0, 0]}
       zoomLevel={2}
     />
