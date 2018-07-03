@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Map, Pane as LeafletPane, TileLayer} from 'react-leaflet'
 import LeafletMarkers from '../LeafletMarkers/LeafletMarkers';
+import LeafletRasterLayers  from '../LeafletRasterLayers/LeafletRasterLayers';
 import './LeafletMap.css';
 
 class LeafletMap extends Component {
@@ -28,6 +29,17 @@ class LeafletMap extends Component {
       );
     }
 
+    let rasterLayers =  <div/>;
+    if (this.props.rasterLayerData) {
+      rasterLayers = (
+        <LeafletPane>
+          <LeafletRasterLayers
+            layerData={this.props.rasterLayerData}
+          />
+        </LeafletPane>
+      );
+    }
+
     return (
       <div id="map-container">
         <Map id="leaflet-map" center={this.props.center} zoom={this.props.zoomLevel}>
@@ -36,6 +48,7 @@ class LeafletMap extends Component {
           url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
         />
         {markers}
+        {rasterLayers}
         </Map>
       </div>
     );

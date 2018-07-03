@@ -434,6 +434,18 @@ let leafletMarkers = [
   }
 ];
 
+let WMSData = [
+  {
+    url: 'http://174.67.104.8/wms/',
+    layers: 'AUSWAVE-G/sig_wav_ht',
+    styles: 'default-scalar/default',
+    format:  'image/png',
+    transparent: true,
+    version: '1.1.1',
+    time: '2018-04-07T00:00:00Z',
+  }
+];
+
 export {
   legendData,
   thumbnailStripImages,
