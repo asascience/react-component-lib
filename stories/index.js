@@ -805,8 +805,8 @@ storiesOf('Maps/Leaflet Map', module)
   .add('GeoJSON layer', ()=>(
     <LeafletMap
       geoJSONData={sampleGeoJSON}
-      center={[0, 0]}
-      zoomLevel={2}
+      center={[38.965, -77.05]}
+      zoomLevel={10}
     />
   )
 );
