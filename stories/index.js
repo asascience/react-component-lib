@@ -13,7 +13,8 @@ import {legendData,
         rasterLayerData,
         circleVectorData,
         rectangleVectorData,
-        polygonVectorData}  from '../src/datafiles/sampleData.js';
+        polygonVectorData,
+        polylineVectorData}  from '../src/datafiles/sampleData.js';
 import {sampleGeoJSON} from '../src/datafiles/sampleGeoJSON.js';
 
 /**********************
@@ -831,6 +832,13 @@ storiesOf('Maps/Leaflet Map', module)
       vectorLayerData={polygonVectorData}
       center={[26, -66]}
       zoomLevel={4}
+    />
+  ))
+  .add('polyline vector layer', ()=>(
+    <LeafletMap
+      vectorLayerData={polylineVectorData}
+      center={[40, -120]}
+      zoomLevel={5}
     />
   )
 );

@@ -11,11 +11,8 @@ class LeafletPolygonLayer extends Component {
       <Polygon
         positions={this.props.vertices}
         color={this.props.color}
-        fillColor={this.props.color}
-        fillOpacity={this.props.opacity}
         opacity={this.props.opacity}
         weight={this.props.weight}
-        stroke={this.props.stroke}
       />
     );
   }

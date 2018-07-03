@@ -7,7 +7,6 @@ class LeafletRectangleLayer extends Component {
   }
 
   render() {
-    console.log(this.props)
     return ( 
       <Rectangle
         bounds={this.props.bounds}

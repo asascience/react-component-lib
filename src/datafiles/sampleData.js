@@ -504,7 +504,7 @@ let polygonVectorData = [
     vertices: [[25.774, -80.190], [18.466, -66.118], [32.321, -64.757]],
     color: '#C24380',
     opacity: 0.5,
-    weight: 0,
+    weight: 10,
   },
   {
     type: 'polygon',
@@ -513,8 +513,17 @@ let polygonVectorData = [
       [[20.29, -62.58],[22.71, -59.58],[20.71, -56.50],[20.29, -53.50]] // hole
     ],
     color: '#348289',
-    weight: 2,
+    weight: 0,
     opacity: 0.8,
+  },
+];
+
+let polylineVectorData = [
+  {
+    type: 'polyline',
+    vertices: [[45.51, -122.68], [37.77, -122.43], [34.04, -118.2]],
+    color: '#348289',
+    weight: 2,
   },
 ];
 
@@ -529,4 +538,5 @@ export {
   circleVectorData,
   rectangleVectorData,
   polygonVectorData,
+  polylineVectorData,
 }
