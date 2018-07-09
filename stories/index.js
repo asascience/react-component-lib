@@ -3,6 +3,7 @@ import { storiesOf, addDecorator } from '@storybook/react';
 import { action, configureActions } from '@storybook/addon-actions';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import moment from 'moment';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import '../src/index.css';
 import {legendData, 
         thumbnailStripImages,
@@ -80,6 +81,7 @@ import MapboxMap from '../src/components/MapboxMap/MapboxMap';
 import LeafletWMSControls from '../src/components/LeafletWMSControls/LeafletWMSControls';
 import LeafletMapWithWMSControls from '../src/components/LeafletMapWithWMSControls/LeafletMapWithWMSControls';
 
+injectTapEventPlugin();
 
 addDecorator((story) => (
   <MuiThemeProvider>
@@ -875,7 +877,14 @@ storiesOf('Maps/Leaflet Controls', module)
   ))
   .add('Map with WMS Controls', ()=>(
     <LeafletMapWithWMSControls
-      layers={['AUSWAVE-G/sig_wav_ht', 'test', 'test 2']}
+      layers={['AUSWAVE-G/sig_wav_ht',
+                'AUSWAVE-G/wnd_spd',
+                'AUSWAVE-G/zonal_wnd:merid_wnd-dir',
+                'AUSWAVE-G/zonal_wnd:merid_wnd-mag',
+                'AUSWAVE-G/zonal_wnd:merid_wnd-group',
+                'AUSWAVE-G/mn_wav_dir',
+                'AUSWAVE-G/mn_wav_per',
+                'AUSWAVE-G/pk_per_wnd_sea']}
     />
   )
 );

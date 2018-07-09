@@ -13,7 +13,9 @@ class LeafletMapWithWMSControls extends Component {
       styles: '',
     };
 
-    this.onCheckTransparent.bind(this);
+    this.onCheckTransparent = this.onCheckTransparent.bind(this);
+    this.onOpacityChange = this.onOpacityChange.bind(this);
+    this.onLayerChange = this.onLayerChange.bind(this);
   }
 
   onCheckTransparent(isChecked) {
@@ -31,7 +33,7 @@ class LeafletMapWithWMSControls extends Component {
   onLayerChange(newIndex) {
     this.setState({
       layerIndex: newIndex,
-    })
+    });
   }
 
   render() {
@@ -68,7 +70,7 @@ class LeafletMapWithWMSControls extends Component {
           layerField={{
             value: this.state.layerIndex,
             layers: this.props.layers,
-            onChange: (newIndex) => this.props.onLayerChange(newIndex),
+            onChange: (newIndex) => this.onLayerChange(newIndex),
           }}
         />
       </div>

@@ -15,12 +15,9 @@ class LeafletWMSControls extends Component {
   render() {
     let layerDropDownItems;
     if (this.props.layerField && this.props.layerField.layers) {
-      layerDropDownItems = this.props.layerField.layers.map((v, k) => {
+      layerDropDownItems = this.props.layerField.layers.map((layer, index) => {
         return (
-          <MenuItem
-            value={k}
-            label={v}
-          />
+          <MenuItem value={index} primaryText={layer}/>
         );
       });
     }
