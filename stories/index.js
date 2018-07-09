@@ -77,6 +77,7 @@ WMS Viewer Component Imports
 ****************************/
 import LeafletMap from '../src/components/LeafletMap/LeafletMap';
 import MapboxMap from '../src/components/MapboxMap/MapboxMap';
+import LeafletWMSControls from '../src/components/LeafletWMSControls/LeafletWMSControls';
 
 
 addDecorator((story) => (
@@ -837,6 +838,30 @@ storiesOf('Maps/Mapbox Map', module)
   .add('map', ()=>(
     <MapboxMap
       mapboxApiToken={'pk.eyJ1IjoiYnJpYW5tY2tlbm5hIiwiYSI6ImNpZnFxczU5eWF6ZnZpdWx4MXE3dHBsZnYifQ.tesY73nqdoL7dzp6m0nX3w'}
+    />
+  )
+);
+
+// Leaflet WMS Controls
+storiesOf('Maps/Leaflet Controls', module)
+  .add('WMS controls', ()=>(
+    <LeafletWMSControls
+      transparentField={{
+        isChecked: false,
+        isDisabled: false,
+        onCheck: ()=>{},
+      }}
+      opacityField={{
+        isDisabled: false,
+        defaultValue: 0,
+        value: 0,
+        onChange: ()=>{},
+      }}
+      layerField={{
+        value: 0,
+        layers: ['GFS_WINDS', 'test', 'test 2'],
+        onChange: ()=>{},
+      }}
     />
   )
 );
