@@ -8,7 +8,14 @@ import {legendData,
         thumbnailStripImages,
         chartData,
         layerVisibilityData,
-        markerParameters}  from '../src/sampleData.js';
+        markerParameters,
+        leafletMarkers,
+        rasterLayerData,
+        circleVectorData,
+        rectangleVectorData,
+        polygonVectorData,
+        polylineVectorData}  from '../src/datafiles/sampleData.js';
+import {sampleGeoJSON} from '../src/datafiles/sampleGeoJSON.js';
 
 /**********************
 USACE Component Imports
@@ -53,7 +60,9 @@ import LoadingSpinner from '../src/components/LoadingSpinner/LoadingSpinner';
 import SessionExpiredModal from '../src/components/SessionExpiredModal/SessionExpiredModal';
 import UndoModal from '../src/components/UndoModal/UndoModal';
 
-// Mapping Component Imports
+/**************************
+OceansMap Component Imports
+***************************/
 import Chart from '../src/components/Chart/Chart';
 import ImageThumbnailStrip from '../src/components/Image/Image';
 import LayerControls from '../src/components/LayerControls/LayerControls';
@@ -62,6 +71,13 @@ import HazardLegend from '../src/components/Legend/Legend';
 import {Markers} from '../src/components/MarkerLayers/MarkerLayers';
 import {WMSSingleTileLayer, EsriDynamicMapLayer} from '../src/components/RasterLayers/RasterLayers';
 import {LayerVisibilityControls, LayerOpacityControls, LayerShortcutControls, LayerButton} from '../src/components/LayerControls/LayerControls';
+
+/***************************
+WMS Viewer Component Imports
+****************************/
+import LeafletMap from '../src/components/LeafletMap/LeafletMap';
+import MapboxMap from '../src/components/MapboxMap/MapboxMap';
+
 
 addDecorator((story) => (
   <MuiThemeProvider>
@@ -740,6 +756,87 @@ storiesOf('OceansMap/Marker Layers/Markers', module)
       tooltipText={"Click to visit the data provider's station page."}
       type={'ConditionsMarkers'}
       url={"/dbpilots-api/dynamic/current_conditions/weather_marker_data.json"}
+    />
+  )
+);
+
+/********************
+WMS Viewer Components
+*********************/
+
+// Leaflet Map
+storiesOf('Maps/Leaflet Map', module)
+  .add('default', ()=>(
+    <LeafletMap
+      center={[40, -70]}
+      zoomLevel={3}
+    />
+  ))
+  .add('standard markers', ()=>(
+    <LeafletMap
+      markerData={leafletMarkers}
+      markerType={'StandardMarkers'}
+      center={[0,-20]}
+      zoomLevel={2}
+    />
+  ))
+  .add('circle markers', ()=>(
+    <LeafletMap
+      markerData={leafletMarkers}
+      markerType={'CircleMarkers'}
+      center={[0, 0]}
+      zoomLevel={1}
+    />
+  ))
+  .add('WMS layer', ()=>(
+    <LeafletMap
+      rasterLayerData={rasterLayerData}
+      center={[0, 0]}
+      zoomLevel={2}
+    />
+  ))
+  .add('GeoJSON layer', ()=>(
+    <LeafletMap
+      geoJSONData={sampleGeoJSON}
+      center={[38.965, -77.05]}
+      zoomLevel={10}
+    />
+  ))
+  .add('circle vector layer', ()=>(
+    <LeafletMap
+      vectorLayerData={circleVectorData}
+      center={[34.5, -4.5]}
+      zoomLevel={7}
+    />
+  ))
+  .add('rectangle vector  layer', ()=>(
+    <LeafletMap
+      vectorLayerData={rectangleVectorData}
+      center={[0, 5]}
+      zoomLevel={3}
+    />
+  ))
+  .add('polygon vector layer', ()=>(
+    <LeafletMap
+      vectorLayerData={polygonVectorData}
+      center={[26, -66]}
+      zoomLevel={4}
+    />
+  ))
+  .add('polyline vector layer', ()=>(
+    <LeafletMap
+      vectorLayerData={polylineVectorData}
+      center={[40, -120]}
+      zoomLevel={5}
+    />
+  )
+);
+
+// Mapbox Map
+storiesOf('Maps/Mapbox Map', module)
+  .add('map', ()=>(
+    <MapboxMap
+      mapboxApiToken={'pk.eyJ1IjoiYnJpYW5tY2tlbm5hIiwiYSI6ImNpZnFxczU5eWF6ZnZpdWx4MXE3dHBsZnYifQ.tesY73nqdoL7dzp6m0nX3w'}
     />
   )
 );
