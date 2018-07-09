@@ -78,6 +78,7 @@ WMS Viewer Component Imports
 import LeafletMap from '../src/components/LeafletMap/LeafletMap';
 import MapboxMap from '../src/components/MapboxMap/MapboxMap';
 import LeafletWMSControls from '../src/components/LeafletWMSControls/LeafletWMSControls';
+import LeafletMapWithWMSControls from '../src/components/LeafletMapWithWMSControls/LeafletMapWithWMSControls';
 
 
 addDecorator((story) => (
@@ -853,15 +854,28 @@ storiesOf('Maps/Leaflet Controls', module)
       }}
       opacityField={{
         isDisabled: false,
-        defaultValue: 0,
         value: 0,
         onChange: ()=>{},
       }}
       layerField={{
         value: 0,
         layers: ['GFS_WINDS', 'test', 'test 2'],
+        styles:['WINDS_VERY_SPARSE_BLACK',
+                'WINDS_VERY_SPARSE_GRADIENT',
+                'WINDS_VERY_SPARSE_YELLOW',
+                'WINDS_VERY_SPARSE_PURPLE',
+                'WINDS_VERY_SPARSE',
+                'WINDS_VERY_SPARSE_GREEN',
+                'WINDS_VERY_SPARSE_ORANGE',
+                'WINDS',
+                'WINDS_LABELS_VERY_SPARSE'],
         onChange: ()=>{},
       }}
+    />
+  ))
+  .add('Map with WMS Controls', ()=>(
+    <LeafletMapWithWMSControls
+      layers={['AUSWAVE-G/sig_wav_ht', 'test', 'test 2']}
     />
   )
 );

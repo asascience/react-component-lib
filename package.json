@@ -33,7 +33,7 @@
     "moment": "^2.18.1",
     "npm": "^6.1.0",
     "radial-progress-chart": "0.0.4",
-    "react": "^15.4.0",
+    "react": "^15.6.2",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^15.4.0",
     "react-dropzone-component": "^2.0.0",

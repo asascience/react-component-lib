@@ -33,24 +33,23 @@ class LeafletWMSControls extends Component {
             labelPosition='left'
             checked={this.props.transparentField.isChecked}
             disabled={this.props.transparentField.isDisabled}
-            onCheck={this.props.transparentField.onCheck}
+            onCheck={(e, isChecked) => this.props.transparentField.onCheck(isChecked)}
           />
         </div>
         <div className='wms-opacity-wrapper'>
           <p className='wms-opacity-label'>Opacity</p>
           <Slider
             className='wms-opacity-slider'
-            defaultValue={this.props.opacityField.defaultValue}
             value={this.props.opacityField.value}
             disabled={this.props.opacityField.isDisabled}
-            onChange={this.props.opacityField.onChange}
+            onChange={(e, newOpacity) => this.props.opacityField.onChange(newOpacity)}
           />
         </div>
         <div className='wms-layer-wrapper'>
           <p className='wms-layer-label'>Layer</p>
           <DropDownMenu
             value={this.props.layerField.value}
-            onChange={this.props.layerField.onChange}
+            onChange={(e, key, payload) => this.props.layerField.onChange(key)}
           >
             {layerDropDownItems}
           </DropDownMenu>
