@@ -775,10 +775,7 @@ storiesOf('Maps/Leaflet Map', module)
   .add('standard markers', ()=>(
     <LeafletMap
       markerData={leafletMarkers}
-      markerProperties={{
-        onClick: ()=>{},
-        type: 'StandardMarkers',
-      }}
+      markerType={'StandardMarkers'}
       center={[0,-20]}
       zoomLevel={2}
     />
@@ -786,15 +783,7 @@ storiesOf('Maps/Leaflet Map', module)
   .add('circle markers', ()=>(
     <LeafletMap
       markerData={leafletMarkers}
-      markerProperties={{
-        circleRadius: 8,
-        fillOpacity: 1,
-        color: '#E00B0B',
-        fillColor: '#FF0000',
-        weight: 1,
-        onClick: ()=>{},
-        type: 'CircleMarkers',
-      }}
+      markerType={'CircleMarkers'}
       center={[0, 0]}
       zoomLevel={1}
     />

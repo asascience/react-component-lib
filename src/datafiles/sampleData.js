@@ -415,6 +415,12 @@ let leafletMarkers = [
     },
     identifier: 1,
     tooltipText: 'sample tooltip',
+    circleRadius: 8,
+    fillOpacity: 1,
+    color: '#E00B0B',
+    fillColor: '#FF0000',
+    weight: 1,
+    onClick: ()=>{},
   },
   {
     value: 'test',
@@ -423,6 +429,12 @@ let leafletMarkers = [
     },
     identifier: 2,
     tooltipText: 'tooltip goes here',
+    circleRadius: 8,
+    fillOpacity: 1,
+    color: '#E00B0B',
+    fillColor: '#FF0000',
+    weight: 1,
+    onClick: ()=>{},
   },
   {
     value: 'the office',
@@ -430,7 +442,13 @@ let leafletMarkers = [
       coordinates: [41.45448679364805, -71.47035598504885],
     },
     identifier: 'the office',
-    tooltipText: 'this component was created here!'
+    tooltipText: 'this component was created here!',
+    circleRadius: 8,
+    fillOpacity: 1,
+    color: '#E00B0B',
+    fillColor: '#FF0000',
+    weight: 1,
+    onClick: ()=>{},
   }
 ];
 
