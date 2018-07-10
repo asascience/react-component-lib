@@ -3,6 +3,7 @@ import { storiesOf, addDecorator } from '@storybook/react';
 import { action, configureActions } from '@storybook/addon-actions';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import moment from 'moment';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import '../src/index.css';
 import {legendData, 
         thumbnailStripImages,
@@ -77,7 +78,10 @@ WMS Viewer Component Imports
 ****************************/
 import LeafletMap from '../src/components/LeafletMap/LeafletMap';
 import MapboxMap from '../src/components/MapboxMap/MapboxMap';
+import LeafletWMSControls from '../src/components/LeafletWMSControls/LeafletWMSControls';
+import LeafletMapWithWMSControls from '../src/components/LeafletMapWithWMSControls/LeafletMapWithWMSControls';
 
+injectTapEventPlugin();
 
 addDecorator((story) => (
   <MuiThemeProvider>
@@ -775,10 +779,7 @@ storiesOf('Maps/Leaflet Map', module)
   .add('standard markers', ()=>(
     <LeafletMap
       markerData={leafletMarkers}
-      markerProperties={{
-        onClick: ()=>{},
-        type: 'StandardMarkers',
-      }}
+      markerType={'StandardMarkers'}
       center={[0,-20]}
       zoomLevel={2}
     />
@@ -786,15 +787,7 @@ storiesOf('Maps/Leaflet Map', module)
   .add('circle markers', ()=>(
     <LeafletMap
       markerData={leafletMarkers}
-      markerProperties={{
-        circleRadius: 8,
-        fillOpacity: 1,
-        color: '#E00B0B',
-        fillColor: '#FF0000',
-        weight: 1,
-        onClick: ()=>{},
-        type: 'CircleMarkers',
-      }}
+      markerType={'CircleMarkers'}
       center={[0, 0]}
       zoomLevel={1}
     />
@@ -848,6 +841,50 @@ storiesOf('Maps/Mapbox Map', module)
   .add('map', ()=>(
     <MapboxMap
       mapboxApiToken={'pk.eyJ1IjoiYnJpYW5tY2tlbm5hIiwiYSI6ImNpZnFxczU5eWF6ZnZpdWx4MXE3dHBsZnYifQ.tesY73nqdoL7dzp6m0nX3w'}
+    />
+  )
+);
+
+// Leaflet WMS Controls
+storiesOf('Maps/Leaflet Controls', module)
+  .add('WMS controls', ()=>(
+    <LeafletWMSControls
+      transparentField={{
+        isChecked: false,
+        isDisabled: false,
+        onCheck: ()=>{},
+      }}
+      opacityField={{
+        isDisabled: false,
+        value: 0,
+        onChange: ()=>{},
+      }}
+      layerField={{
+        value: 0,
+        layers: ['GFS_WINDS', 'test', 'test 2'],
+        styles:['WINDS_VERY_SPARSE_BLACK',
+                'WINDS_VERY_SPARSE_GRADIENT',
+                'WINDS_VERY_SPARSE_YELLOW',
+                'WINDS_VERY_SPARSE_PURPLE',
+                'WINDS_VERY_SPARSE',
+                'WINDS_VERY_SPARSE_GREEN',
+                'WINDS_VERY_SPARSE_ORANGE',
+                'WINDS',
+                'WINDS_LABELS_VERY_SPARSE'],
+        onChange: ()=>{},
+      }}
+    />
+  ))
+  .add('Map with WMS Controls', ()=>(
+    <LeafletMapWithWMSControls
+      layers={['AUSWAVE-G/sig_wav_ht',
+                'AUSWAVE-G/wnd_spd',
+                'AUSWAVE-G/zonal_wnd:merid_wnd-dir',
+                'AUSWAVE-G/zonal_wnd:merid_wnd-mag',
+                'AUSWAVE-G/zonal_wnd:merid_wnd-group',
+                'AUSWAVE-G/mn_wav_dir',
+                'AUSWAVE-G/mn_wav_per',
+                'AUSWAVE-G/pk_per_wnd_sea']}
     />
   )
 );

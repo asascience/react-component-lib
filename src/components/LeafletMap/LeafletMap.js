@@ -19,13 +19,7 @@ class LeafletMap extends Component {
         >
           <LeafletMarkers
             markerData={this.props.markerData}
-            circleRadius={this.props.markerProperties.circleRadius}
-            fillOpacity={this.props.markerProperties.fillOpacity}
-            color={this.props.markerProperties.color}
-            fillColor={this.props.markerProperties.fillColor}
-            weight={this.props.markerProperties.weight}
-            onClick={this.props.markerProperties.onClick}
-            type={this.props.markerProperties.type}
+            type={this.props.markerType}
           />
         </LeafletPane>
       );

@@ -14,6 +14,7 @@ class LeafletRasterLayers extends Component {
             styles={v.styles}
             format={v.format}
             transparent={v.transparent}
+            opacity={v.opacity}
             version={v.version}
             time={v.time}
             />

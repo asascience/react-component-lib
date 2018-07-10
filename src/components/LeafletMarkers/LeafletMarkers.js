@@ -21,12 +21,12 @@ class LeafletMarkers extends Component {
           <LeafletCircleMarker
             key={k}
             center={v.geometry.coordinates}
-            radius={this.props.circleRadius}
-            fillOpacity={this.props.fillOpacity}
-            color={this.props.color}
-            weight={this.props.weight}
-            fillColor={this.props.fillColor}
-            onClick={e => this.props.onClick(e)}
+            radius={v.circleRadius}
+            fillOpacity={v.fillOpacity}
+            color={v.color}
+            weight={v.weight}
+            fillColor={v.fillColor}
+            onClick={v.onClick}
             >
             <Tooltip offset={[10, 0]} direction="right">
               <span><b>{v.identifier}</b><br />{v.tooltipText}</span>
@@ -41,7 +41,7 @@ class LeafletMarkers extends Component {
             key={k}
             icon={icon}
             position={v.geometry.coordinates}
-            onClick={e => this.props.onClick(e)}
+            onClick={v.onClick}
             >
             <Tooltip offset={[15, 0]} direction="right">
               <span><b>{v.identifier}</b><br/>{v.tooltipText}</span>

@@ -22,6 +22,7 @@ class LeafletWMSLayer extends Component {
         styles={this.props.styles}
         format={this.props.format}
         transparent={this.props.transparent}
+        opacity={this.props.opacity}
         version={this.props.version}
         time={this.makeTimeQueryString(this.props.time)}
       />
