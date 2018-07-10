@@ -862,6 +862,10 @@ storiesOf('Maps/Leaflet Controls', module)
       layerField={{
         value: 0,
         layers: ['GFS_WINDS', 'test', 'test 2'],
+        onChange: ()=>{},
+      }}
+      styleField={{
+        value: 0,
         styles:['WINDS_VERY_SPARSE_BLACK',
                 'WINDS_VERY_SPARSE_GRADIENT',
                 'WINDS_VERY_SPARSE_YELLOW',

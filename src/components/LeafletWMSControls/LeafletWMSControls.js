@@ -22,6 +22,15 @@ class LeafletWMSControls extends Component {
       });
     }
 
+    let styleDropDownItems;
+    if (this.props.styleField && this.props.styleField.styles) {
+      styleDropDownItems = this.props.styleField.styles.map((style, index) => {
+        return (
+          <MenuItem value={index} primaryText={style}/>
+        );
+      });
+    }
+
     return ( 
       <Paper className='wms-controls-wrapper'>
         <div>
@@ -53,6 +62,12 @@ class LeafletWMSControls extends Component {
         </div>
         <div className='wms-styles-wrapper'>
           <p className='wms-styles-label'>Styles</p>
+          <DropDownMenu
+            value={this.props.styleField.value}
+            onChange={(e, key, payload) => this.props.styleField.onChange(key)}
+          >
+            {styleDropDownItems}
+          </DropDownMenu>
         </div>
       </Paper>
     )
