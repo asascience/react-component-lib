@@ -19,10 +19,7 @@ class LeafletMapWithWMSControls extends Component {
     this.onOpacityChange = this.onOpacityChange.bind(this);
     this.onLayerChange = this.onLayerChange.bind(this);
     this.onStyleChange = this.onStyleChange.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps) {
-
+    this.onLoadError = this.onLoadError.bind(this);
   }
 
   onCheckTransparent(isChecked) {
@@ -50,6 +47,10 @@ class LeafletMapWithWMSControls extends Component {
     });
   }
 
+  onLoadError(error) {
+    console.log('error: ', error)
+  }
+
   render() {
     let layers = this.props.layerData.map((v, k) => {
       return v.layerName;
@@ -75,6 +76,7 @@ class LeafletMapWithWMSControls extends Component {
               time: '2018-04-07T00:00:00Z',
             }
           ]}
+          onLoadError={(error) => this.onLoadError(error)}
         />
         <LeafletWMSControls
           transparentField={{

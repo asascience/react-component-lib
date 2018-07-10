@@ -564,7 +564,10 @@ let wmsControlData = [
     styles: [
       'WMS Default',
       'raster/psu-viridis',
-      'raster/seq-Greys'
+      'raster/seq-Greys',
+      'pcolor/thermal',
+      'pcolor/viridis',
+      'pcolor/inferno',
     ],
   },
   {

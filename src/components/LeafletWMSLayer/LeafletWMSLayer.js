@@ -25,6 +25,7 @@ class LeafletWMSLayer extends Component {
         opacity={this.props.opacity}
         version={this.props.version}
         time={this.makeTimeQueryString(this.props.time)}
+        onTileerror={(error) => this.props.onLoadError(error)}
       />
     )
   }
