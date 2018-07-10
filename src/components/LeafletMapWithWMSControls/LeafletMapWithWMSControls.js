@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import LeafletMap from '../LeafletMap/LeafletMap';
 import LeafletWMSControls from '../LeafletWMSControls/LeafletWMSControls';
 
+import './LeafletMapWithWMSControls.css';
+
 class LeafletMapWithWMSControls extends Component {
   constructor(props) {
     super(props);
@@ -62,7 +64,7 @@ class LeafletMapWithWMSControls extends Component {
 
   render() {
     return (
-      <div>
+      <div className='leaflet-map-wms-wrapper'>
         <LeafletMap
           center={[0, 0]}
           zoomLevel={2}
