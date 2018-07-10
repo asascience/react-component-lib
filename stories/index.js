@@ -889,6 +889,13 @@ storiesOf('Maps/Leaflet Controls', module)
                 'AUSWAVE-G/mn_wav_dir',
                 'AUSWAVE-G/mn_wav_per',
                 'AUSWAVE-G/pk_per_wnd_sea']}
+      styles={['pcolor/thermal',
+                'pcolor/viridis',
+                'pcolor/inferno',
+                'raster/psu-viridis',
+                'contour/viridis',
+                'raster/seq-Greys',
+                'trafficlight/default']}
     />
   )
 );

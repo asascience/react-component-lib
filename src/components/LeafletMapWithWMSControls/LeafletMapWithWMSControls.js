@@ -6,11 +6,14 @@ class LeafletMapWithWMSControls extends Component {
   constructor(props) {
     super(props);
 
+    let styles = ['WMS Default'].concat(this.props.styles);
+
     this.state = {
       transparent: false,
       opacity: 1,
       layerIndex: 0,
       styleIndex: 0,
+      styles: styles,
     };
 
     this.onCheckTransparent = this.onCheckTransparent.bind(this);
@@ -54,7 +57,7 @@ class LeafletMapWithWMSControls extends Component {
               type: 'WMS',
               url: 'http://174.67.104.8/wms/',
               layers: this.props.layers[this.state.layerIndex],
-              styles: this.state.styles,
+              styles: this.state.styles[this.state.styleIndex],
               format:  'image/png',
               transparent: this.state.transparent,
               opacity: this.state.opacity,
@@ -81,7 +84,7 @@ class LeafletMapWithWMSControls extends Component {
           }}
           styleField={{
             value: this.state.styleIndex,
-            styles: this.props.styles,
+            styles: this.state.styles,
             onChange: (newIndex) => this.onStyleChange(newIndex),
           }}
         />
