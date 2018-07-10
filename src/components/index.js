@@ -10,7 +10,6 @@ export {default as Dropdown} from './Dropdown/Dropdown.js';
 export {default as ForgotPasswordLink} from './ForgotPasswordLink/ForgotPasswordLink.js';
 export {default as Image} from './Image/Image.js';
 export {default as LayerControls} from './LayerControls/LayerControls.js';
-export {default as LeafletMap} from './LeafletMap/LeafletMap.js';
 export {default as Legend} from './Legend/Legend.js';
 export {default as LoadingSpinner} from './LoadingSpinner/LoadingSpinner.js';
 export {default as LoginButton} from './LoginButton/LoginButton.js';
