@@ -6,13 +6,23 @@ class LeafletMapWithWMSControls extends Component {
   constructor(props) {
     super(props);
 
-    let styles = ['WMS Default'].concat(this.props.styles);
+    let layers =  [];
+    let styles = ['WMS Default'];
+
+    if (this.props.layerData) {
+      layers = this.props.layerData.map((v, k) => {
+        return v.layerName;
+      });
+
+      styles = styles.concat(this.props.layerData[0].styles);
+    }
 
     this.state = {
       transparent: false,
       opacity: 1,
       layerIndex: 0,
       styleIndex: 0,
+      layers: layers,
       styles: styles,
     };
 
@@ -35,8 +45,12 @@ class LeafletMapWithWMSControls extends Component {
   }
 
   onLayerChange(newIndex) {
+    let newStyles = ['WMS Default'].concat(this.props.layerData[newIndex].styles);
+
     this.setState({
       layerIndex: newIndex,
+      styles: newStyles,
+      styleIndex: 0,
     });
   }
 
@@ -56,7 +70,7 @@ class LeafletMapWithWMSControls extends Component {
             {
               type: 'WMS',
               url: 'http://174.67.104.8/wms/',
-              layers: this.props.layers[this.state.layerIndex],
+              layers: this.state.layers[this.state.layerIndex],
               styles: this.state.styles[this.state.styleIndex],
               format:  'image/png',
               transparent: this.state.transparent,
@@ -79,7 +93,7 @@ class LeafletMapWithWMSControls extends Component {
           }}
           layerField={{
             value: this.state.layerIndex,
-            layers: this.props.layers,
+            layers: this.state.layers,
             onChange: (newIndex) => this.onLayerChange(newIndex),
           }}
           styleField={{

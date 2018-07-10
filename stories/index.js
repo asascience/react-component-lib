@@ -15,7 +15,8 @@ import {legendData,
         circleVectorData,
         rectangleVectorData,
         polygonVectorData,
-        polylineVectorData}  from '../src/datafiles/sampleData.js';
+        polylineVectorData,
+        wmsControlData}  from '../src/datafiles/sampleData.js';
 import {sampleGeoJSON} from '../src/datafiles/sampleGeoJSON.js';
 
 /**********************
@@ -881,21 +882,7 @@ storiesOf('Maps/Leaflet Controls', module)
   ))
   .add('Map with WMS Controls', ()=>(
     <LeafletMapWithWMSControls
-      layers={['AUSWAVE-G/sig_wav_ht',
-                'AUSWAVE-G/wnd_spd',
-                'AUSWAVE-G/zonal_wnd:merid_wnd-dir',
-                'AUSWAVE-G/zonal_wnd:merid_wnd-mag',
-                'AUSWAVE-G/zonal_wnd:merid_wnd-group',
-                'AUSWAVE-G/mn_wav_dir',
-                'AUSWAVE-G/mn_wav_per',
-                'AUSWAVE-G/pk_per_wnd_sea']}
-      styles={['pcolor/thermal',
-                'pcolor/viridis',
-                'pcolor/inferno',
-                'raster/psu-viridis',
-                'contour/viridis',
-                'raster/seq-Greys',
-                'trafficlight/default']}
+      layerData={wmsControlData}
     />
   )
 );
