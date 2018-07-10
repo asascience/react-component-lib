@@ -8,30 +8,21 @@ class LeafletMapWithWMSControls extends Component {
   constructor(props) {
     super(props);
 
-    let layers =  [];
-    let styles = ['WMS Default'];
-
-    if (this.props.layerData) {
-      layers = this.props.layerData.map((v, k) => {
-        return v.layerName;
-      });
-
-      styles = styles.concat(this.props.layerData[0].styles);
-    }
-
     this.state = {
       transparent: false,
       opacity: 1,
       layerIndex: 0,
       styleIndex: 0,
-      layers: layers,
-      styles: styles,
     };
 
     this.onCheckTransparent = this.onCheckTransparent.bind(this);
     this.onOpacityChange = this.onOpacityChange.bind(this);
     this.onLayerChange = this.onLayerChange.bind(this);
     this.onStyleChange = this.onStyleChange.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+
   }
 
   onCheckTransparent(isChecked) {
@@ -47,11 +38,8 @@ class LeafletMapWithWMSControls extends Component {
   }
 
   onLayerChange(newIndex) {
-    let newStyles = ['WMS Default'].concat(this.props.layerData[newIndex].styles);
-
     this.setState({
       layerIndex: newIndex,
-      styles: newStyles,
       styleIndex: 0,
     });
   }
@@ -63,6 +51,12 @@ class LeafletMapWithWMSControls extends Component {
   }
 
   render() {
+    let layers = this.props.layerData.map((v, k) => {
+      return v.layerName;
+    });
+
+    let styles = this.props.layerData[this.state.layerIndex].styles;
+
     return (
       <div className='leaflet-map-wms-wrapper'>
         <LeafletMap
@@ -72,8 +66,8 @@ class LeafletMapWithWMSControls extends Component {
             {
               type: 'WMS',
               url: 'http://174.67.104.8/wms/',
-              layers: this.state.layers[this.state.layerIndex],
-              styles: this.state.styles[this.state.styleIndex],
+              layers: layers[this.state.layerIndex],
+              styles: styles[this.state.styleIndex],
               format:  'image/png',
               transparent: this.state.transparent,
               opacity: this.state.opacity,
@@ -95,12 +89,12 @@ class LeafletMapWithWMSControls extends Component {
           }}
           layerField={{
             value: this.state.layerIndex,
-            layers: this.state.layers,
+            layers: layers,
             onChange: (newIndex) => this.onLayerChange(newIndex),
           }}
           styleField={{
             value: this.state.styleIndex,
-            styles: this.state.styles,
+            styles: styles,
             onChange: (newIndex) => this.onStyleChange(newIndex),
           }}
         />
