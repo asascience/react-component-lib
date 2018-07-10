@@ -460,7 +460,7 @@ let rasterLayerData = [
     styles: 'default-scalar/default',
     format:  'image/png',
     transparent: true,
-    version: '1.1.1',
+    version: '1.3.0',
     time: '2018-04-07T00:00:00Z',
   }
 ];

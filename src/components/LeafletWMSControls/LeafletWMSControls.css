@@ -1,0 +1,42 @@
+.wms-controls-wrapper{
+  margin: 30px;
+  padding: 20px;
+  width: 300px;
+}
+
+.wms-opacity-wrapper{
+  display: flex;
+  flex-direction: horizontal;
+  height: 56px;
+  justify-content: space-between;
+}
+
+.wms-opacity-slider{
+  width: 110px;
+}
+
+.wms-opacity-label{
+  font-size: 16px;
+  margin-top: 24px;
+}
+
+.wms-layer-wrapper{
+  display: flex;
+  flex-direction: horizontal;
+  justify-content: space-between;
+}
+
+.wms-layer-label{
+  margin-top: 16px;
+  font-size: 16px;
+}
+
+.wms-styles-wrapper{
+  display: flex;
+  flex-direction: horizontal;
+  justify-content: space-between;
+}
+
+.wms-styles-label{
+  font-size: 16px;
+}
