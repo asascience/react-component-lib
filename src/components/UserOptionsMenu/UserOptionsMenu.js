@@ -18,23 +18,16 @@ class UserOptionsMenu extends Component {
   * @param {function} props.handleLoginClick - called when logout menu item is clicked
   */
 
-  /**
-  * Function that is called when a user clicks on a menu item
-  * @param {event} evt - synthetic event
-  * @param {string} val - the new path fragment
-  */
-  handleMenuItemClick = (evt, val) => {
-    history.push(`/${val}`);
-  }
-
   render() {
     return (
     <IconMenu iconButtonElement={<FlatButton style={this.props.style}>
-                                  <span>{this.props.name}</span>
-                                  &nbsp;
-                                  <ArrowDropDown style={this.props.arrowStyle}/>
-                                </FlatButton>}
-                                onChange={this.handleMenuItemClick}
+      <span>{this.props.name}</span>
+      &nbsp;
+      <ArrowDropDown style={this.props.arrowStyle}/>
+    </FlatButton>}
+    onChange={(evt, val) => {
+      history.push(`/${val}`);
+    }}
     >
       <MenuItem primaryText="Home" value={''} />
       <MenuItem primaryText="Account" value={'account'} disabled={true} />
