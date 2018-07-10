@@ -15,7 +15,8 @@ import {legendData,
         circleVectorData,
         rectangleVectorData,
         polygonVectorData,
-        polylineVectorData}  from '../src/datafiles/sampleData.js';
+        polylineVectorData,
+        wmsControlData}  from '../src/datafiles/sampleData.js';
 import {sampleGeoJSON} from '../src/datafiles/sampleGeoJSON.js';
 
 /**********************
@@ -862,6 +863,10 @@ storiesOf('Maps/Leaflet Controls', module)
       layerField={{
         value: 0,
         layers: ['GFS_WINDS', 'test', 'test 2'],
+        onChange: ()=>{},
+      }}
+      styleField={{
+        value: 0,
         styles:['WINDS_VERY_SPARSE_BLACK',
                 'WINDS_VERY_SPARSE_GRADIENT',
                 'WINDS_VERY_SPARSE_YELLOW',
@@ -877,14 +882,7 @@ storiesOf('Maps/Leaflet Controls', module)
   ))
   .add('Map with WMS Controls', ()=>(
     <LeafletMapWithWMSControls
-      layers={['AUSWAVE-G/sig_wav_ht',
-                'AUSWAVE-G/wnd_spd',
-                'AUSWAVE-G/zonal_wnd:merid_wnd-dir',
-                'AUSWAVE-G/zonal_wnd:merid_wnd-mag',
-                'AUSWAVE-G/zonal_wnd:merid_wnd-group',
-                'AUSWAVE-G/mn_wav_dir',
-                'AUSWAVE-G/mn_wav_per',
-                'AUSWAVE-G/pk_per_wnd_sea']}
+      layerData={wmsControlData}
     />
   )
 );

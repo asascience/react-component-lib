@@ -19,7 +19,7 @@ class LeafletWMSLayer extends Component {
       <WMSTileLayer
         url={this.props.url}
         layers={this.props.layers}
-        styles={this.props.styles}
+        styles={this.props.styles !== 'WMS Default' ? this.props.styles : ''}
         format={this.props.format}
         transparent={this.props.transparent}
         opacity={this.props.opacity}

@@ -545,6 +545,74 @@ let polylineVectorData = [
   },
 ];
 
+let wmsControlData = [
+  {
+    layerName: 'AUSWAVE-G/sig_wav_ht',
+    styles: [
+      'WMS Default',
+      'pcolor/thermal',
+      'pcolor/viridis',
+      'pcolor/inferno',
+      'raster/psu-viridis',
+      'contour/viridis',
+      'raster/seq-Greys',
+      'trafficlight/default'
+    ],
+  },
+  {
+    layerName: 'AUSWAVE-G/wnd_spd',
+    styles: [
+      'WMS Default',
+      'raster/psu-viridis',
+      'raster/seq-Greys'
+    ],
+  },
+  {
+    layerName: 'AUSWAVE-G/zonal_wnd:merid_wnd-dir',
+    styles: [
+      'WMS Default',
+    ],
+  },
+  {
+    layerName: 'AUSWAVE-G/zonal_wnd:merid_wnd-mag',
+    styles: [
+      'WMS Default',
+      'raster/psu-viridis',
+      'raster/seq-Greys'
+    ],
+  },
+  {
+    layerName: 'AUSWAVE-G/zonal_wnd:merid_wnd-group',
+    styles: [
+      'WMS Default',
+    ],
+  },
+  {
+    layerName: 'AUSWAVE-G/mn_wav_dir',
+    styles: [
+      'WMS Default',
+      'raster/psu-viridis',
+      'raster/seq-Greys'
+    ],
+  },
+  {
+    layerName: 'AUSWAVE-G/mn_wav_per',
+    styles: [
+      'WMS Default',
+      'raster/psu-viridis',
+      'raster/seq-Greys'
+    ],
+  },
+  {
+    layerName: 'AUSWAVE-G/pk_per_wnd_sea',
+    styles: [
+      'WMS Default',
+      'raster/psu-viridis',
+      'raster/seq-Greys'
+    ],
+  },
+];
+
 export {
   legendData,
   thumbnailStripImages,
@@ -557,4 +625,5 @@ export {
   rectangleVectorData,
   polygonVectorData,
   polylineVectorData,
+  wmsControlData,
 }

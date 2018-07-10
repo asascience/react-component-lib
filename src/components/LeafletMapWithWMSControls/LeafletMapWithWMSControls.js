@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import LeafletMap from '../LeafletMap/LeafletMap';
 import LeafletWMSControls from '../LeafletWMSControls/LeafletWMSControls';
 
+import './LeafletMapWithWMSControls.css';
+
 class LeafletMapWithWMSControls extends Component {
   constructor(props) {
     super(props);
@@ -10,12 +12,17 @@ class LeafletMapWithWMSControls extends Component {
       transparent: false,
       opacity: 1,
       layerIndex: 0,
-      styles: '',
+      styleIndex: 0,
     };
 
     this.onCheckTransparent = this.onCheckTransparent.bind(this);
     this.onOpacityChange = this.onOpacityChange.bind(this);
     this.onLayerChange = this.onLayerChange.bind(this);
+    this.onStyleChange = this.onStyleChange.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+
   }
 
   onCheckTransparent(isChecked) {
@@ -33,12 +40,25 @@ class LeafletMapWithWMSControls extends Component {
   onLayerChange(newIndex) {
     this.setState({
       layerIndex: newIndex,
+      styleIndex: 0,
+    });
+  }
+
+  onStyleChange(newIndex) {
+    this.setState({
+      styleIndex: newIndex,
     });
   }
 
   render() {
+    let layers = this.props.layerData.map((v, k) => {
+      return v.layerName;
+    });
+
+    let styles = this.props.layerData[this.state.layerIndex].styles;
+
     return (
-      <div>
+      <div className='leaflet-map-wms-wrapper'>
         <LeafletMap
           center={[0, 0]}
           zoomLevel={2}
@@ -46,8 +66,8 @@ class LeafletMapWithWMSControls extends Component {
             {
               type: 'WMS',
               url: 'http://174.67.104.8/wms/',
-              layers: this.props.layers[this.state.layerIndex],
-              styles: this.state.styles,
+              layers: layers[this.state.layerIndex],
+              styles: styles[this.state.styleIndex],
               format:  'image/png',
               transparent: this.state.transparent,
               opacity: this.state.opacity,
@@ -69,8 +89,13 @@ class LeafletMapWithWMSControls extends Component {
           }}
           layerField={{
             value: this.state.layerIndex,
-            layers: this.props.layers,
+            layers: layers,
             onChange: (newIndex) => this.onLayerChange(newIndex),
+          }}
+          styleField={{
+            value: this.state.styleIndex,
+            styles: styles,
+            onChange: (newIndex) => this.onStyleChange(newIndex),
           }}
         />
       </div>

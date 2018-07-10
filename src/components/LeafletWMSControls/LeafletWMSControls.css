@@ -1,7 +1,35 @@
 .wms-controls-wrapper{
   margin: 30px;
   padding: 20px;
-  width: 300px;
+  width: 400px;
+  height: 280px;
+}
+
+.wms-no-network-icon{
+  transform: scale(0.85);
+  margin-right: 6px;
+}
+
+.wms-controls-header{
+  font-size: 26px;
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 8px;
+}
+
+.wms-transparent-wrapper{
+  display: flex;
+  flex-direction: horizontal;
+  justify-content: space-between;
+}
+
+.wms-transparent-label{
+  font-size: 16px;
+  margin-left: 30px;
+}
+
+.wms-transparent-checkbox{
+  margin-right: 6px;
 }
 
 .wms-opacity-wrapper{
@@ -11,13 +39,20 @@
   justify-content: space-between;
 }
 
+.wms-opacity-label-wrapper{
+  display: flex;
+  flex-direction: horizontal;
+  justify-content: space-between;
+  margin-top: 18px;
+}
+
 .wms-opacity-slider{
-  width: 110px;
+  width: 210px;
+  margin-right: 35px;
 }
 
 .wms-opacity-label{
   font-size: 16px;
-  margin-top: 24px;
 }
 
 .wms-layer-wrapper{
@@ -27,8 +62,13 @@
 }
 
 .wms-layer-label{
-  margin-top: 16px;
   font-size: 16px;
+  margin-top: 20px;
+  margin-left: 30px;
+}
+
+.wms-layer-dropdown{
+  width: 270px;
 }
 
 .wms-styles-wrapper{
@@ -39,4 +79,10 @@
 
 .wms-styles-label{
   font-size: 16px;
+  margin-top: 20px;
+  margin-left: 30px;
+}
+
+.wms-styles-dropdown{
+  width: 270px;
 }
