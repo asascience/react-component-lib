@@ -550,12 +550,12 @@ let wmsControlData = [
     layerName: 'AUSWAVE-G/sig_wav_ht',
     styles: [
       'WMS Default',
+      'raster/psu-viridis',
+      'raster/seq-Greys',
+      'contour/viridis',
       'pcolor/thermal',
       'pcolor/viridis',
       'pcolor/inferno',
-      'raster/psu-viridis',
-      'contour/viridis',
-      'raster/seq-Greys',
       'trafficlight/default'
     ],
   },
@@ -565,9 +565,6 @@ let wmsControlData = [
       'WMS Default',
       'raster/psu-viridis',
       'raster/seq-Greys',
-      'pcolor/thermal',
-      'pcolor/viridis',
-      'pcolor/inferno',
     ],
   },
   {

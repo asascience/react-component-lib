@@ -3,6 +3,8 @@ import LeafletMap from '../LeafletMap/LeafletMap';
 import LeafletWMSControls from '../LeafletWMSControls/LeafletWMSControls';
 import Snackbar from 'material-ui/Snackbar';
 
+import { defaultStyles } from './defaultStyles.js';
+
 import './LeafletMapWithWMSControls.css';
 
 class LeafletMapWithWMSControls extends Component {
@@ -76,6 +78,7 @@ class LeafletMapWithWMSControls extends Component {
     });
 
     let styles = this.props.layerData[this.state.layerIndex].styles;
+    let expandedStyles = styles.concat(defaultStyles);
 
     return (
       <div>
@@ -88,7 +91,7 @@ class LeafletMapWithWMSControls extends Component {
                 type: 'WMS',
                 url: 'http://174.67.104.8/wms/',
                 layers: layers[this.state.layerIndex],
-                styles: styles[this.state.styleIndex],
+                styles: expandedStyles[this.state.styleIndex],
                 format:  'image/png',
                 transparent: this.state.transparent,
                 opacity: this.state.opacity,
@@ -116,7 +119,8 @@ class LeafletMapWithWMSControls extends Component {
             }}
             styleField={{
               value: this.state.styleIndex,
-              styles: styles,
+              styles: expandedStyles,
+              originalStyleCount: styles.length,
               onChange: (newIndex) => this.onStyleChange(newIndex),
             }}
           />
