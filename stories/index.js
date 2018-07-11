@@ -4,6 +4,7 @@ import { action, configureActions } from '@storybook/addon-actions';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import moment from 'moment';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+
 import '../src/index.css';
 import {legendData, 
         thumbnailStripImages,
