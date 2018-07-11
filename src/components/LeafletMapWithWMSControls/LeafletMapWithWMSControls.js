@@ -53,8 +53,12 @@ class LeafletMapWithWMSControls extends Component {
       return v.layerName;
     });
 
-    let styles = this.props.layerData[this.state.layerIndex].styles;
-    let expandedStyles = styles.concat(defaultStyles);
+    let expandedStyles = []
+    let styles = []
+    if (this.props.layerData !== undefined && this.props.layerData[this.state.layerIndex] !== undefined) {
+      styles = this.props.layerData[this.state.layerIndex].styles;
+      expandedStyles = styles.concat(defaultStyles);
+    }
 
     return (
       <div>
@@ -94,7 +98,7 @@ class LeafletMapWithWMSControls extends Component {
             styleField={{
               value: this.state.styleIndex,
               styles: expandedStyles,
-              originalStyleCount: styles.length,
+              originalStyleCount: styles && styles.length,
               onChange: (newIndex) => this.onStyleChange(newIndex),
             }}
           />
