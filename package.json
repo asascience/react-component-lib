@@ -7,6 +7,7 @@
     "storybook": "start-storybook -p 9001 -c .storybook",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel src -d build --copy-files",
+    "develop": "babel src -w -d build --copy-files",
     "postinstall": "babel src -d build --copy-files"
   },
   "repository": {
