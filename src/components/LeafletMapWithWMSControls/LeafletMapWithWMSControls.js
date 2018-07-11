@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import LeafletMap from '../LeafletMap/LeafletMap';
 import LeafletWMSControls from '../LeafletWMSControls/LeafletWMSControls';
-import Snackbar from 'material-ui/Snackbar';
 
 import { defaultStyles } from './defaultStyles.js';
 
@@ -16,17 +15,12 @@ class LeafletMapWithWMSControls extends Component {
       opacity: 1,
       layerIndex: 0,
       styleIndex: 0,
-      errorOpen: false,
-      errorUrl: '',
     };
 
     this.onCheckTransparent = this.onCheckTransparent.bind(this);
     this.onOpacityChange = this.onOpacityChange.bind(this);
     this.onLayerChange = this.onLayerChange.bind(this);
     this.onStyleChange = this.onStyleChange.bind(this);
-    this.onLoadError = this.onLoadError.bind(this);
-    this.handleErrorActionClick = this.handleErrorActionClick.bind(this);
-    this.closeErrorSnackbar = this.closeErrorSnackbar.bind(this);
   }
 
   onCheckTransparent(isChecked) {
@@ -52,24 +46,6 @@ class LeafletMapWithWMSControls extends Component {
     this.setState({
       styleIndex: newIndex,
     });
-  }
-
-  onLoadError(error) {
-    this.setState({
-      errorUrl: error.tile.currentSrc,
-      errorOpen: true,
-    });
-  }
-
-  closeErrorSnackbar() {
-    this.setState({
-      errorOpen: false,
-      errorMessage: '',
-    });
-  }
-
-  handleErrorActionClick() {
-    window.open(this.state.errorUrl, '_blank');
   }
 
   render() {
@@ -99,7 +75,6 @@ class LeafletMapWithWMSControls extends Component {
                 time: '2018-04-07T00:00:00Z',
               }
             ]}
-            onLoadError={(error) => this.onLoadError(error)}
           />
           <LeafletWMSControls
             transparentField={{
@@ -125,14 +100,6 @@ class LeafletMapWithWMSControls extends Component {
             }}
           />
         </div>
-        <Snackbar
-          open={this.state.errorOpen}
-          message='There was an error loading the WMS data for the specified layer and styles.'
-          action='view error'
-          autoHideDuration={10000}
-          onActionClick={this.closeErrorSnackbar}
-          onRequestClose={this.closeErrorSnackbar}
-        />
       </div>
     );
   }
