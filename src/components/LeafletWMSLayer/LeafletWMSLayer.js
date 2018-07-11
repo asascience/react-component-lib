@@ -16,7 +16,7 @@ class LeafletWMSLayer extends Component {
         transparent={this.props.transparent}
         opacity={this.props.opacity}
         version={this.props.version}
-        onTileerror={(error) => this.props.onLoadError(error)}
+        onTileerror={this.props.onLoadError && ((error) => this.props.onLoadError(error))}
       />
     )
   }

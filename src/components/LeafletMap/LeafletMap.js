@@ -31,7 +31,7 @@ class LeafletMap extends Component {
         <LeafletPane>
           <LeafletRasterLayers
             layerData={this.props.rasterLayerData}
-            onLoadError={(error) => this.props.onLoadError(error)}
+            onLoadError={this.props.onLoadError && ((error) => this.props.onLoadError(error))}
           />
         </LeafletPane>
       );
