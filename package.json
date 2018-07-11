@@ -30,7 +30,7 @@
   },
   "peerDependencies": {
     "react": ">=16.4.1",
-    "react-dom": ">=15.4.0",
+    "react-dom": ">=16.4.1",
     "react-router": ">=4.1.0"
   },
   "dependencies": {
