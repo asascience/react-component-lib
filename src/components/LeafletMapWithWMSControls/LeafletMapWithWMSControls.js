@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import LeafletMap from '../LeafletMap/LeafletMap';
 import LeafletWMSControls from '../LeafletWMSControls/LeafletWMSControls';
 
+import { defaultStyles } from './defaultStyles.js';
+
 import './LeafletMapWithWMSControls.css';
 
 class LeafletMapWithWMSControls extends Component {
@@ -19,10 +21,6 @@ class LeafletMapWithWMSControls extends Component {
     this.onOpacityChange = this.onOpacityChange.bind(this);
     this.onLayerChange = this.onLayerChange.bind(this);
     this.onStyleChange = this.onStyleChange.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps) {
-
   }
 
   onCheckTransparent(isChecked) {
@@ -56,48 +54,51 @@ class LeafletMapWithWMSControls extends Component {
     });
 
     let styles = this.props.layerData[this.state.layerIndex].styles;
+    let expandedStyles = styles.concat(defaultStyles);
 
     return (
-      <div className='leaflet-map-wms-wrapper'>
-        <LeafletMap
-          center={[0, 0]}
-          zoomLevel={2}
-          rasterLayerData={[
-            {
-              type: 'WMS',
-              url: 'http://174.67.104.8/wms/',
-              layers: layers[this.state.layerIndex],
-              styles: styles[this.state.styleIndex],
-              format:  'image/png',
-              transparent: this.state.transparent,
-              opacity: this.state.opacity,
-              version: '1.3.0',
-              time: '2018-04-07T00:00:00Z',
-            }
-          ]}
-        />
-        <LeafletWMSControls
-          transparentField={{
-            isChecked: this.state.transparent,
-            isDisabled: false,
-            onCheck: (e, isChecked) => this.onCheckTransparent(e, isChecked),
-          }}
-          opacityField={{
-            value: this.state.opacity,
-            isDisabled: false,
-            onChange: (newOpacity) => this.onOpacityChange(newOpacity),
-          }}
-          layerField={{
-            value: this.state.layerIndex,
-            layers: layers,
-            onChange: (newIndex) => this.onLayerChange(newIndex),
-          }}
-          styleField={{
-            value: this.state.styleIndex,
-            styles: styles,
-            onChange: (newIndex) => this.onStyleChange(newIndex),
-          }}
-        />
+      <div>
+        <div className='leaflet-map-wms-wrapper'>
+          <LeafletMap
+            center={[0, 0]}
+            zoomLevel={2}
+            rasterLayerData={[
+              {
+                type: 'WMS',
+                url: this.props.baseUrl,
+                layers: layers[this.state.layerIndex],
+                styles: expandedStyles[this.state.styleIndex],
+                format:  'image/png',
+                transparent: this.state.transparent,
+                opacity: this.state.opacity,
+                version: '1.1.1',
+              }
+            ]}
+          />
+          <LeafletWMSControls
+            transparentField={{
+              isChecked: this.state.transparent,
+              isDisabled: false,
+              onCheck: (e, isChecked) => this.onCheckTransparent(e, isChecked),
+            }}
+            opacityField={{
+              value: this.state.opacity,
+              isDisabled: false,
+              onChange: (newOpacity) => this.onOpacityChange(newOpacity),
+            }}
+            layerField={{
+              value: this.state.layerIndex,
+              layers: layers,
+              onChange: (newIndex) => this.onLayerChange(newIndex),
+            }}
+            styleField={{
+              value: this.state.styleIndex,
+              styles: expandedStyles,
+              originalStyleCount: styles.length,
+              onChange: (newIndex) => this.onStyleChange(newIndex),
+            }}
+          />
+        </div>
       </div>
     );
   }

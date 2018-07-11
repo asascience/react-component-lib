@@ -16,7 +16,7 @@ class LeafletRasterLayers extends Component {
             transparent={v.transparent}
             opacity={v.opacity}
             version={v.version}
-            time={v.time}
+            onLoadError={(error) => this.props.onLoadError(error)}
             />
         )
       }

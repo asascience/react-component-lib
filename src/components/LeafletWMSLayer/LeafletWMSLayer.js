@@ -1,17 +1,9 @@
 import React, { Component } from 'react';
 import { WMSTileLayer } from 'react-leaflet';
 
-import moment from 'moment';
-
 class LeafletWMSLayer extends Component {
   constructor(props) {
     super(props);
-
-    this.makeTimeQueryString = this.makeTimeQueryString.bind(this);
-  }
-
-  makeTimeQueryString(time) {
-    return moment(time).utc().format('YYYY-MM-DDTHH:mm:00+00:00')
   }
 
   render() {
@@ -24,7 +16,7 @@ class LeafletWMSLayer extends Component {
         transparent={this.props.transparent}
         opacity={this.props.opacity}
         version={this.props.version}
-        time={this.makeTimeQueryString(this.props.time)}
+        onTileerror={(error) => this.props.onLoadError(error)}
       />
     )
   }

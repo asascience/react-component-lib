@@ -6,6 +6,7 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import NetworkIcon from 'material-ui/svg-icons/notification/wifi';
 import SvgIcon from 'material-ui/SvgIcon';
+import Divider from 'material-ui/Divider';
 
 import './LeafletWMSControls.css';
 
@@ -39,6 +40,8 @@ class LeafletWMSControls extends Component {
         );
       });
     }
+
+    styleDropDownItems.splice(this.props.styleField.originalStyleCount, 0, <Divider/>);
 
     return ( 
       <Paper className='wms-controls-wrapper'>
