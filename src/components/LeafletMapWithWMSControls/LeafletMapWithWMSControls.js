@@ -65,14 +65,13 @@ class LeafletMapWithWMSControls extends Component {
             rasterLayerData={[
               {
                 type: 'WMS',
-                url: 'http://174.67.104.8/wms/',
+                url: this.props.baseUrl,
                 layers: layers[this.state.layerIndex],
                 styles: expandedStyles[this.state.styleIndex],
                 format:  'image/png',
                 transparent: this.state.transparent,
                 opacity: this.state.opacity,
-                version: '1.3.0',
-                time: '2018-04-07T00:00:00Z',
+                version: '1.1.1',
               }
             ]}
           />

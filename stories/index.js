@@ -882,6 +882,7 @@ storiesOf('Maps/Leaflet Controls', module)
   ))
   .add('Map with WMS Controls', ()=>(
     <LeafletMapWithWMSControls
+      baseUrl='http://174.67.104.8/wms/'
       layerData={wmsControlData}
     />
   )
