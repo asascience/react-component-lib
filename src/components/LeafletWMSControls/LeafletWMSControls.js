@@ -20,6 +20,17 @@ const NoNetworkIcon = (props) => (
 class LeafletWMSControls extends Component {
   constructor(props) {
     super(props);
+
+    this.convertStyleIndex = this.convertStyleIndex.bind(this);
+  }
+
+  // Accounts for divider which throws off selected key index by 1
+  convertStyleIndex(index) {
+    if (index > this.props.styleField.originalStyleCount - 1) {
+      return index - 1;
+    } else {
+      return index;
+    }
   }
 
   render() {
@@ -83,7 +94,7 @@ class LeafletWMSControls extends Component {
           <p className='wms-styles-label'>Styles</p>
           <DropDownMenu
             value={this.props.styleField.value}
-            onChange={(e, key, payload) => this.props.styleField.onChange(key)}
+            onChange={(e, key, payload) => this.props.styleField.onChange(this.convertStyleIndex(key))}
             autoWidth={false}
             className='wms-styles-dropdown'
           >
