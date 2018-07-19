@@ -17,24 +17,30 @@ class LeafletMap extends Component {
   getTileUrl() {
     let tileUrl = '';
     let baseUrl = this.props.rasterLayerData[0].url;
-    // if (baseUrl !== '' && this.mapRef.current.leafletElement) {
-    //   let leafletElement = this.mapRef.current.leafletElement;
-    //   let layers = leafletElement['_layers'];
-    //   let layerKeys = Object.keys(layers);
-    //   let wmsLayer = {};
+    if (baseUrl !== '' && this.mapRef.current.leafletElement) {
+      // Get leafletElement ref and extract layer data
+      let leafletElement = this.mapRef.current.leafletElement;
+      let layers = leafletElement['_layers'];
+      let layerKeys = Object.keys(layers);
 
-    //   for (let i = 0; i < layerKeys.length; i++) {
-    //     let layer = layers[layerKeys][i];
-    //     if (layer.url === baseUrl) {
-    //       wmsLayer = layer;
-    //     }
-    //   }
+      // Find the layer with the WMS url
+      let wmsLayer = {};
 
-    //   tileUrl = wmsLayer;
-    // }
+      for (let i = 0; i < layerKeys.length; i++) {
+        let layer = layers[layerKeys[i]];
+        if (layer['_url'] === baseUrl) {
+          wmsLayer = layer;
+        }
+      }
 
-    if (this.mapRef && this.mapRef.current) {
-      tileUrl = this.mapRef.current.leafletElement;
+      // Extract tile data and find approximate center
+      let tiles = wmsLayer['_tiles'];
+      let tileKeys = Object.keys(tiles);
+      let centerTileKey = tileKeys[tileKeys.length/2];
+      let centerTile = tiles[centerTileKey];
+
+      // Get tile url
+      tileUrl = centerTile.el.getAttribute('src');
     }
 
     return tileUrl;
@@ -42,7 +48,7 @@ class LeafletMap extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.rasterLayerData &&
-      prevProps.rasterLayerData[0].styles !== this.props.rasterLayerData[0].styles) {
+      prevProps.rasterLayerData[0].layers !== this.props.rasterLayerData[0].layers) {
       let tileUrl = this.getTileUrl();
       this.props.setTileUrl(tileUrl);
     }
