@@ -12,6 +12,8 @@ class LeafletMap extends Component {
 
     this.mapRef = React.createRef();
     this.getTileUrl = this.getTileUrl.bind(this);
+    this.getCenterTileKey = this.getCenterTileKey.bind(this);
+    this.toRad = this.toRad.bind(this);
   }
 
   getTileUrl() {
@@ -35,8 +37,10 @@ class LeafletMap extends Component {
 
       // Extract tile data and find approximate center
       let tiles = wmsLayer['_tiles'];
-      let tileKeys = Object.keys(tiles);
-      let centerTileKey = tileKeys[tileKeys.length/2];
+      let tileKeys = Object.keys(tiles).sort();
+      let centerTileKey = this.getCenterTileKey();
+      console.log(tileKeys)
+      console.log(centerTileKey)
       let centerTile = tiles[centerTileKey];
 
       // Get tile url
@@ -44,6 +48,22 @@ class LeafletMap extends Component {
     }
 
     return tileUrl;
+  }
+
+  toRad(x) {
+    return x * Math.PI / 180;
+  }
+
+  getCenterTileKey() {
+    console.log(this.mapRef)
+    let viewport = this.mapRef.current.viewport;
+    let center = viewport.center;
+    let zoom = viewport.zoom;
+
+    var xtile = parseInt(Math.floor( (center[1] + 180) / 360 * (1<<zoom) ));
+    var ytile = parseInt(Math.floor( (1 - Math.log(Math.tan(this.toRad(center[0])) + 1 / Math.cos(this.toRad(center[0]))) / Math.PI) / 2 * (1<<zoom) ));
+
+    return xtile + ':' + ytile + ':' + zoom;
   }
 
   componentDidUpdate(prevProps) {
@@ -105,7 +125,11 @@ class LeafletMap extends Component {
 
     return (
       <div id="map-container">
-        <Map id="leaflet-map" center={this.props.center} zoom={this.props.zoomLevel} ref={this.mapRef}>
+        <Map
+          id="leaflet-map"
+          center={this.props.center}
+          zoom={this.props.zoomLevel}
+          ref={this.mapRef}>
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
