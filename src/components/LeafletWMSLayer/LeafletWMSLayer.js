@@ -7,6 +7,14 @@ class LeafletWMSLayer extends Component {
   }
 
   render() {
+    let customProps = {}
+    debugger;
+    if( this.props.numberOfColorBands !== undefined) {
+      customProps['NUMCOLORBANDS'] = this.props.numberOfColorBands;
+    }
+    if (this.props.colorScaleRange !== undefined) {
+      customProps['COLORSCALERANGE'] = this.props.colorScaleRange;
+    }
     return ( 
       <WMSTileLayer
         url={this.props.url}
@@ -17,9 +25,13 @@ class LeafletWMSLayer extends Component {
         opacity={this.props.opacity}
         version={this.props.version}
         onTileerror={this.props.onLoadError && ((error) => this.props.onLoadError(error))}
+        {...customProps}
       />
     )
   }
+  //logScale={this.props.logScale}
+  //colorScaleRange={this.props.colorScaleRange}
+
 }
 
 export default LeafletWMSLayer;
