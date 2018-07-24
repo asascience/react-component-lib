@@ -6,7 +6,10 @@ import moment from 'moment';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import '../src/index.css';
-import {leafletMarkers,
+import {
+        singleSearchResult,
+        searchResultsTable,
+        leafletMarkers,
         rasterLayerData,
         circleVectorData,
         rectangleVectorData,
@@ -79,7 +82,7 @@ Dataset Search
 ****************/
 
 // SearchPagination
-storiesOf('USACE/Dataset Search/Search Pagination', module)
+storiesOf('Dataset Search/Search Pagination', module)
   .add('first page', ()=>(
     <SearchPagination
       pageIndex={0}
@@ -128,7 +131,7 @@ let filterList={
   'tag': ['ocean', 'land', 'sediment', 'something'],
 }
 
-storiesOf('USACE/Dataset Search/Search Chip Input', module)
+storiesOf('Dataset Search/Search Chip Input', module)
   .add('partial chip', ()=>(
     <SearchChipInput
       value={['author']}
@@ -153,146 +156,11 @@ storiesOf('USACE/Dataset Search/Search Chip Input', module)
   )
 );
 
-// SearchResults
-let singleResult =  [{
-  description: "USACE/FRF Observed Dataset",
-  id: "502d1a79-440c-4aaf-9ed4-75a45981d0b0",
-  title: "FRF 632",
-  identifier: "noaa.ioos.comt.unknown.b5a2.frf_632",
-  contactPoint: {
-    hasEmail: "mailto:John.L.Doe@usace.army.mil",
-    fn: "JOHN DOE"
-  }
-}]
-
-let resultsTable = [
-  {
-    description: 'temp',
-    id: "ad7b5502-3a2e-4ff7-b919-e4f9e1baae64",
-    title: "Mid-Atlantic Regional Association Coastal Ocean Observing System Self-Locating Datum Marker Buoy",
-    identifier: "noaa.ioos.comt.unknown.d89f.mid-atlantic_regional_association_coastal_ocean_observing_system_self-locating_datum_marker_buoy",
-    contactPoint: {
-      hasEmail: "mailto:John.L.Doe@usace.army.mil",
-      fn: "JOHN DOE"
-    }
-  },
-  {
-    description: 'temp',
-    id: "8944b472-04a1-4c47-89a2-7c17129119e5",
-    title: "Chesapeake Bay with 1-term oxygen model",
-    identifier: "noaa.ioos.comt.unknown.07bc.chesapeake_bay_with_1-term_oxygen_model",
-    contactPoint: {
-      hasEmail: "mailto:John.L.Doe@usace.army.mil",
-      fn: "JOHN DOE"
-    }
-  },
-  {
-    description: "USACE/COAB data collected by a bottom mounted (looking up) Nortek AWAC, approximately 450m offshore of Duck (FRF), NC at a nominal depth of 5m NAVD 88. Directional spectra are computed using a custom COAB analysis of merging low frequency AST-UV (or PUV) spectra with high-end beam-array spectra (see http://frf.usace.army.mil/realtime/awac/COAB_awacSpectralAnalysis.pdf). Data collection is hard-wired and analyzed hourly with 34 minute timeseries records. Two dimensional frequency-direction spectra are computed using a Maximum Likelihood Estimator (MLE) method.",
-    id: "b7867486-26fc-4b55-bfba-c5efb50ed37b",
-    title: "FRF 5m AWAC Waves and Currents",
-    identifier: "noaa.ioos.comt.unknown.931c.frf_5m_awac_waves_and_currents",
-    contactPoint: {
-      hasEmail: "mailto:John.L.Doe@usace.army.mil",
-      fn: "JOHN DOE"
-    }
-  },
-  {
-    description: "USACE/FRF Observed Dataset",
-    id: "502d1a79-440c-4aaf-9ed4-75a45981d0b0",
-    title: "FRF 632",
-    identifier: "noaa.ioos.comt.unknown.b5a2.frf_632",
-    contactPoint: {
-      hasEmail: "mailto:John.L.Doe@usace.army.mil",
-      fn: "JOHN DOE"
-    }
-  },
-  {
-    description: "USACE/FRF Observed Dataset",
-    id: "e79dd9cd-818e-481e-bcf3-b7afcbfeefc6",
-    title: "Weather Station",
-    identifier: "noaa.ioos.comt.unknown.5bf1.weather_station",
-    contactPoint: {
-      hasEmail: "mailto:John.L.Doe@usace.army.mil",
-      fn: "JOHN DOE"
-    }
-  },
-  {
-    description: 'temp',
-    id: "2a753016-8da3-4edb-b721-45fd796bc6e0",
-    title: "Chesapeake Bay with 1-term oxygen model",
-    identifier: "noaa.ioos.comt.unknown.57c1.chesapeake_bay_with_1-term_oxygen_model",
-    contactPoint: {
-      hasEmail: "mailto:John.L.Doe@usace.army.mil",
-      fn: "JOHN DOE"
-    }
-  },
-  {
-    description: "USACE/FRF Observed Dataset",
-    id: "8aaa1660-0db6-4782-b497-614b43866e13",
-    title: "Pier CTD",
-    identifier: "noaa.ioos.comt.unknown.6edf.pier_ctd",
-    contactPoint: {
-      hasEmail: "mailto:John.L.Doe@usace.army.mil",
-      fn: "JOHN DOE"
-    }
-  },
-  {
-    description: "This sample dataset is used to test the data management server. This field can be as long as it needs to be. Did you know Eratosthenes was a Greek mathematician, geographer, poet, astronomer, and music theorist. He held the title of chief librarian at the Library of Alexandria. Eratosthenes was able to compute the circumference of the Earth to within 10% aroudn 200 BC",
-    id: "abcdef12-abcd-abcd-abcd-abcdef123456",
-    title: "Benchmark Dataset",
-    identifier: "noaa.ioos.comt.unknown.c586.benchmark_dataset",
-    contactPoint: {
-      hasEmail: "mailto:Brian.McKenna@rpsgroup.com",
-      fn: "Brian McKenna"
-    }
-  },
-  {
-    description: "'The time mean backgound grid interpolated onto all of the CMSF .tel grid positions to be used as the background for the CMTB CMSF runs' ",
-    id: "c0890acf-2127-4147-846b-f09ea5cc93f2",
-    title: "CMTB CMSF Background Grid",
-    identifier: "noaa.ioos.comt.unknown.8a40.cmtb_cmsf_background_grid",
-    contactPoint: {
-      hasEmail: "mailto:John.L.Doe@usace.army.mil",
-      fn: "JOHN DOE"
-    }
-  },
-  {
-    description: 'temp',
-    id: "868e64b3-7bfc-4365-8f6a-98774633e1a2",
-    title: "Mid-Atlantic Regional Association Coastal Ocean Observing System Self-Locating Datum Marker Buoy",
-    identifier: "noaa.ioos.comt.unknown.1cda.mid-atlantic_regional_association_coastal_ocean_observing_system_self-locating_datum_marker_buoy",
-    contactPoint: {
-      hasEmail: "mailto:John.L.Doe@usace.army.mil",
-      fn: "JOHN DOE"
-    }
-  },
-  {
-    description: "USACE/FRF Observed Dataset",
-    id: "9888d261-9016-49e1-9fc9-00bb8451decd",
-    title: "Currituck Sound",
-    identifier: "noaa.ioos.comt.unknown.e0f1.currituck_sound",
-    contactPoint: {
-      hasEmail: "mailto:John.L.Doe@usace.army.mil",
-      fn: "JOHN DOE"
-    }
-  },
-  {
-    description: "U.S. IOOS Mid-Atlantic Regional Consortium of Ocean Observing Systems (MARACOOS) glider deployment. This is the first of a series of yearly seasonal deployments to survey the physical and biological properties of Mid-Atlantic Bight coastal waters. This dataset contains phyisical data only. Optical and oxygen data to be added at a later date.",
-    id: "453cecc8-34aa-4747-8ff3-1dd1d423f1d7",
-    title: "blue-20150627T1254",
-    identifier: "noaa.ioos.comt.unknown.6489.blue-20150627t1254",
-    contactPoint: {
-      hasEmail: "mailto:John.L.Doe@usace.army.mil",
-      fn: "JOHN DOE"
-    }
-  }
-]
-
-storiesOf('USACE/Dataset Search/Search  Results',  module)
+storiesOf('Dataset Search/Search  Results',  module)
   .add('single result',  ()=>(
     <SearchResults
       searchText={'USACE'}
-      searchResults={singleResult}
+      searchResults={singleSearchResult}
       onDatasetSelected={action('dataset-selected')}
       resultsPerPage={8}
       pageIndex={0}
@@ -307,7 +175,7 @@ storiesOf('USACE/Dataset Search/Search  Results',  module)
   .add('results table', ()=>(
     <SearchResults
       searchText={'a'}
-      searchResults={resultsTable}
+      searchResults={searchResultsTable}
       onDatasetSelected={action('dataset-selected')}
       resultsPerPage={8}
       pageIndex={0}
@@ -322,11 +190,11 @@ storiesOf('USACE/Dataset Search/Search  Results',  module)
 );
 
 //DatasetSearch
-storiesOf('USACE/Dataset Search/Dataset Search Container', module)
+storiesOf('Dataset Search/Dataset Search Container', module)
   .add('single result',  ()=>(
     <DatasetSearch
       filterList={filterList}
-      searchResults={singleResult}
+      searchResults={singleSearchResult}
       onFiltersChanged={action('filters-changed')}
       onSearchValueChanged={action('search-value-changed')}
       onDatasetSelected={action('dataset-selected')}
@@ -344,7 +212,7 @@ storiesOf('USACE/Dataset Search/Dataset Search Container', module)
   .add('results table', ()=>(
     <DatasetSearch
       filterList={filterList}
-      searchResults={resultsTable}
+      searchResults={searchResultsTable}
       onFiltersChanged={action('filters-changed')}
       onSearchValueChanged={action('search-value-changed')}
       onDatasetSelected={action('dataset-selected')}
@@ -361,66 +229,12 @@ storiesOf('USACE/Dataset Search/Dataset Search Container', module)
   )
 );
 
-/*********
-Data Table
-**********/
-
-storiesOf('USACE/Data Table/Data Table Field Input', module)
-  .add('staticText', ()=>(
-    <DataTableFieldInput
-      objectData={{
-        fieldType: 'text',
-        severity: 'suggested',
-        text: 'sampleText',
-      }}
-    />
-  ))
-  .add('autocomplete', ()=>(
-    <DataTableFieldInput
-      objectData={{
-        fieldType: 'text',
-        severity: 'suggested',
-        text: 'sampleText',
-        options: ['sample a', 'sample b', 'a', 'b'],
-      }}
-    />
-  ))
-  .add('dropdown', ()=>(
-    <DataTableFieldInput
-      objectData={{
-        fieldType: 'dropdown',
-        severity: 'suggested',
-        text: 'sampleText',
-        options: ['sample a', 'sample b', 'a', 'b'],
-      }}
-    />
-  ))
-  .add('tag input', ()=>(
-    <DataTableFieldInput
-      objectData={{
-        fieldType: 'tagInput',
-        severity: 'suggested',
-        text: 'sampleText',
-        options: ['sample a', 'sample b', 'a', 'b'],
-        onUpdate: ()=>{},
-      }}
-    />
-  ))
-  .add('date picker', ()=>(
-    <DataTableFieldInput
-      objectData={{
-        fieldType: 'datePicker',
-        severity: 'suggested',
-      }}
-    />
-  ));
-
 /******
 App Bar
 *******/
 
 // App Bar Logos
-storiesOf('COMT/App Bar/App Bar Logos', module)
+storiesOf('App Bar/App Bar Logos', module)
   .add('corner logo', ()=>(
     <AppbarLogo/>
   ))
@@ -430,14 +244,14 @@ storiesOf('COMT/App Bar/App Bar Logos', module)
 );
 
 // Login Button
-storiesOf('COMT/App Bar/Login Button', module)
+storiesOf('App Bar/Login Button', module)
   .add('default button', ()=>(
     <LoginButton/>
   )
 );
 
 // Forgot Password Link
-storiesOf('COMT/App Bar/Forgot Password Link', module)
+storiesOf('App Bar/Forgot Password Link', module)
   .add('link', () =>(
     <ForgotPasswordLink
       handleForgotPW={action('password-redirect')}
@@ -446,14 +260,14 @@ storiesOf('COMT/App Bar/Forgot Password Link', module)
 );
 
 // References Dropdown
-storiesOf('COMT/App Bar/References Dropdown', module)
+storiesOf('App Bar/References Dropdown', module)
   .add('default', ()=>(
     <ReferencesDropdown/>
   )
 );
 
 // User Options Menu
-storiesOf('COMT/App Bar/User Options Menu', module)
+storiesOf('App Bar/User Options Menu', module)
   .add('default', ()=>(
     <UserOptionsMenu
       name={'Brian'}
@@ -466,7 +280,7 @@ Badges
 ******/
 
 // Avatar Numeric Badge
-storiesOf('USACE/Badges/Avatar Numeric Badge', module)
+storiesOf('Badges/Avatar Numeric Badge', module)
   .add('default size', ()=>(
     <AvatarNumericBadge
       dimArray={['a']}
@@ -515,7 +329,7 @@ import createHistory from 'history/createBrowserHistory';
 const history = createHistory();
 
 // Bread Crumbs
-storiesOf('USACE/Bread Crumbs/Standard Bread Crumbs', module)
+storiesOf('Bread Crumbs/Standard Bread Crumbs', module)
   .add('path', ()=>(
     <Router  history={history}>
     <BreadCrumbs
@@ -531,7 +345,7 @@ Data Inputs
 ***********/
 
 // Date Picker
-storiesOf('USACE/Data Inputs/Date Picker', module)
+storiesOf('Input Components/Date Picker', module)
   .add('default', ()=>(
     <DatePicker
       onDateUpdate={action('date-update')}
@@ -546,34 +360,16 @@ storiesOf('USACE/Data Inputs/Date Picker', module)
 );
 
 // Dropdown
-storiesOf('USACE/Data Inputs/Dropdown', module)
+storiesOf('Input Components/Dropdown', module)
   .add('default', ()=>(
     <Dropdown
       options={['cookies', 'cake', 'ice cream']}
-    />
-  ))
-  .add('disabled', ()=>(
-    <Dropdown
-      options={['cookies', 'cake', 'ice cream']}
-      disabled={true}
-    />
-  )
-);
-
-// Submit Button
-storiesOf('USACE/Data Inputs/Submit Button', module)
-  .add('default', ()=>(
-    <SubmitButton/>
-  ))
-  .add('submitted', ()=>(
-    <SubmitButton
-      submitted={true}
     />
   )
 );
 
 // Tag Input
-storiesOf('USACE/Data Inputs/Tag Input', module)
+storiesOf('Input Components/Tag Input', module)
   .add('default', ()=>(
     <TagInput
       dataSource={['a', 'b', 'c']}
@@ -583,12 +379,6 @@ storiesOf('USACE/Data Inputs/Tag Input', module)
     <TagInput
       dataSource={['a', 'b', 'c']}
       disabled={true}
-    />
-  ))
-  .add('error', ()=>(
-    <TagInput
-      dataSource={['a', 'b', 'c']}
-      severity={'required'}
     />
   )
 );
@@ -598,14 +388,14 @@ Menu Page Components
 ********************/
 
 // Organization Menu
-storiesOf('COMT/Menu Components/Organization Menu', module)
+storiesOf('Menu Components/Organization Menu', module)
   .add('menu', ()=>(
     <OrganizationMenu/>
   )
 );
 
 // Service Wrapper
-storiesOf('COMT/Menu Components/Service Wrapper', module)
+storiesOf('Menu Components/Service Wrapper', module)
   .add('default', ()=>(
     <Router history={history}>
       <ServiceWrapper
@@ -628,21 +418,21 @@ Modal Components
 ****************/
 
 // Loading Spinner
-storiesOf('USACE/Modals/LoadingSpinner', module)
+storiesOf('Modals/LoadingSpinner', module)
   .add('indeterminate',  ()=>(
     <LoadingSpinner/>
   )
 );
 
 // Session Expired Modal
-storiesOf('USACE/Modals/Session Expired Modal',  module)
+storiesOf('Modals/Session Expired Modal',  module)
   .add('default', ()=>(
     <SessionExpiredModal/>
   )
 );
 
 // Undo Modal
-storiesOf('USACE/Modals/Undo Modal', module)
+storiesOf('Modals/Undo Modal', module)
   .add('default', ()=>(
     <UndoModal
       open={true}
