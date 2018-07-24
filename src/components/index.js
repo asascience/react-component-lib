@@ -29,3 +29,4 @@ export {default as UndoModal} from './UndoModal/UndoModal.js';
 export {default as LeafletMap} from './LeafletMap/LeafletMap.js';
 export {default as LayerControls} from './LayerControls/LayerControls.js';
 export {default as WMSStylesSelectorDrawer} from './WMSStylesSelectorDrawer/WMSStylesSelectorDrawer.js';
+export {default as URLEntry} from './URLEntry/URLEntry.js';

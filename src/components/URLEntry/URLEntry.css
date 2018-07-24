@@ -1,0 +1,23 @@
+#url-bar {
+
+}
+#url-bar-label {
+	height: 45px;
+	line-height: 45px;
+	margin: 0 5px 0 10px;
+}
+#url-bar-outer {
+	background-color: white;
+	border-radius: 5px;
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+	width: 90%;
+	height: 45px;
+	margin: auto;
+	display: flex;
+}
+#url-entry-container {
+	width: 95%;
+	margin: 20px;
+}
