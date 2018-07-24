@@ -20,7 +20,6 @@ class LeafletMap extends Component {
     this.getTileUrl = this.getTileUrl.bind(this);
     this.getCenterTileKey = this.getCenterTileKey.bind(this);
     this.toRad = this.toRad.bind(this);
-    this.onViewportChange = this.onViewportChange.bind(this);
   }
 
   getTileUrl() {
@@ -73,21 +72,13 @@ class LeafletMap extends Component {
   componentDidUpdate(prevProps) {
     if (this.props.rasterLayerData &&
       prevProps.crosshair.toggled === false && this.props.crosshair.toggled === true) {
-      let tileUrl = this.getTileUrl();
-      this.props.setTileUrl(tileUrl);
-    } else if (prevProps.crosshair.toggled === true && this.props.crosshair.toggled === false) {
       let center = this.mapRef.current.viewport.center;
       this.setState({
         crosshairCoords: center,
       });
-    }
-  }
 
-  onViewportChange(center, zoom) {
-    if (!this.props.crosshair.toggled) {
-      this.setState({
-        crosshairCoords: center,
-      });
+      let tileUrl = this.getTileUrl();
+      this.props.setTileUrl(tileUrl);
     }
   }
 
@@ -142,13 +133,6 @@ class LeafletMap extends Component {
 
     let crosshairIcon = <div/>;
     if (this.props.crosshair.shouldDisplay) {
-      let iconUrl = '';
-      if (!this.props.crosshair.toggled) {
-        iconUrl = addIcon;
-      } else {
-        iconUrl = locationIcon;
-      }
-
       crosshairIcon = (
         <LeafletPane>
           <LeafletMarkers
@@ -157,7 +141,7 @@ class LeafletMap extends Component {
               geometry: {
                 coordinates: this.state.crosshairCoords,
               },
-              iconUrl: iconUrl,
+              iconUrl: locationIcon,
               iconSize: [20, 20],
             }]}
             type='IconMarkers'
@@ -172,8 +156,7 @@ class LeafletMap extends Component {
           id="leaflet-map"
           center={this.props.center}
           zoom={this.props.zoomLevel}
-          ref={this.mapRef}
-          onViewportChange={(viewport) => this.onViewportChange(viewport.center, viewport.zoom)}>
+          ref={this.mapRef}>
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
@@ -182,7 +165,7 @@ class LeafletMap extends Component {
           {rasterLayers}
           {geoJSONLayers}
           {vectorLayers}
-          {crosshairIcon}
+          {this.props.crosshair.toggled && crosshairIcon}
         </Map>
       </div>
     );
