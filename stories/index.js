@@ -63,20 +63,8 @@ import LoadingSpinner from '../src/components/LoadingSpinner/LoadingSpinner';
 import SessionExpiredModal from '../src/components/SessionExpiredModal/SessionExpiredModal';
 import UndoModal from '../src/components/UndoModal/UndoModal';
 
-/**************************
-OceansMap Component Imports
-***************************/
-import Chart from '../src/components/Chart/Chart';
-import ImageThumbnailStrip from '../src/components/Image/Image';
-import LayerControls from '../src/components/LayerControls/LayerControls';
-import HazardLegend from '../src/components/Legend/Legend';
-//import {Map} from '../src/components/Map/Map';
-import {Markers} from '../src/components/MarkerLayers/MarkerLayers';
-import {WMSSingleTileLayer, EsriDynamicMapLayer} from '../src/components/RasterLayers/RasterLayers';
-import {LayerVisibilityControls, LayerOpacityControls, LayerShortcutControls, LayerButton} from '../src/components/LayerControls/LayerControls';
-
 /***************************
-WMS Viewer Component Imports
+Mapping Component Imports
 ****************************/
 import LeafletMap from '../src/components/LeafletMap/LeafletMap';
 import MapboxMap from '../src/components/MapboxMap/MapboxMap';
@@ -665,107 +653,8 @@ storiesOf('USACE/Modals/Undo Modal', module)
   )
 );
 
-
-/*****************
-Mapping Components
-******************/
-
-// Chart
-storiesOf('OceansMap/Charts/Chart',  module)
-  .add('sample chart', ()=>(
-    <Chart
-      data={chartData}
-      time={1529520593002}
-      startTime={1529477393004}
-      endTime={1529606993005}
-      station={null}
-      status={'on'}
-    />
-  )
-);
-
-// Image
-storiesOf('OceansMap/Images/Image Thumbail Strip', module)
-  .add('sample images', ()=>(
-    <ImageThumbnailStrip
-      images={thumbnailStripImages}
-    />
-  )
-);
-
-// Legend
-storiesOf('OceansMap/Legends/Hazard Legend', module)
-  .add('default legend', ()=>(
-    <HazardLegend
-      status={'on'}
-      time={'1529931828308'}
-      data={legendData}
-    />
-  )
-);
-
-// Layer Controls
-storiesOf('OceansMap/Layer Controls/Layer Visibility Controls', module)
-  .add('default', ()=>(
-    <LayerVisibilityControls
-      group={'maps'}
-      onToggleLayer={()=>{}}
-      layers={layerVisibilityData}
-    />
-  )
-);
-
-storiesOf('OceansMap/Layer Controls/Layer Shortcut Controls', module)
-  .add('default', ()=>(
-    <LayerShortcutControls
-      color={'blue'}
-      group={'pois'}
-      layers={'Station Markers'}
-      onGotoLayer={()=>{}}
-      onLoadDone={()=>{}}
-      onLoadStart={()=>{}}
-      selected_identifiers={[null]}
-      sort={true}
-      status={'on'}
-      time={1529934832942}
-      url={"/dbpilots-api/static/station_marker_data.json"}
-    />
-  )
-);
-
-storiesOf('OceansMap/Layer Controls/Layer Button', module)
-  .add('button', ()=>(
-    <LayerButton
-      name={'Sample Button'}
-      value={42}
-      onClick={action('layer-button-pressed')}
-    />
-  )
-);
-
-// Marker Layers
-storiesOf('OceansMap/Marker Layers/Markers', module)
-  .add('markers', ()=>(
-    <Markers
-      key={'Surface Winds and Gusts'}
-      conditionsClassName={'surface-winds-markers'}
-      layers={'Wind Conditions Markers'}
-      niceName={'Surface Winds & Gusts'}
-      onClick={()=>{}}
-      onLoadDone={()=>{}}
-      onLoadStart={()=>{}}
-      parameters={markerParameters}
-      status={'on'}
-      time={1529934832942}
-      tooltipText={"Click to visit the data provider's station page."}
-      type={'ConditionsMarkers'}
-      url={"/dbpilots-api/dynamic/current_conditions/weather_marker_data.json"}
-    />
-  )
-);
-
 /********************
-WMS Viewer Components
+Mapping Components
 *********************/
 
 // Leaflet Map
