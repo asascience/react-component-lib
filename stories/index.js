@@ -63,6 +63,8 @@ Mapping Component Imports
 ****************************/
 import LeafletMap from '../src/components/LeafletMap/LeafletMap';
 import MapboxMap from '../src/components/MapboxMap/MapboxMap';
+import URLEntry from '../src/components/URLEntry/URLEntry';
+import WMSStylesSelectorDrawer from '../src/components/WMSStylesSelectorDrawer/WMSStylesSelectorDrawer';
 
 injectTapEventPlugin();
 
@@ -729,36 +731,28 @@ storiesOf('Maps/Mapbox Map', module)
   )
 );
 
-// Raster Layers - Broken without layer data stored in refs
+// WMS Styles Drawer
+storiesOf('Maps/Style Selectors', module)
+  .add('selector drawer', ()=>(
+    <WMSStylesSelectorDrawer
+      open={true}
+      onClose={action('closing-drawer')}
+      tileUrl="http://35.173.222.0/wms/?service=WMS&request=GetMap&layers=AVHRR%20unmasked%2Fmcsst&styles=default-scalar%2Fdefault&format=image%2Fpng&transparent=false&version=1.1.1&width=256&height=256&srs=EPSG%3A3857&bbox=-10018754.171394622,2504688.542848655,-8766409.899970295,3757032.8142729844"
+      styles={["default-scalar/default", "colored_contours/default", "contours", "raster/default", "raster/psu-viridis", "raster/seq-Greys", "contour/viridis", "pcolor/thermal", "pcolor/viridis", "pcolor/inferno", "trafficlight/default"]}
+      onSelectStyle={action('selected-style')}
+    />
+  )
+)
 
-// storiesOf('OceansMap/Raster Layers/Tile Layers')
-//   .add('tile', ()=>(
-//     <WMSSingleTileLayer
-//     url={"http://coastmap.com/ecop/wms.aspx?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&FORMAT=image/png&TRANSPARENT=true&"}
-//     layers={'GFS_WINDS'}
-//     styles={"WINDS_VERY_SPARSE_GRADIENT-false-2-0-45"}
-//     opacity={1}
-//     time={1529934832942}
-//     onLoadStart={()=>{}}
-//     onLoadDone={()=>{}}
-//     />
-//   )
-// );
-
-// storiesOf('OceansMap/Raster Layers/Map Layers')
-//   .add('map layer', ()=>(
-//     <EsriDynamicMapLayer
-//       url={"https://nowcoast.noaa.gov/arcgis/rest/services/nowcoast/wwa_meteoceanhydro_shortduration_hazards_watches_time/MapServer/export?dpi=96&format=png32&transparent=true&f=image&"}
-//       layers={'0,1,2'}
-//       niceName={'Short Duration Watches'}
-//       onLoadDone={()=>{}}
-//       onLoadStart={()=>{}}
-//       opacity={0.7}
-//       time={1529934832942}
-//     />
-//   )
-// );
-
+// URL Entry Bar
+storiesOf('Input Components/URL Entry', module)
+  .add('default', ()=>(
+    <URLEntry
+      updateSearchValue={()=>{}}
+      getCapabilitiesResult={action('get-capabilities')}
+    />
+  )
+);
 
 // storiesOf('Data Table', module)
 //   .add('Key Value', ()=>(
