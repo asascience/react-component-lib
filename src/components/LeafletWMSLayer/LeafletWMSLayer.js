@@ -10,7 +10,6 @@ class LeafletWMSLayer extends Component {
 
   render() {
     let customProps = {}
-    debugger;
     if( this.props.numberOfColorBands !== undefined) {
       customProps['NUMCOLORBANDS'] = this.props.numberOfColorBands;
     }
