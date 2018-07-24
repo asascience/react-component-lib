@@ -5,7 +5,7 @@
   "main": "build/index.js",
   "scripts": {
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build": "babel src -d build --copy-files",
     "develop": "babel src -w -d build --copy-files",
     "postinstall": "babel src -d build --copy-files"
@@ -24,9 +24,13 @@
   "devDependencies": {
     "@storybook/addon-actions": "^3.4.7",
     "@storybook/react": "^3.4.5",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "jest": "^23.4.1",
     "jsdoc": "^3.5.4",
     "react": ">=16.4.1",
-    "react-dom": ">=16.4.1"
+    "react-dom": ">=16.4.1",
+    "react-test-renderer": "^16.4.1"
   },
   "peerDependencies": {
     "react": ">=16.4.1",
