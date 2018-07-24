@@ -35,12 +35,14 @@ class LeafletMap extends Component {
 
       // Extract tile data and find approximate center
       let tiles = wmsLayer['_tiles'];
-      let tileKeys = Object.keys(tiles);
-      let centerTileKey = tileKeys[tileKeys.length/2];
-      let centerTile = tiles[centerTileKey];
+      if (tiles) {
+        let tileKeys = Object.keys(tiles);
+        let centerTileKey = tileKeys[tileKeys.length/2];
+        let centerTile = tiles[centerTileKey];
 
-      // Get tile url
-      tileUrl = centerTile.el.getAttribute('src');
+        // Get tile url
+        tileUrl = centerTile.el.getAttribute('src');
+      }
     }
 
     return tileUrl;

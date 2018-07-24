@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { WMSTileLayer } from 'react-leaflet';
 
 class LeafletWMSLayer extends Component {
-  constructor(props) {
-    super(props);
+  componentDidUpdate(prevProps){
+    if (prevProps !== this.props) {
+      this.forceUpdate();
+    }
   }
 
   render() {
