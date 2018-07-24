@@ -3,7 +3,22 @@ import React, { Component } from 'react';
 import LeafletWMSLayer from '../LeafletWMSLayer/LeafletWMSLayer';
 
 class LeafletRasterLayers extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      shouldRenderWMSLayers: true,
+    }
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.layerData !== this.props.layerData) {
+      this.setState({shouldRenderWMSLayers: false});
+    }
+  }
   render() {
+    if(this.state.shouldRenderWMSLayers === false) {
+      this.setState({shouldRenderWMSLayers: true});
+      return(<div></div>);
+    }
     const layers = this.props.layerData.map((v, k) => {
       if (v.type === 'WMS') {
         return (
@@ -17,6 +32,10 @@ class LeafletRasterLayers extends Component {
             opacity={v.opacity}
             version={v.version}
             onLoadError={this.props.onLoadError && ((error) => this.props.onLoadError(error))}
+            logScale={v.logScale}
+            numberOfColorBands={v.numberOfColorBands}
+            colorScaleRange={v.colorScaleRange}
+            elevation={v.elevation}
             />
         )
       }
@@ -38,6 +57,8 @@ class LeafletRasterLayers extends Component {
 
       return <div />
     })
+
+
 
     return (
       <div>{layers}</div>

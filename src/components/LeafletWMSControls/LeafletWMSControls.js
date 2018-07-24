@@ -79,6 +79,15 @@ class LeafletWMSControls extends Component {
             onChange={(e, newOpacity) => this.props.opacityField.onChange(newOpacity)}
           />
         </div>
+        <div className='wms-elevation-wrapper'>
+          <p className='wms-elevation-label'>Elevation</p>
+          <Slider
+            className='wms-elevation-slider'
+            value={this.props.elevationField.value}
+            disabled={this.props.elevationField.isDisabled}
+            onChange={this.props.elevationField.onChange}
+          />
+        </div>
         <div className='wms-layer-wrapper'>
           <p className='wms-layer-label'>Layer</p>
           <DropDownMenu

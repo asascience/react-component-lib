@@ -2,7 +2,7 @@
   margin: 30px;
   padding: 20px;
   width: 400px;
-  height: 280px;
+  height: 340px;
 }
 
 .wms-no-network-icon{
@@ -17,6 +17,19 @@
   padding-bottom: 8px;
 }
 
+.wms-elevation-wrapper{
+  display: flex;
+  flex-direction: horizontal;
+  justify-content: space-between;
+  height: 56px;
+}
+.wms-elevation-slider{
+  width: 210px;
+  margin-right: 35px;
+}
+.wms-elevation-label{
+  margin-top: 18px;
+}
 .wms-transparent-wrapper{
   display: flex;
   flex-direction: horizontal;

@@ -2,11 +2,24 @@ import React, { Component } from 'react';
 import { WMSTileLayer } from 'react-leaflet';
 
 class LeafletWMSLayer extends Component {
-  constructor(props) {
-    super(props);
+  componentDidUpdate(prevProps){
+    if (prevProps !== this.props) {
+      this.forceUpdate();
+    }
   }
 
   render() {
+    let customProps = {}
+    if( this.props.numberOfColorBands !== undefined) {
+      customProps['NUMCOLORBANDS'] = this.props.numberOfColorBands;
+    }
+    if (this.props.colorScaleRange !== undefined) {
+      customProps['COLORSCALERANGE'] = this.props.colorScaleRange;
+    }
+    if (this.props.elevation !== undefined) {
+      customProps['elevation'] = this.props.elevation;
+    }
+
     return ( 
       <WMSTileLayer
         url={this.props.url}
@@ -17,9 +30,13 @@ class LeafletWMSLayer extends Component {
         opacity={this.props.opacity}
         version={this.props.version}
         onTileerror={this.props.onLoadError && ((error) => this.props.onLoadError(error))}
+        {...customProps}
       />
     )
   }
+  //logScale={this.props.logScale}
+  //colorScaleRange={this.props.colorScaleRange}
+
 }
 
 export default LeafletWMSLayer;
