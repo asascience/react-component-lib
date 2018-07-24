@@ -1,17 +1,31 @@
 import React, { Component } from 'react';
 
-import { divIcon } from 'leaflet';
+import { divIcon, icon } from 'leaflet';
 import { Marker as LeafletMarker, CircleMarker as LeafletCircleMarker, Tooltip } from 'react-leaflet';
 
 import './LeafletMarkers.css';
 
 class LeafletMarkers extends Component {
+  constructor(props) {
+    super(props);
+
+    this.makeDivIcon =  this.makeDivIcon.bind(this);
+    this.makeCustomDivIcon = this.makeCustomDivIcon.bind(this);
+  }
+
   makeDivIcon(className, text) {
     return divIcon({
       html: '<div class="leaflet-global-conditions ' + className + '">' + text + '</div>',
       iconSize: [40, 40],
       className: 'background-color-transparent',
     })
+  }
+
+  makeCustomDivIcon(url, iconSize) {
+    return icon({
+      iconUrl: url,
+      iconSize: iconSize,
+    });
   }
 
   render() {
@@ -33,6 +47,16 @@ class LeafletMarkers extends Component {
             </Tooltip>
           </LeafletCircleMarker>
         )
+      } else if (this.props.type === 'IconMarkers') {
+        let icon = this.makeCustomDivIcon(v.iconUrl, v.iconSize);
+
+        return (
+          <LeafletMarker
+            key={k}
+            icon={icon}
+            position={v.geometry.coordinates}
+          />
+        );
       } else {
         let icon =  this.makeDivIcon(this.props.className, v.value);
 
