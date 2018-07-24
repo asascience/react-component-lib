@@ -27,6 +27,4 @@ export {default as TopLogo} from './TopLogo/TopLogo.js';
 export {default as UndoModal} from './UndoModal/UndoModal.js';
 //export {UserOptionsMenu} from './UserOptionsMenu/UserOptionsMenu.js';
 export {default as LeafletMap} from './LeafletMap/LeafletMap.js';
-export {default as LeafletWMSControls} from './LeafletWMSControls/LeafletWMSControls.js';
-export {default as LeafletMapWithWMSControls} from './LeafletMapWithWMSControls/LeafletMapWithWMSControls.js';
 export {default as LayerControls} from './LayerControls/LayerControls.js';
