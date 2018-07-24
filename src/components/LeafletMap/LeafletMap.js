@@ -5,15 +5,22 @@ import LeafletRasterLayers  from '../LeafletRasterLayers/LeafletRasterLayers';
 import LeafletGeoJSONLayers from '../LeafletGeoJSONLayers/LeafletGeoJSONLayers';
 import LeafletVectorLayers from '../LeafletVectorLayers/LeafletVectorLayers';
 import './LeafletMap.css';
+import addIcon from './add_icon.png';
+import locationIcon from './my_location.png';
 
 class LeafletMap extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      crosshairCoords: [0, 0],
+    };
+
     this.mapRef = React.createRef();
     this.getTileUrl = this.getTileUrl.bind(this);
     this.getCenterTileKey = this.getCenterTileKey.bind(this);
     this.toRad = this.toRad.bind(this);
+    this.onViewportChange = this.onViewportChange.bind(this);
   }
 
   getTileUrl() {
@@ -39,8 +46,6 @@ class LeafletMap extends Component {
       let tiles = wmsLayer['_tiles'];
       let tileKeys = Object.keys(tiles).sort();
       let centerTileKey = this.getCenterTileKey();
-      console.log(tileKeys)
-      console.log(centerTileKey)
       let centerTile = tiles[centerTileKey];
 
       // Get tile url
@@ -55,7 +60,6 @@ class LeafletMap extends Component {
   }
 
   getCenterTileKey() {
-    console.log(this.mapRef)
     let viewport = this.mapRef.current.viewport;
     let center = viewport.center;
     let zoom = viewport.zoom;
@@ -68,9 +72,22 @@ class LeafletMap extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.rasterLayerData &&
-      prevProps.rasterLayerData[0].layers !== this.props.rasterLayerData[0].layers) {
+      prevProps.crosshair.toggled === false && this.props.crosshair.toggled === true) {
       let tileUrl = this.getTileUrl();
       this.props.setTileUrl(tileUrl);
+    } else if (prevProps.crosshair.toggled === true && this.props.crosshair.toggled === false) {
+      let center = this.mapRef.current.viewport.center;
+      this.setState({
+        crosshairCoords: center,
+      });
+    }
+  }
+
+  onViewportChange(center, zoom) {
+    if (!this.props.crosshair.toggled) {
+      this.setState({
+        crosshairCoords: center,
+      });
     }
   }
 
@@ -123,21 +140,49 @@ class LeafletMap extends Component {
       );
     }
 
+    let crosshairIcon = <div/>;
+    if (this.props.crosshair.shouldDisplay) {
+      let iconUrl = '';
+      if (!this.props.crosshair.toggled) {
+        iconUrl = addIcon;
+      } else {
+        iconUrl = locationIcon;
+      }
+
+      crosshairIcon = (
+        <LeafletPane>
+          <LeafletMarkers
+            markerData={[{
+              value:'crosshairs',
+              geometry: {
+                coordinates: this.state.crosshairCoords,
+              },
+              iconUrl: iconUrl,
+              iconSize: [20, 20],
+            }]}
+            type='IconMarkers'
+          />
+        </LeafletPane>
+      );
+    }
+
     return (
       <div id="map-container">
         <Map
           id="leaflet-map"
           center={this.props.center}
           zoom={this.props.zoomLevel}
-          ref={this.mapRef}>
-        <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
-        />
-        {markers}
-        {rasterLayers}
-        {geoJSONLayers}
-        {vectorLayers}
+          ref={this.mapRef}
+          onViewportChange={(viewport) => this.onViewportChange(viewport.center, viewport.zoom)}>
+          <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+          />
+          {markers}
+          {rasterLayers}
+          {geoJSONLayers}
+          {vectorLayers}
+          {crosshairIcon}
         </Map>
       </div>
     );
