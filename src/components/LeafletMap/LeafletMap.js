@@ -5,7 +5,6 @@ import LeafletRasterLayers  from '../LeafletRasterLayers/LeafletRasterLayers';
 import LeafletGeoJSONLayers from '../LeafletGeoJSONLayers/LeafletGeoJSONLayers';
 import LeafletVectorLayers from '../LeafletVectorLayers/LeafletVectorLayers';
 import './LeafletMap.css';
-import addIcon from './add_icon.png';
 import locationIcon from './my_location.png';
 
 class LeafletMap extends Component {
@@ -72,7 +71,7 @@ class LeafletMap extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.rasterLayerData &&
+    if (this.props.rasterLayerData && this.props.crosshair &&
       prevProps.crosshair.toggled === false && this.props.crosshair.toggled === true) {
       let center = this.mapRef.current.viewport.center;
       this.setState({
@@ -134,7 +133,7 @@ class LeafletMap extends Component {
     }
 
     let crosshairIcon = <div/>;
-    if (this.props.crosshair.shouldDisplay) {
+    if (this.props.crosshair && this.props.crosshair.shouldDisplay) {
       crosshairIcon = (
         <LeafletPane>
           <LeafletMarkers
@@ -167,7 +166,7 @@ class LeafletMap extends Component {
           {rasterLayers}
           {geoJSONLayers}
           {vectorLayers}
-          {this.props.crosshair.toggled && crosshairIcon}
+          {(this.props.crosshair && this.props.crosshair.toggled) && crosshairIcon}
         </Map>
       </div>
     );

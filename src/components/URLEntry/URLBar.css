@@ -1,0 +1,17 @@
+#url-bar-container {
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+}
+input#url-input {
+	background-color: transparent;
+  box-shadow: none;
+  border: 0;
+  height: 100%;
+  font-size: 20px;
+  flex-grow: 1;
+  float: bottom;
+}
+input:focus{
+    outline: none;
+}
