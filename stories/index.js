@@ -6,12 +6,7 @@ import moment from 'moment';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import '../src/index.css';
-import {legendData, 
-        thumbnailStripImages,
-        chartData,
-        layerVisibilityData,
-        markerParameters,
-        leafletMarkers,
+import {leafletMarkers,
         rasterLayerData,
         circleVectorData,
         rectangleVectorData,
