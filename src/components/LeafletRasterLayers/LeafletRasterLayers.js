@@ -35,6 +35,7 @@ class LeafletRasterLayers extends Component {
             logScale={v.logScale}
             numberOfColorBands={v.numberOfColorBands}
             colorScaleRange={v.colorScaleRange}
+            elevation={v.elevation}
             />
         )
       }

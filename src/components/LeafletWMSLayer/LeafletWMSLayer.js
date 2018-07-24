@@ -16,6 +16,10 @@ class LeafletWMSLayer extends Component {
     if (this.props.colorScaleRange !== undefined) {
       customProps['COLORSCALERANGE'] = this.props.colorScaleRange;
     }
+    if (this.props.elevation !== undefined) {
+      customProps['elevation'] = this.props.elevation;
+    }
+
     return ( 
       <WMSTileLayer
         url={this.props.url}
