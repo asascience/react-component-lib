@@ -10,7 +10,9 @@ class LeafletRasterLayers extends Component {
     }
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.layerData !== this.props.layerData) {
+    if (prevProps.layerData[0].elevation !== this.props.layerData[0].elevation ||
+      prevProps.layerData[0].colorScaleRange !== this.props.layerData[0].colorScaleRange ||
+      prevProps.layerData[0].numberOfColorBands !== this.props.layerData[0].numberOfColorBands) {
       this.setState({shouldRenderWMSLayers: false});
     }
   }
