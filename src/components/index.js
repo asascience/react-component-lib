@@ -28,3 +28,4 @@ export {default as UndoModal} from './UndoModal/UndoModal.js';
 //export {UserOptionsMenu} from './UserOptionsMenu/UserOptionsMenu.js';
 export {default as LeafletMap} from './LeafletMap/LeafletMap.js';
 export {default as LayerControls} from './LayerControls/LayerControls.js';
+export {default as WMSStylesSelectorDrawer} from './WMSStylesSelectorDrawer/WMSStylesSelectorDrawer.js';
