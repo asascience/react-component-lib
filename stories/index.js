@@ -60,6 +60,7 @@ import Dropbox from '../src/components/Dropbox/Dropbox';
 // Menu Page Imports
 import OrganizationMenu from  '../src/components/OrganizationMenu/OrganizationMenu';
 import ServiceWrapper from '../src/components/ServiceWrapper/ServiceWrapper';
+import ServiceChooser from '../src/components/ServiceChooser/ServiceChooser';
 
 // Modal Imports
 import LoadingSpinner from '../src/components/LoadingSpinner/LoadingSpinner';
@@ -456,6 +457,17 @@ storiesOf('Menu Components/Service Wrapper', module)
     <Router history={history}>
       <ServiceWrapper
         imgSrc='https://cdn.ioos.noaa.gov/media/2017/12/IOOS_Emblem_Primary_B_RGB.jpg'
+        onChoose={action('service-chosen')}
+      />
+    </Router>
+  )
+);
+
+// Service Chooser
+storiesOf('Menu Components/Service Chooser', module)
+  .add('example services', ()=>(
+    <Router history={history}>
+      <ServiceChooser
         onChoose={action('service-chosen')}
       />
     </Router>
