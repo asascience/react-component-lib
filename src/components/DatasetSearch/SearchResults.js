@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PropTypes from 'prop-types';
-import SearchPagination  from './SearchPagination';
+import SearchPagination from './SearchPagination';
 import './SearchResults.css';
 
 class SearchResults extends Component {
@@ -22,7 +22,7 @@ class SearchResults extends Component {
       stringDOM = splitTitle.reduce((a, object, index)=>{
         a.push(object);
         if(index !== splitTitle.length-1) {
-          a.push((<span className="searchHighlight">{searchString}</span>));
+          a.push((<span key={index} className="searchHighlight">{searchString}</span>));
         }
         return a;
       }, []);
@@ -57,7 +57,7 @@ class SearchResults extends Component {
         }
 
         searchResults.push(
-          <div className={'searchResult' + ((i % 2 === 1) ? ' oddResult' : '')}>
+          <div key={i} className={'searchResult' + ((i % 2 === 1) ? ' oddResult' : '')}>
             <div>
               <div
                 className="searchTitle"

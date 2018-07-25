@@ -3,9 +3,16 @@
   "version": "0.0.0",
   "description": "A library of reusable React components",
   "main": "build/index.js",
+  "jest": {
+    "rootDir": "src/",
+    "moduleNameMapper": {
+      "^.+\\.(css)$": "<rootDir>/../test_config/CSSStub.js"
+    }
+  },
   "scripts": {
     "storybook": "start-storybook -p 9001 -c .storybook",
     "test": "jest",
+    "test-develop": "jest --watch",
     "build": "babel src -d build --copy-files",
     "develop": "babel src -w -d build --copy-files",
     "postinstall": "babel src -d build --copy-files"

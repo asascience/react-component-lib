@@ -20,5 +20,5 @@ test('Autocomplete text box renders correctly', ()=> {
 });
 test('Autocomplete text box renders correctly', () => {
   const textBox = shallow(<TableTextBox text={''} dataSource={['a', 'b']} severity={'required'}/>);
-	expect(textBox.find('TextField').props().errorText).toEqual('This field is required');
+	expect(textBox.find('AutoComplete').props().errorText).toEqual('This field is required');
 });
