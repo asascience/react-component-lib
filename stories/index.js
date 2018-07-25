@@ -41,6 +41,9 @@ import ReferencesDropdown from '../src/components/ReferencesDropdown/ReferencesD
 import UserOptionsMenu from '../src/components/UserOptionsMenu/UserOptionsMenu';
 import LoginAppBar from '../src/components/Navbar/Navbar';
 
+// Footer Imports
+import Footer from '../src/components/Footer/Footer';
+
 // Badge Imports
 import AvatarNumericBadge from '../src/components/AvatarNumericBadge/AvatarNumericBadge';
 
@@ -291,6 +294,33 @@ storiesOf('App Bar/Login Bar', module)
     <Router history={history}>
       <LoginAppBar/>
     </Router>
+  )
+);
+
+
+/*****
+Footer
+******/
+
+// Navigation Footer
+storiesOf('Footer/Bottom Navigation Bar', module)
+  .add('example', ()=>(
+    <Footer
+      footerItems={[
+        {
+          label: 'Recents',
+          iconName: 'restore',
+        },
+        {
+          label: 'Favorites',
+          iconName: 'favorites',
+        },
+        {
+          label: 'Update',
+          iconName: 'update',
+        }
+      ]}
+    />
   )
 );
 
