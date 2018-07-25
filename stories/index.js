@@ -39,6 +39,7 @@ import LoginButton from  '../src/components/LoginButton/LoginButton';
 import ForgotPasswordLink from '../src/components/ForgotPasswordLink/ForgotPasswordLink';
 import ReferencesDropdown from '../src/components/ReferencesDropdown/ReferencesDropdown';
 import UserOptionsMenu from '../src/components/UserOptionsMenu/UserOptionsMenu';
+import LoginAppBar from '../src/components/Navbar/Navbar';
 
 // Badge Imports
 import AvatarNumericBadge from '../src/components/AvatarNumericBadge/AvatarNumericBadge';
@@ -284,6 +285,16 @@ storiesOf('App Bar/User Options Menu', module)
   )
 );
 
+// Navbar
+storiesOf('App Bar/Login Bar', module)
+  .add('example bar', ()=>(
+    <Router history={history}>
+      <LoginAppBar/>
+    </Router>
+  )
+);
+
+
 /*****
 Badges
 ******/
@@ -454,12 +465,10 @@ storiesOf('Menu Components/Service Wrapper', module)
     </Router>
   ))
   .add('custom image', ()=>(
-    <Router history={history}>
-      <ServiceWrapper
-        imgSrc='https://cdn.ioos.noaa.gov/media/2017/12/IOOS_Emblem_Primary_B_RGB.jpg'
-        onChoose={action('service-chosen')}
-      />
-    </Router>
+    <ServiceWrapper
+      imgSrc='https://cdn.ioos.noaa.gov/media/2017/12/IOOS_Emblem_Primary_B_RGB.jpg'
+      onChoose={action('service-chosen')}
+    />
   )
 );
 
