@@ -51,6 +51,7 @@ import DatePicker from '../src/components/DatePicker/DatePicker';
 import Dropdown from '../src/components/Dropdown/Dropdown';
 import SubmitButton  from '../src/components/SubmitButton/SubmitButton';
 import TagInput from '../src/components/TagInput/TagInput';
+import TimezonePicker from '../src/components/TimezonePicker/TimezonePicker';
 
 // Dropbox Imports
 import Dropbox from '../src/components/Dropbox/Dropbox';
@@ -385,6 +386,16 @@ storiesOf('Input Components/Tag Input', module)
     <TagInput
       dataSource={['a', 'b', 'c']}
       disabled={true}
+    />
+  )
+);
+
+// Timezone Picker
+storiesOf('Input Components/Timezone Picker', module)
+  .add('default', ()=>(
+    <TimezonePicker
+      value='Europe/London'
+      handleChangeTimezone={action('timezone-changed')}
     />
   )
 );
