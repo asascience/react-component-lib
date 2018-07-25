@@ -52,6 +52,9 @@ import Dropdown from '../src/components/Dropdown/Dropdown';
 import SubmitButton  from '../src/components/SubmitButton/SubmitButton';
 import TagInput from '../src/components/TagInput/TagInput';
 
+// Dropbox Imports
+import Dropbox from '../src/components/Dropbox/Dropbox';
+
 // Menu Page Imports
 import OrganizationMenu from  '../src/components/OrganizationMenu/OrganizationMenu';
 import ServiceWrapper from '../src/components/ServiceWrapper/ServiceWrapper';
@@ -379,6 +382,30 @@ storiesOf('Input Components/Tag Input', module)
     <TagInput
       dataSource={['a', 'b', 'c']}
       disabled={true}
+    />
+  )
+);
+
+/********************
+File Input Components
+*********************/
+
+// Dropbox
+storiesOf('File Inputs/Dropbox', module)
+  .add('default', ()=>(
+    <Dropbox
+      onFileAdd={action('file-added')}
+      onUpload={action('file-uploaded')}
+      onError={action('upload-error')}
+    />
+  ))
+  .add('file options', ()=>(
+    <Dropbox
+      useFiles='.nc,.csv,.txt,.dat'
+      useIcons={['.nc', '.csv', '.txt', '.dat']}
+      onFileAdd={action('file-added')}
+      onUpload={action('file-uploaded')}
+      onError={action('upload-error')}
     />
   )
 );
