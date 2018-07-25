@@ -4,11 +4,12 @@
   "description": "A library of reusable React components",
   "main": "build/index.js",
   "scripts": {
-    "storybook": "start-storybook -p 9001 -c .storybook",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel src -d build --copy-files",
     "develop": "babel src -w -d build --copy-files",
-    "postinstall": "babel src -d build --copy-files"
+    "postinstall": "babel src -d build --copy-files",
+    "start-storybook": "start-storybook -p 9001 -c .storybook",
+    "build-storybook": "build-storybook -c .storybook -o storybook-static"
   },
   "repository": {
     "type": "git",
