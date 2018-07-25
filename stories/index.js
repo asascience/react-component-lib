@@ -64,6 +64,9 @@ import LoadingSpinner from '../src/components/LoadingSpinner/LoadingSpinner';
 import SessionExpiredModal from '../src/components/SessionExpiredModal/SessionExpiredModal';
 import UndoModal from '../src/components/UndoModal/UndoModal';
 
+// Pagination Imports
+import PaginationController from '../src/components/PaginationController/PaginationController';
+
 /***************************
 Mapping Component Imports
 ****************************/
@@ -463,6 +466,26 @@ storiesOf('Modals/Undo Modal', module)
   .add('default', ()=>(
     <UndoModal
       open={true}
+    />
+  )
+);
+
+/********************
+Pagination Components
+*********************/
+
+// Stepper
+storiesOf('Pagination Components/Steppers', module)
+  .add('customizable', ()=>(
+    <PaginationController
+      stepIndex={0}
+      steps={[
+        {title: 'General', validated: false},
+        {title: 'Attribution', validated: true},
+        {title: 'Data Extents', validated: false},
+        {title: 'Variables', validated: true},
+        {title: 'Summary', validated: true}
+      ]}
     />
   )
 );
