@@ -1,0 +1,9 @@
+#editor-container{
+	display: flex;
+	justify-content: space-between; 
+	width: 100%;
+}
+textarea{
+	flex-grow: 1;
+	margin: 10px;
+}
