@@ -3,7 +3,12 @@
 	justify-content: space-between; 
 	width: 100%;
 }
-textarea{
+.text-container{
 	flex-grow: 1;
+	min-width: 200px;
 	margin: 10px;
+}
+textarea{
+	width: 100%;
+	height: 100%;
 }
