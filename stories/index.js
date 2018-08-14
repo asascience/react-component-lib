@@ -82,6 +82,8 @@ import MapboxMap from '../src/components/MapboxMap/MapboxMap';
 import URLEntry from '../src/components/URLEntry/URLEntry';
 import WMSStylesSelectorDrawer from '../src/components/WMSStylesSelectorDrawer/WMSStylesSelectorDrawer';
 
+import SchemaFormEditor from '../src/containers/SchemaFormEditor/SchemaFormEditor.js';
+
 injectTapEventPlugin();
 
 addDecorator((story) => (
@@ -661,6 +663,12 @@ storiesOf('Input Components/URL Entry', module)
       updateSearchValue={()=>{}}
       getCapabilitiesResult={action('get-capabilities')}
     />
+  )
+);
+
+storiesOf('SchemaForm', module)
+  .add('defualt', ()=>(
+    <SchemaFormEditor/>
   )
 );
 

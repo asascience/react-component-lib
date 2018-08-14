@@ -142,7 +142,7 @@ class SearchChipInput extends Component {
         );
       }
     }
-    let chips = this.props.value.map((chip)=>{
+    let chips = this.props.value.map((chip, index)=>{
       let processedChip = chip;
       if (chip.length > 30 && this.state.expandedFilter !== chip) {
         processedChip = chip.split(':').reduce((result, substring, index)=>{
@@ -155,7 +155,7 @@ class SearchChipInput extends Component {
         }, '');
       }
       return (
-        <div 
+        <div key={index}
           className="chip"
           onMouseEnter={()=>{
             this.setState({expandedFilter: chip});
